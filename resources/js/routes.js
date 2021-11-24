@@ -1,12 +1,6 @@
 import AnotherComponent from './components/AnotherComponent.vue';
 import Dashboard from './components/Dashboard.vue';
-import Category from './components/category/CategoryIndex.vue';
-import CategoryCreate from './components/category/CategoryCreate.vue';
-import CategoryEdit from './components/category/CategoryEdit.vue';
 import Product from './components/product/ProductIndex.vue';
-import Company from './components/company/CompanyIndex.vue';
-import CompanyCreate from './components/company/CompanyCreate.vue';
-import CompanyEdit from './components/company/CompanyEdit.vue';
 import UserProfile from './user/components/UserProfile.vue';
 
 export default {
@@ -26,6 +20,37 @@ export default {
             meta: {
                 title: 'Another Component',
                 primary: true
+            },
+        },
+        {
+            path: '/app/roles',
+            component: () =>
+                import ('./components/role/RoleIndex'),
+            name: 'role.index',
+            meta: {
+                title: 'Role',
+                primary: true
+            },
+        },
+        {
+            path: '/app/roles/create',
+            component: () =>
+                import ('./components/role/RoleCreate'),
+            name: 'role.create',
+            meta: {
+                title: 'Role',
+                primary: false
+            },
+        },
+        {
+            path: '/app/roles/:id/edit',
+            component: () =>
+                import ('./components/role/RoleEdit'),
+            name: 'role.edit',
+            props: true,
+            meta: {
+                title: 'Role',
+                primary: false
             },
         },
         {
