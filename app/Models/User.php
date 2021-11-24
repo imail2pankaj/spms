@@ -18,9 +18,25 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'user_code',
         'email',
-        'password',
+        'phone_number',
+        'emergency_phone_number',
+        'profile_image',
+        'gender',
+        'marital_status',
+        'dob',
+        'join_date',
+        'resign_date',
+        'resume_file',
+        'address',
+        'city',
+        'state',
+        'country',
+        'user_status',
     ];
 
     /**
@@ -41,4 +57,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saved(function ($user) {
+            $user->user_code = static::generateUserCode($user->id);
+        });
+    }
+
+    protected static function generateUserCode($id)
+    {
+        return "SIS".str_repeat("0", 5-strlen($id)) . $id;
+    }
 }

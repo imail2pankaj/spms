@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -17,7 +18,7 @@ class RoleController extends Controller
         return Permission::get();
     }
 
-    public function index()
+    public function index(Request $request)
     {
         return Role::all();
     }
@@ -60,7 +61,6 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $role->delete();
-        // DB::table("roles")->where('id',$id)->delete();
         return response()->noContent();
     }
 }
