@@ -4,16 +4,54 @@ import { useRouter } from 'vue-router';
 
 export default function useUsers() {
     const router = useRouter();
-    const user = ref({
-        name: '',
-        permission: [],
-        _method: 'post',
-    });
     const users = ref([]);
     const rolesOptions = ref([]);
+    const user = ref({
+        first_name: '',
+        middle_name: '',
+        last_name: '',
+        email: '',
+        password: '',
+        confirm_password: '',
+        phone_number: '',
+        emergency_phone_number: '',
+        profile_image: '',
+        gender: '',
+        marital_status: '',
+        dob: '',
+        join_date: '',
+        resign_date: '',
+        resume_file: '',
+        address: '',
+        city: '',
+        state: '',
+        country: '',
+        user_status: '',
+        roles: [],
+        _method: 'post',
+    });
     const errors = ref({
-        name: '',
-        permission: '',
+        first_name: '',
+        middle_name: '',
+        last_name: '',
+        email: '',
+        password: '',
+        confirm_password: '',
+        phone_number: '',
+        emergency_phone_number: '',
+        profile_image: '',
+        gender: '',
+        marital_status: '',
+        dob: '',
+        join_date: '',
+        resign_date: '',
+        resume_file: '',
+        address: '',
+        city: '',
+        state: '',
+        country: '',
+        user_status: '',
+        roles: '',
     });
 
     const getUsers = async() => {

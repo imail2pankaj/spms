@@ -20448,6 +20448,37 @@ __webpack_require__.r(__webpack_exports__);
       primary: false
     }
   }, {
+    path: '/app/users',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_user_UserIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/user/UserIndex */ "./resources/js/components/user/UserIndex.vue"));
+    },
+    name: 'user.index',
+    meta: {
+      title: 'User',
+      primary: true
+    }
+  }, {
+    path: '/app/users/create',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_user_UserCreate_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/user/UserCreate */ "./resources/js/components/user/UserCreate.vue"));
+    },
+    name: 'user.create',
+    meta: {
+      title: 'User',
+      primary: false
+    }
+  }, {
+    path: '/app/users/:id/edit',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_user_UserEdit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/user/UserEdit */ "./resources/js/components/user/UserEdit.vue"));
+    },
+    name: 'user.edit',
+    props: true,
+    meta: {
+      title: 'User',
+      primary: false
+    }
+  }, {
     path: '/app/categories',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_components_category_CategoryIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/category/CategoryIndex */ "./resources/js/components/category/CategoryIndex.vue"));
@@ -44327,7 +44358,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_role_RoleIndex_vue":1,"resources_js_components_role_RoleCreate_vue":1,"resources_js_components_role_RoleEdit_vue":1,"resources_js_components_category_CategoryIndex_vue":1,"resources_js_components_category_CategoryCreate_vue":1,"resources_js_components_category_CategoryEdit_vue":1,"resources_js_components_product_ProductCreate_vue":1,"resources_js_components_product_ProductEdit_vue":1,"resources_js_components_company_CompanyIndex_vue":1,"resources_js_components_company_CompanyCreate_vue":1,"resources_js_components_company_CompanyEdit_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_role_RoleIndex_vue":1,"resources_js_components_role_RoleCreate_vue":1,"resources_js_components_role_RoleEdit_vue":1,"resources_js_components_user_UserIndex_vue":1,"resources_js_components_user_UserCreate_vue":1,"resources_js_components_user_UserEdit_vue":1,"resources_js_components_category_CategoryIndex_vue":1,"resources_js_components_category_CategoryCreate_vue":1,"resources_js_components_category_CategoryEdit_vue":1,"resources_js_components_product_ProductCreate_vue":1,"resources_js_components_product_ProductEdit_vue":1,"resources_js_components_company_CompanyIndex_vue":1,"resources_js_components_company_CompanyCreate_vue":1,"resources_js_components_company_CompanyEdit_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('roles',RoleController::class);
     Route::get('permissions', [RoleController::class,'permissions'])->name("role-permissions");
+    Route::apiResource('users',UserController::class);
     Route::apiResource('companies',CompanyController::class);
     Route::apiResource('categories',CategoryController::class);
-    Route::apiResource('products',ProductController::class);    
+    Route::apiResource('products',ProductController::class);
 });

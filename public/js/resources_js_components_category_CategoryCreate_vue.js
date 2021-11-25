@@ -647,7 +647,8 @@ function useCategories() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "statusOptions": () => (/* binding */ statusOptions)
+/* harmony export */   "statusOptions": () => (/* binding */ statusOptions),
+/* harmony export */   "maritalStatusOptions": () => (/* binding */ maritalStatusOptions)
 /* harmony export */ });
 var statusOptions = [{
   value: 1,
@@ -655,6 +656,16 @@ var statusOptions = [{
 }, {
   value: 0,
   display: 'InActive'
+}];
+var maritalStatusOptions = [{
+  value: 0,
+  display: 'Un-married'
+}, {
+  value: 1,
+  display: 'Married'
+}, {
+  value: 2,
+  display: 'Divorced'
 }];
 
 /***/ }),

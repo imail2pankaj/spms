@@ -54,6 +54,37 @@ export default {
             },
         },
         {
+            path: '/app/users',
+            component: () =>
+                import ('./components/user/UserIndex'),
+            name: 'user.index',
+            meta: {
+                title: 'User',
+                primary: true
+            },
+        },
+        {
+            path: '/app/users/create',
+            component: () =>
+                import ('./components/user/UserCreate'),
+            name: 'user.create',
+            meta: {
+                title: 'User',
+                primary: false
+            },
+        },
+        {
+            path: '/app/users/:id/edit',
+            component: () =>
+                import ('./components/user/UserEdit'),
+            name: 'user.edit',
+            props: true,
+            meta: {
+                title: 'User',
+                primary: false
+            },
+        },
+        {
             path: '/app/categories',
             component: () =>
                 import ('./components/category/CategoryIndex'),
