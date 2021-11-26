@@ -3,9 +3,7 @@
     <h1 class="text-2xl font-bold">
       Users
     </h1>
-    <router-link :to="{name:'user.create'}" class="p-2 transition-colors duration-700 transform bg-indigo-500 hover:bg-blue-400 text-gray-100 text-sm rounded-lg focus:border-4 border-indigo-300">
-          Add
-    </router-link>
+    <router-link :to="{name:'user.create'}" class="link-blue"> Add </router-link>
     
   </div>
   <div class="bg-white overflow-hidden shadow-sm rounded-lg">

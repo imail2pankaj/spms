@@ -6,6 +6,17 @@ export const statusOptions = [{
     display: 'InActive',
 }];
 
+export const genderOptions = [{
+    value: 0,
+    display: 'Male',
+}, {
+    value: 1,
+    display: 'Female',
+}, {
+    value: 2,
+    display: 'Other',
+}];
+
 export const maritalStatusOptions = [{
     value: 0,
     display: 'Un-married',

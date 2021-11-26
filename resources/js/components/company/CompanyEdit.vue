@@ -3,7 +3,7 @@
     <h1 class="text-2xl font-bold">
       Company Edit
     </h1>
-    <router-link :to="{name:'company'}" class="p-2 transition-colors duration-700 transform bg-indigo-500 hover:bg-blue-400 text-gray-100 text-sm rounded-lg focus:border-4 border-indigo-300">
+    <router-link :to="{name:'company'}" class="link-blue">
       List
     </router-link>
   </div>
@@ -49,7 +49,7 @@
               </option>
             </select>
         </div>
-        <button type="submit" class="p-2 transition-colors duration-700 transform bg-indigo-500 hover:bg-blue-400 text-gray-100 text-sm rounded-lg focus:border-4 border-indigo-300">
+        <button type="submit" class="btn-blue">
           Update Company
         </button>
       </form>

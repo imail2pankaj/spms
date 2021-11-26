@@ -3,7 +3,7 @@
     <h1 class="text-2xl font-bold">
       Role Create
     </h1>
-    <router-link :to="{name:'role.index'}" class="p-2 transition-colors duration-700 transform bg-indigo-500 hover:bg-blue-400 text-gray-100 text-sm rounded-lg focus:border-4 border-indigo-300">
+    <router-link :to="{name:'role.index'}" class="link-blue">
       List
     </router-link>
   </div>
@@ -25,7 +25,7 @@
               </label>
             </div>
         </div>
-        <button type="submit" class="p-2 transition-colors duration-700 transform bg-indigo-500 hover:bg-blue-400 text-gray-100 text-sm rounded-lg focus:border-4 border-indigo-300">
+        <button type="submit" class="btn-blue">
           Save
         </button>
       </form>

@@ -277,7 +277,7 @@ var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 
 var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
   type: "submit",
-  "class": "p-2 transition-colors duration-700 transform bg-indigo-500 hover:bg-blue-400 text-gray-100 text-sm rounded-lg focus:border-4 border-indigo-300"
+  "class": "btn-blue"
 }, " Save ", -1
 /* HOISTED */
 );
@@ -291,7 +291,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     to: {
       name: 'product.index'
     },
-    "class": "p-2 transition-colors duration-700 transform bg-indigo-500 hover:bg-blue-400 text-gray-100 text-sm rounded-lg focus:border-4 border-indigo-300"
+    "class": "link-blue"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_3];
@@ -441,6 +441,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "statusOptions": () => (/* binding */ statusOptions),
+/* harmony export */   "genderOptions": () => (/* binding */ genderOptions),
 /* harmony export */   "maritalStatusOptions": () => (/* binding */ maritalStatusOptions)
 /* harmony export */ });
 var statusOptions = [{
@@ -449,6 +450,16 @@ var statusOptions = [{
 }, {
   value: 0,
   display: 'InActive'
+}];
+var genderOptions = [{
+  value: 0,
+  display: 'Male'
+}, {
+  value: 1,
+  display: 'Female'
+}, {
+  value: 2,
+  display: 'Other'
 }];
 var maritalStatusOptions = [{
   value: 0,

@@ -107,9 +107,9 @@ export default function useUsers() {
         await axios.delete('/api/users/' + id);
     }
     return {
-        errors,
         user,
         users,
+        errors,
         getUser,
         getUsers,
         storeUser,
