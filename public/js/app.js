@@ -18577,9 +18577,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _common_Status__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Status */ "./resources/js/components/common/Status.vue");
-/* harmony import */ var _common_ConfirmDelete_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/ConfirmDelete.vue */ "./resources/js/components/common/ConfirmDelete.vue");
-/* harmony import */ var _composables_product__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../composables/product */ "./resources/js/composables/product.js");
+/* harmony import */ var _composables_product__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../composables/product */ "./resources/js/composables/product.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -18588,15 +18586,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {
-    Status: _common_Status__WEBPACK_IMPORTED_MODULE_2__.default,
-    ConfirmDelete: _common_ConfirmDelete_vue__WEBPACK_IMPORTED_MODULE_3__.default
-  },
   setup: function setup(props) {
-    var _useProducts = (0,_composables_product__WEBPACK_IMPORTED_MODULE_4__.default)(),
+    var _useProducts = (0,_composables_product__WEBPACK_IMPORTED_MODULE_2__.default)(),
         products = _useProducts.products,
         getProducts = _useProducts.getProducts,
         deleteProduct = _useProducts.deleteProduct;
@@ -19366,9 +19358,9 @@ var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  var _component_Status = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Status");
+  var _component_app_status = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-status");
 
-  var _component_confirm_delete = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("confirm-delete");
+  var _component_app_confirm_delete = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-confirm-delete");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
@@ -19398,7 +19390,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.category_name ? item.category_name : "None"), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Status, {
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_status, {
       status: item.status
     }, null, 8
     /* PROPS */
@@ -19441,7 +19433,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["onClick"])])])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_confirm_delete, {
+  ))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_confirm_delete, {
     modalHeadline: "Delete Product?",
     deleteMessage: "Are you sure?",
     onDeleteRecordEvent: _cache[1] || (_cache[1] = function ($event) {
@@ -20043,6 +20035,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _base_components_TheApp_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./base/components/TheApp.vue */ "./resources/js/base/components/TheApp.vue");
 /* harmony import */ var _components_Dashboard_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue");
 /* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue");
+/* harmony import */ var _components_common_Status__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/common/Status */ "./resources/js/components/common/Status.vue");
+/* harmony import */ var _components_common_ConfirmDelete__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/common/ConfirmDelete */ "./resources/js/components/common/ConfirmDelete.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
@@ -20059,6 +20053,8 @@ var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_4__.createRouter)({
 
 
 
+
+
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
   components: {
     TheApp: _base_components_TheApp_vue__WEBPACK_IMPORTED_MODULE_5__.default,
@@ -20066,6 +20062,8 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
     Home: _components_Home_vue__WEBPACK_IMPORTED_MODULE_7__.default
   }
 });
+app.component('app-status', _components_common_Status__WEBPACK_IMPORTED_MODULE_8__.default);
+app.component('app-confirm-delete', _components_common_ConfirmDelete__WEBPACK_IMPORTED_MODULE_9__.default);
 app.use(router);
 app.use(_store_app__WEBPACK_IMPORTED_MODULE_3__.store);
 app.use((_ckeditor_ckeditor5_vue__WEBPACK_IMPORTED_MODULE_1___default()));

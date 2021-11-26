@@ -16,6 +16,8 @@ const router = createRouter({
 import TheApp from "./base/components/TheApp.vue";
 import Dashboard from "./components/Dashboard.vue";
 import Home from "./components/Home.vue";
+import Status from "./components/common/Status";
+import ConfirmDelete from "./components/common/ConfirmDelete";
 
 const app = createApp({
     components: {
@@ -24,7 +26,8 @@ const app = createApp({
         Home,
     }
 });
-
+app.component('app-status', Status);
+app.component('app-confirm-delete', ConfirmDelete);
 app.use(router);
 app.use(store);
 app.use(CKEditor);

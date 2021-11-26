@@ -15,8 +15,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _composables_role__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../composables/role */ "./resources/js/composables/role.js");
-/* harmony import */ var _common_Status__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/Status */ "./resources/js/components/common/Status.vue");
-/* harmony import */ var _common_ConfirmDelete__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/ConfirmDelete */ "./resources/js/components/common/ConfirmDelete.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -25,13 +23,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {
-    Status: _common_Status__WEBPACK_IMPORTED_MODULE_3__.default,
-    ConfirmDelete: _common_ConfirmDelete__WEBPACK_IMPORTED_MODULE_4__.default
-  },
   setup: function setup(props) {
     var showModal = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     var item_id = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(0);
@@ -186,7 +178,7 @@ var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  var _component_confirm_delete = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("confirm-delete");
+  var _component_app_confirm_delete = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-confirm-delete");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
@@ -247,7 +239,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["onClick"])])])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_confirm_delete, {
+  ))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_confirm_delete, {
     modalHeadline: "Delete Role?",
     deleteMessage: "Are you sure?",
     onDeleteRecordEvent: _cache[1] || (_cache[1] = function ($event) {

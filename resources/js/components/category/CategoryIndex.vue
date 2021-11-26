@@ -30,7 +30,7 @@
               <td class="py-2 px-2 text-left whitespace-nowrap">{{ item.name }}</td>
               <td class="py-2 px-2 text-left whitespace-nowrap">{{ item.parent_category_name ? item.parent_category_name :"None" }}</td>
               <td class="py-2 px-2 text-center whitespace-nowrap">
-                  <Status :status="item.status" />
+                  <app-status :status="item.status"></app-status>
                 </td>
               <td class="py-2 px-2 text-center whitespace-nowrap">
                 <div class="flex item-center justify-center">
@@ -52,20 +52,14 @@
 
     </div>
   </div>
-  <confirm-delete v-show="showModal" modalHeadline="Delete Category?" deleteMessage="Are you sure?" @deleteRecordEvent="destroyCategory(item_id)" @close="togglePopup" ></confirm-delete>
+  <app-confirm-delete v-show="showModal" modalHeadline="Delete Category?" deleteMessage="Are you sure?" @deleteRecordEvent="destroyCategory(item_id)" @close="togglePopup" ></app-confirm-delete>
 </template>
 
 <script>
 import { computed, onMounted, ref, watch } from 'vue';
 import useCategories from '../../composables/category';
-import Status from '../common/Status';
-import ConfirmDelete from '../common/ConfirmDelete';
 
 export default {
-    components: {
-        Status,
-        ConfirmDelete
-    },
     setup(props) {
         const showModal = ref(false);
         const item_id = ref(0);

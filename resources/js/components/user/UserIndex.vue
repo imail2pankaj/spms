@@ -31,7 +31,7 @@
               </td>
               <td class="py-2 px-2 text-left whitespace-nowrap">{{ item.email }}</td>
               <td class="py-2 px-2 text-center whitespace-nowrap">
-                  <Status :status="item.user_status" />
+                  <app-status :status="item.user_status"></app-status>
                 </td>
               <td class="py-2 px-2 text-center whitespace-nowrap">
                 <div class="flex item-center justify-center">
@@ -53,22 +53,15 @@
 
     </div>
   </div>
-  <confirm-delete v-show="showModal" modalHeadline="Delete User?" deleteMessage="Are you sure?" @deleteRecordEvent="destroyUser(item_id)" @close="togglePopup" ></confirm-delete>
+  <app-confirm-delete v-show="showModal" modalHeadline="Delete User?" deleteMessage="Are you sure?" @deleteRecordEvent="destroyUser(item_id)" @close="togglePopup" ></app-confirm-delete>
 </template>
 
 
 <script>
 import { onMounted, ref } from 'vue';
-import Status from '../common/Status';
-import ConfirmDelete from '../common/ConfirmDelete.vue';
 import useUsers from "../../composables/user";
 
-
 export default {
-  components: {
-    Status,
-    ConfirmDelete
-  },
   setup(props) {
     const { users, getUsers, deleteUser} = useUsers();
     const showModal = ref(false);

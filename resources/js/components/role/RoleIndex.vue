@@ -41,20 +41,14 @@
 
     </div>
   </div>
-  <confirm-delete v-show="showModal" modalHeadline="Delete Role?" deleteMessage="Are you sure?" @deleteRecordEvent="destroyRole(item_id)" @close="togglePopup" ></confirm-delete>
+  <app-confirm-delete v-show="showModal" modalHeadline="Delete Role?" deleteMessage="Are you sure?" @deleteRecordEvent="destroyRole(item_id)" @close="togglePopup" ></app-confirm-delete>
 </template>
 
 <script>
 import { onMounted, ref } from 'vue';
 import useRoles from '../../composables/role';
-import Status from '../common/Status';
-import ConfirmDelete from '../common/ConfirmDelete';
 
 export default {
-    components: {
-        Status,
-        ConfirmDelete
-    },
     setup(props) {
         const showModal = ref(false);
         const item_id = ref(0);
