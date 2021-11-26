@@ -11,33 +11,33 @@
     <div class="p-6 bg-white border-b border-gray-200">
       <form @submit.prevent="saveCategory">
         <div class="mb-6">
-            <label for="name" class="text-sm font-medium text-gray-900 block mb-2">Name</label>
-            <input type="text" v-model="category.name" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Name" required >
+            <label for="name" class="input-form-label">Name</label>
+            <input type="text" v-model="category.name" id="name" name="name" class="input-form-control" placeholder="Name" required >
             <span v-if="errors.name">{{errors.name}}</span>
         </div>
 
         <div class="mb-6">
-            <label for="description" class="text-sm font-medium text-gray-900 block mb-2">Description</label>
+            <label for="description" class="input-form-label">Description</label>
             <ckeditor :editor="editor" v-model="category.description"></ckeditor>
             <span v-if="errors.description">{{errors.description}}</span>
         </div>
 
         <div class="mb-6">
-            <label for="short_description" class="text-sm font-medium text-gray-900 block mb-2">Short Description</label>
+            <label for="short_description" class="input-form-label">Short Description</label>
             <ckeditor :editor="editor" v-model="category.short_description"></ckeditor>
             <span v-if="errors.short_description">{{errors.short_description}}</span>
         </div>
 
         <div class="mb-6">
-            <label for="image" class="text-sm font-medium text-gray-900 block mb-2">Image</label>
-            <input type="file" ref="file" v-on:change="handleFileUpload"  id="image" name="image" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            <label for="image" class="input-form-label">Image</label>
+            <input type="file" ref="file" v-on:change="handleFileUpload"  id="image" name="image" class="input-form-control">
             <span v-if="errors.image">{{errors.image}}</span>
             <img v-if="category.image" :src="'/uploads/category/' + category.image" class="w-20" alt="">
         </div>
 
         <div class=" mb-6">
-            <label for="parent_id" class="text-sm font-medium text-gray-900 block mb-2">Parent</label>
-            <select v-model="category.parent_id" name="parent_id" id="parent_id" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            <label for="parent_id" class="input-form-label">Parent</label>
+            <select v-model="category.parent_id" name="parent_id" id="parent_id" class="input-form-control">
               <option :key="0" :value="0">None</option>
               <template v-for="item in categoryOptions" :key="item.value">
                 <option :value="item.value" v-if="item.value !== category.id">
@@ -48,8 +48,8 @@
         </div>
 
         <div class="mb-6">
-            <label for="status" class="text-sm font-medium text-gray-900 block mb-2">Status</label>
-            <select v-model="category.status" name="status" id="status" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            <label for="status" class="input-form-label">Status</label>
+            <select v-model="category.status" name="status" id="status" class="input-form-control">
               <option v-for="item in statusOptions" :key="item.value" :value="item.value">
                 {{item.display}}
               </option>

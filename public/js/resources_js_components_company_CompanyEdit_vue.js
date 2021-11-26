@@ -156,7 +156,7 @@ var _hoisted_6 = {
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "name",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Company Name", -1
 /* HOISTED */
 );
@@ -170,7 +170,7 @@ var _hoisted_9 = {
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "logo",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Company Logo", -1
 /* HOISTED */
 );
@@ -184,7 +184,7 @@ var _hoisted_12 = {
 
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "email",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Company email", -1
 /* HOISTED */
 );
@@ -198,7 +198,7 @@ var _hoisted_15 = {
 
 var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "address",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Company address", -1
 /* HOISTED */
 );
@@ -212,7 +212,7 @@ var _hoisted_18 = {
 
 var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "website",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Company Website", -1
 /* HOISTED */
 );
@@ -226,7 +226,7 @@ var _hoisted_21 = {
 
 var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "status",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Company Status", -1
 /* HOISTED */
 );
@@ -264,7 +264,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "name",
     name: "name",
-    "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
+    "class": "input-form-control",
     placeholder: "Company name",
     required: ""
   }, null, 512
@@ -279,7 +279,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "logo",
     name: "logo",
-    "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
+    "class": "input-form-control",
     placeholder: "Company email",
     required: ""
   }, null, 544
@@ -300,7 +300,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "email",
     name: "email",
-    "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
+    "class": "input-form-control",
     placeholder: "Company email",
     required: ""
   }, null, 512
@@ -314,7 +314,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "address",
     name: "address",
-    "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
+    "class": "input-form-control",
     placeholder: "Company address",
     required: ""
   }, null, 512
@@ -328,7 +328,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "website",
     name: "website",
-    "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
+    "class": "input-form-control",
     placeholder: "Company website",
     required: ""
   }, null, 512
@@ -341,7 +341,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     name: "status",
     id: "status",
-    "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+    "class": "input-form-control"
   }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.statusOptions, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
       key: item.value,

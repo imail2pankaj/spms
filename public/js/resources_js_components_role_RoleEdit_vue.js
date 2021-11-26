@@ -138,7 +138,7 @@ var _hoisted_6 = {
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "name",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Name", -1
 /* HOISTED */
 );
@@ -152,7 +152,7 @@ var _hoisted_9 = {
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "permisions",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Permissions", -1
 /* HOISTED */
 );
@@ -199,7 +199,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "name",
     name: "name",
-    "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
+    "class": "input-form-control",
     placeholder: "Name",
     required: ""
   }, null, 512

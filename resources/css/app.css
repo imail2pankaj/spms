@@ -14,6 +14,14 @@
   .link-blue {
     @apply py-1 px-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
   }
+
+  .input-form-control {
+    @apply bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+  }
+
+  .input-form-label {
+    @apply text-sm font-medium text-gray-900 block mb-2;
+  }
 /*
 * ----------------------------
 * Transitions

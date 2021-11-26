@@ -169,7 +169,7 @@ var _hoisted_6 = {
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "name",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Name", -1
 /* HOISTED */
 );
@@ -183,7 +183,7 @@ var _hoisted_9 = {
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "description",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Description", -1
 /* HOISTED */
 );
@@ -197,7 +197,7 @@ var _hoisted_12 = {
 
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "short_description",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Short Description", -1
 /* HOISTED */
 );
@@ -211,7 +211,7 @@ var _hoisted_15 = {
 
 var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "regular_price",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Regular Price", -1
 /* HOISTED */
 );
@@ -225,7 +225,7 @@ var _hoisted_18 = {
 
 var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "sale_price",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Sale Price", -1
 /* HOISTED */
 );
@@ -239,7 +239,7 @@ var _hoisted_21 = {
 
 var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "image",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Image", -1
 /* HOISTED */
 );
@@ -253,7 +253,7 @@ var _hoisted_24 = {
 
 var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "category_id",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Category", -1
 /* HOISTED */
 );
@@ -270,7 +270,7 @@ var _hoisted_27 = {
 
 var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "status",
-  "class": "text-sm font-medium text-gray-900 block mb-2"
+  "class": "input-form-label"
 }, "Status", -1
 /* HOISTED */
 );
@@ -312,7 +312,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "name",
     name: "name",
-    "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
+    "class": "input-form-control",
     placeholder: "Name",
     required: ""
   }, null, 512
@@ -346,7 +346,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "regular_price",
     name: "regular_price",
-    "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
+    "class": "input-form-control",
     placeholder: "Regular Price",
     required: ""
   }, null, 512
@@ -360,7 +360,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "sale_price",
     name: "sale_price",
-    "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
+    "class": "input-form-control",
     placeholder: "Sale Price",
     required: ""
   }, null, 512
@@ -375,7 +375,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "image",
     name: "image",
-    "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+    "class": "input-form-control"
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
   ), $setup.errors.image ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.image), 1
@@ -392,7 +392,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     name: "category_id",
     id: "category_id",
-    "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+    "class": "input-form-control"
   }, [_hoisted_26, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.categoryOptions, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
       key: item.id,
@@ -410,7 +410,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     name: "status",
     id: "status",
-    "class": "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+    "class": "input-form-control"
   }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.statusOptions, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
       key: item.value,

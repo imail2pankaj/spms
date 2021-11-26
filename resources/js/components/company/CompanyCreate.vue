@@ -11,38 +11,38 @@
     <div class="p-6 bg-white border-b border-gray-200">
       <form @submit.prevent="saveCompany">
         <div class="mb-6">
-            <label for="name" class="text-sm font-medium text-gray-900 block mb-2">Company Name</label>
-            <input type="text" v-model="form.name" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Company name" required >
+            <label for="name" class="input-form-label">Company Name</label>
+            <input type="text" v-model="form.name" id="name" name="name" class="input-form-control" placeholder="Company name" required >
             <span v-if="errors.name">{{errors.name}}</span>
         </div>
 
         <div class="mb-6">
-            <label for="logo" class="text-sm font-medium text-gray-900 block mb-2">Company Logo</label>
-            <input type="file" ref="file" v-on:change="handleFileUpload"  id="logo" name="logo" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Company email" required >
+            <label for="logo" class="input-form-label">Company Logo</label>
+            <input type="file" ref="file" v-on:change="handleFileUpload"  id="logo" name="logo" class="input-form-control" placeholder="Company email" required >
             <span v-if="errors.logo">{{errors.logo}}</span>
         </div>
 
         <div class="mb-6">
-            <label for="email" class="text-sm font-medium text-gray-900 block mb-2">Company email</label>
-            <input type="email" v-model="form.email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Company email" required >
+            <label for="email" class="input-form-label">Company email</label>
+            <input type="email" v-model="form.email" id="email" name="email" class="input-form-control" placeholder="Company email" required >
             <span v-if="errors.email">{{errors.email}}</span>
         </div>
 
         <div class="mb-6">
-            <label for="address" class="text-sm font-medium text-gray-900 block mb-2">Company address</label>
-            <input type="text" v-model="form.address" id="address" name="address" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Company address" required >
+            <label for="address" class="input-form-label">Company address</label>
+            <input type="text" v-model="form.address" id="address" name="address" class="input-form-control" placeholder="Company address" required >
             <span v-if="errors.address">{{errors.address}}</span>
         </div>
 
         <div class="mb-6">
-            <label for="website" class="text-sm font-medium text-gray-900 block mb-2">Company Website</label>
-            <input type="text" v-model="form.website" id="website" name="website" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Company website" required >
+            <label for="website" class="input-form-label">Company Website</label>
+            <input type="text" v-model="form.website" id="website" name="website" class="input-form-control" placeholder="Company website" required >
             <span v-if="errors.website">{{errors.website}}</span>
         </div>
 
         <div class="mb-6">
-            <label for="status" class="text-sm font-medium text-gray-900 block mb-2">Company Status</label>
-            <select v-model="form.status" name="status" id="status" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            <label for="status" class="input-form-label">Company Status</label>
+            <select v-model="form.status" name="status" id="status" class="input-form-control">
               <option v-for="item in statusOptions" :key="item.value" :value="item.value">
                 {{item.display}}
               </option>
