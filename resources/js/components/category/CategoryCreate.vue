@@ -52,8 +52,8 @@
               </option>
             </select>
         </div>
-        <button type="submit" class="btn-blue">
-          Save
+        <button type="submit" class="btn-blue" :disabled="submitting">
+          {{submitting ? 'Saving' : 'Save'}}
         </button>
       </form>
     </div>
@@ -69,6 +69,7 @@ export default {
   setup() {
     const {errors, storeCategory, categoryOptions, getCategoriesDropdown} = useCategories();
     const file = ref(null);
+    const submitting = ref(false);
     const form = ref({
       name: '',
       description: '',
@@ -87,6 +88,7 @@ export default {
     }
 
     const saveCategory = async () => {
+      submitting.value = true;
       const formData = new FormData();
       for(const key in form.value) {
         if(key === 'image'){
@@ -96,10 +98,12 @@ export default {
         }
       }
       await storeCategory(formData);
+      submitting.value = false;
     }
     return {
       form,
       errors,
+      submitting,
       saveCategory,
       statusOptions,
       categoryOptions,

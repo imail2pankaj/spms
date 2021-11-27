@@ -52,6 +52,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         getCategoriesDropdown = _useCategories.getCategoriesDropdown;
 
     var file = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
+    var submitting = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)({
       name: '',
       description: '',
@@ -87,6 +88,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                submitting.value = true;
                 formData = new FormData();
 
                 for (key in form.value) {
@@ -97,10 +99,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }
 
-                _context2.next = 4;
+                _context2.next = 5;
                 return storeCategory(formData);
 
-              case 4:
+              case 5:
+                submitting.value = false;
+
+              case 6:
               case "end":
                 return _context2.stop();
             }
@@ -116,6 +121,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       form: form,
       errors: errors,
+      submitting: submitting,
       saveCategory: saveCategory,
       statusOptions: _utils__WEBPACK_IMPORTED_MODULE_3__.statusOptions,
       categoryOptions: categoryOptions,
@@ -243,13 +249,6 @@ var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 /* HOISTED */
 );
 
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-  type: "submit",
-  "class": "btn-blue"
-}, " Save ", -1
-/* HOISTED */
-);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
@@ -356,7 +355,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* KEYED_FRAGMENT */
   ))], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.status]])]), _hoisted_23], 32
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.status]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    type: "submit",
+    "class": "btn-blue",
+    disabled: $setup.submitting
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.submitting ? 'Saving' : 'Save'), 9
+  /* TEXT, PROPS */
+  , ["disabled"])], 32
   /* HYDRATE_EVENTS */
   )])])], 64
   /* STABLE_FRAGMENT */
