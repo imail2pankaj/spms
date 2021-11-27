@@ -18,6 +18,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->all();
+        // return response($data);
         if ($request->hasFile('profile_image')) {
             $image = $request->file('profile_image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
@@ -34,7 +35,10 @@ class UserController extends Controller
 
             $data['resume_file'] = $imageName;
         }
-        return User::create($data);
+        $user = User::create($data);
+        $user->assignRole($request->input('roles'));
+
+        return $user;
     }
 
     public function show(User $user)

@@ -12,7 +12,7 @@ export default function useUsers() {
         last_name: '',
         email: '',
         password: '',
-        confirm_password: '',
+        password_confirmation: '',
         phone_number: '',
         emergency_phone_number: '',
         profile_image: '',
@@ -36,7 +36,7 @@ export default function useUsers() {
         last_name: '',
         email: '',
         password: '',
-        confirm_password: '',
+        password_confirmation: '',
         phone_number: '',
         emergency_phone_number: '',
         profile_image: '',
@@ -77,7 +77,7 @@ export default function useUsers() {
             await axios.post('/api/users', data);
             await router.push({ name: 'user.index' });
         } catch (error) {
-            if (error.response.code === 422) {
+            if (error.response.status === 422) {
                 const responseErrors = error.response.data.errors;
                 for (const key in responseErrors) {
                     errors.value[key] = responseErrors[key][0];
@@ -94,7 +94,7 @@ export default function useUsers() {
             await axios.post('/api/users/' + id, data);
             await router.push({ name: 'user.index' });
         } catch (error) {
-            if (error.response.code === 422) {
+            if (error.response.status === 422) {
                 const responseErrors = error.response.data.errors;
                 for (const key in responseErrors) {
                     errors.value[key] = responseErrors[key][0];
@@ -105,6 +105,7 @@ export default function useUsers() {
 
     const deleteUser = async(id) => {
         await axios.delete('/api/users/' + id);
+        await router.push({ name: 'user.index' });
     }
     return {
         user,

@@ -58,9 +58,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return deleteUser(itemId);
 
               case 2:
+                _context2.next = 4;
+                return getUsers();
+
+              case 4:
                 togglePopup();
 
-              case 3:
+              case 5:
               case "end":
                 return _context2.stop();
             }
@@ -317,7 +321,7 @@ function useUsers() {
     last_name: '',
     email: '',
     password: '',
-    confirm_password: '',
+    password_confirmation: '',
     phone_number: '',
     emergency_phone_number: '',
     profile_image: '',
@@ -341,7 +345,7 @@ function useUsers() {
     last_name: '',
     email: '',
     password: '',
-    confirm_password: '',
+    password_confirmation: '',
     phone_number: '',
     emergency_phone_number: '',
     profile_image: '',
@@ -470,7 +474,7 @@ function useUsers() {
               _context4.prev = 8;
               _context4.t0 = _context4["catch"](1);
 
-              if (_context4.t0.response.code === 422) {
+              if (_context4.t0.response.status === 422) {
                 responseErrors = _context4.t0.response.data.errors;
 
                 for (_key in responseErrors) {
@@ -521,7 +525,7 @@ function useUsers() {
               _context5.prev = 8;
               _context5.t0 = _context5["catch"](1);
 
-              if (_context5.t0.response.code === 422) {
+              if (_context5.t0.response.status === 422) {
                 responseErrors = _context5.t0.response.data.errors;
 
                 for (_key2 in responseErrors) {
@@ -552,6 +556,12 @@ function useUsers() {
               return axios__WEBPACK_IMPORTED_MODULE_1___default().delete('/api/users/' + id);
 
             case 2:
+              _context6.next = 4;
+              return router.push({
+                name: 'user.index'
+              });
+
+            case 4:
             case "end":
               return _context6.stop();
           }

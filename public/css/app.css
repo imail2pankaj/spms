@@ -31580,6 +31580,25 @@ select {
   color: rgba(17, 24, 39, var(--tw-text-opacity));
 }
 
+.input-form-sub-heading {
+  border-bottom-width: 1px;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  line-height: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  --tw-text-opacity: 1;
+  color: rgba(17, 24, 39, var(--tw-text-opacity));
+}
+
+.input-error {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  --tw-text-opacity: 1;
+  color: rgba(220, 38, 38, var(--tw-text-opacity));
+}
+
 /*
 * ----------------------------
 * Transitions

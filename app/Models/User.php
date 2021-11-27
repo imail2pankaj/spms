@@ -23,6 +23,7 @@ class User extends Authenticatable
         'last_name',
         'user_code',
         'email',
+        'password',
         'phone_number',
         'emergency_phone_number',
         'profile_image',
@@ -58,7 +59,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
+
     protected static function boot()
     {
         parent::boot();

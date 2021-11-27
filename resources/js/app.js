@@ -17,6 +17,8 @@ import TheApp from "./base/components/TheApp.vue";
 import Dashboard from "./components/Dashboard.vue";
 import Home from "./components/Home.vue";
 import Status from "./components/common/Status";
+import Required from "./components/common/Required";
+import InputError from "./components/common/InputError";
 import ConfirmDelete from "./components/common/ConfirmDelete";
 
 const app = createApp({
@@ -28,6 +30,8 @@ const app = createApp({
 });
 app.component('app-status', Status);
 app.component('app-confirm-delete', ConfirmDelete);
+app.component('app-required', Required);
+app.component('app-input-error', InputError);
 app.use(router);
 app.use(store);
 app.use(CKEditor);

@@ -4,7 +4,7 @@
       Users
     </h1>
     <router-link :to="{name:'user.create'}" class="link-blue"> Add </router-link>
-    
+
   </div>
   <div class="bg-white overflow-hidden shadow-sm rounded-lg">
     <div class="p-6 bg-white border-b border-gray-200">
@@ -73,6 +73,7 @@ export default {
 
     const destroyUser = async (itemId) => {
       await deleteUser(itemId);
+      await getUsers();
       togglePopup();
     }
     const togglePopup = () => {

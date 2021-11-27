@@ -44,6 +44,7 @@ class UserRequest extends FormRequest
             'state' => 'required',
             'country' => 'required',
             'user_status' => '',
+            'roles' => 'required',
         ];
     }
 }
