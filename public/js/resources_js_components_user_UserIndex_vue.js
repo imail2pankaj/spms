@@ -403,8 +403,9 @@ function useUsers() {
             case 2:
               response = _context2.sent;
               user.value = response.data;
+              user.value.roles = response.data.roles[0].id;
 
-            case 4:
+            case 5:
             case "end":
               return _context2.stop();
           }

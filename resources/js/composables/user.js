@@ -62,6 +62,7 @@ export default function useUsers() {
     const getUser = async(id) => {
         const response = await axios.get('/api/users/' + id);
         user.value = response.data;
+        user.value.roles = response.data.roles[0].id;
     }
 
     const getRolesDropdown = async() => {

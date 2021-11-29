@@ -126,13 +126,13 @@
             <div class="md:grid md:grid-cols-3 md:gap-6 mb-6">
               <div>
                 <label for="profile_image" class="input-form-label">Profile Image</label>
-                <input type="file" ref="profile_image" v-on:change="(e) => handleFileUpload(e, 'profile_image')" id="profile_image" name="profile_image" class="input-form-control">
+                <input type="file" accept="image/jpeg, image/png" ref="profile_image" v-on:change="(e) => handleFileUpload(e, 'profile_image')" id="profile_image" name="profile_image" class="input-form-control">
                 <span class="input-error" v-if="errors.profile_image">{{errors.profile_image}}</span>
               </div>
 
               <div>
                 <label for="resume_file" class="input-form-label">Resume</label>
-                <input type="file" ref="resume_file" v-on:change="(e) => handleFileUpload(e, 'resume_file')" id="resume_file" name="resume_file" class="input-form-control">
+                <input type="file" accept=".doc, .docx,application/pdf, application/msword" ref="resume_file" v-on:change="(e) => handleFileUpload(e, 'resume_file')" id="resume_file" name="resume_file" class="input-form-control">
                 <span class="input-error" v-if="errors.resume_file">{{errors.resume_file}}</span>
               </div>
 
@@ -167,25 +167,25 @@ export default {
     const profile_image = ref(null);
     const resume_file = ref(null);
     const form = ref({
-        first_name: 'Bruce',
-        middle_name: 'Nethar',
-        last_name: 'Wayne',
-        email: 'bruce@scenicitsolutions.com',
-        password: '123456789',
-        password_confirmation: '123456789',
-        phone_number: '9876543210',
-        emergency_phone_number: '9876543210',
+        first_name: '',
+        middle_name: '',
+        last_name: '',
+        email: '',
+        password: '',
+        password_confirmation: '',
+        phone_number: '',
+        emergency_phone_number: '',
         profile_image: '',
         gender: 0,
         marital_status: 0,
-        dob: '1987-07-04',
-        join_date: '2021-11-20',
+        dob: '',
+        join_date: '',
         resign_date: '',
         resume_file: '',
-        address: '47, Ankur Comm. Center',
-        city: 'Rajkot',
-        state: 'Gujarat',
-        country: 'India',
+        address: '',
+        city: '',
+        state: '',
+        country: '',
         user_status: 0,
         roles: '',
     });
@@ -195,6 +195,8 @@ export default {
     });
 
     const handleFileUpload = (e, file_type) => {
+      e.preventDefault();
+      e.stopPropagation();
       if(file_type === 'profile_image') {
         profile_image.value = e.target.files[0];
       } else if(file_type === 'resume_file') {

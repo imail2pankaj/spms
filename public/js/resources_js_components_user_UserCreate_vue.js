@@ -38,25 +38,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var profile_image = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
     var resume_file = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)({
-      first_name: 'Bruce',
-      middle_name: 'Nethar',
-      last_name: 'Wayne',
-      email: 'bruce@scenicitsolutions.com',
-      password: '123456789',
-      password_confirmation: '123456789',
-      phone_number: '9876543210',
-      emergency_phone_number: '9876543210',
+      first_name: '',
+      middle_name: '',
+      last_name: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+      phone_number: '',
+      emergency_phone_number: '',
       profile_image: '',
       gender: 0,
       marital_status: 0,
-      dob: '1987-07-04',
-      join_date: '2021-11-20',
+      dob: '',
+      join_date: '',
       resign_date: '',
       resume_file: '',
-      address: '47, Ankur Comm. Center',
-      city: 'Rajkot',
-      state: 'Gujarat',
-      country: 'India',
+      address: '',
+      city: '',
+      state: '',
+      country: '',
       user_status: 0,
       roles: ''
     });
@@ -77,6 +77,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     })));
 
     var handleFileUpload = function handleFileUpload(e, file_type) {
+      e.preventDefault();
+      e.stopPropagation();
+
       if (file_type === 'profile_image') {
         profile_image.value = e.target.files[0];
       } else if (file_type === 'resume_file') {
@@ -739,6 +742,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), _hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [_hoisted_62, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     type: "file",
+    accept: "image/jpeg, image/png",
     ref: "profile_image",
     onChange: _cache[19] || (_cache[19] = function (e) {
       return $setup.handleFileUpload(e, 'profile_image');
@@ -752,6 +756,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [_hoisted_64, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     type: "file",
+    accept: ".doc, .docx,application/pdf, application/msword",
     ref: "resume_file",
     onChange: _cache[20] || (_cache[20] = function (e) {
       return $setup.handleFileUpload(e, 'resume_file');
@@ -914,8 +919,9 @@ function useUsers() {
             case 2:
               response = _context2.sent;
               user.value = response.data;
+              user.value.roles = response.data.roles[0].id;
 
-            case 4:
+            case 5:
             case "end":
               return _context2.stop();
           }
