@@ -11,9 +11,24 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        return User::with('roles')->get();
+        $users = User::with('roles');
+        if($request->get('status') > -1) {
+            $users->where("user_status", $request->get('status'));
+        }
+        if(!empty($request->get('keyword'))) {
+            $users->where(function ($query) use ($request) {
+                $queryParams = "%" . $request->get('keyword') . "%";
+                $query->where('first_name', 'LIKE', $queryParams)
+                      ->orWhere('middle_name', 'LIKE', $queryParams)
+                      ->orWhere('last_name', 'LIKE', $queryParams)
+                      ->orWhere('email', 'LIKE', $queryParams)
+                      ->orWhere('user_code', 'LIKE', $queryParams)
+                      ->orWhere('phone_number', 'LIKE', $queryParams);
+            });
+        }
+        return $users->paginate($request->get('pagination'));
     }
 
     public function store(UserRequest $request)

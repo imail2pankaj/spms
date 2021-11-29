@@ -6,6 +6,12 @@ export default function useUsers() {
     const router = useRouter();
     const users = ref([]);
     const rolesOptions = ref([]);
+    const pagination = ref({
+        current_page: 1,
+        total: 0,
+        per_page: 5,
+        last_page: 0
+    });
     const user = ref({
         first_name: '',
         middle_name: '',
@@ -54,9 +60,16 @@ export default function useUsers() {
         roles: '',
     });
 
-    const getUsers = async() => {
-        const response = await axios.get('/api/users');
-        users.value = response.data;
+    const getUsers = async(data) => {
+        let parameters = "?";
+        for (const key in data) {
+            parameters += key + "=" + data[key] + "&";
+        }
+        const response = await axios.get('/api/users' + parameters);
+        users.value = response.data.data;
+        for (const key in pagination.value) {
+            pagination.value[key] = response.data[key];
+        }
     }
 
     const getUser = async(id) => {
@@ -115,6 +128,7 @@ export default function useUsers() {
         getUser,
         getUsers,
         storeUser,
+        pagination,
         deleteUser,
         updateUser,
         rolesOptions,
