@@ -10,7 +10,8 @@ export default function useUsers() {
         current_page: 1,
         total: 0,
         per_page: 5,
-        last_page: 0
+        last_page: 0,
+        links: [],
     });
     const user = ref({
         first_name: '',

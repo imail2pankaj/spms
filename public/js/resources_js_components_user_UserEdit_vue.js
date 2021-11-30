@@ -845,7 +845,8 @@ function useUsers() {
     current_page: 1,
     total: 0,
     per_page: 5,
-    last_page: 0
+    last_page: 0,
+    links: []
   });
   var user = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
     first_name: '',
