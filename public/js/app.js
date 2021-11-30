@@ -18663,12 +18663,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     var searchPanelForm = (0,_vue_reactivity__WEBPACK_IMPORTED_MODULE_2__.ref)({});
 
     var searchData = function searchData(pgData) {
-      if (_typeof(pgData) == 'object') {
+      if (_typeof(pgData) == "object") {
         searchPanelForm.value = pgData;
       } else {
         searchPanelForm.value.page = pgData;
       }
 
+      console.log(searchPanelForm.value);
       emit("changePageEvent", searchPanelForm.value);
     };
 
@@ -18705,7 +18706,7 @@ __webpack_require__.r(__webpack_exports__);
     var emit = _ref.emit;
 
     var changePage = function changePage(page) {
-      emit('changePageEvent', page);
+      emit("changePageEvent", page);
     };
 
     return {
@@ -19703,15 +19704,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
+  key: 0,
   "class": "\r\n      px-5\r\n      py-5\r\n      bg-white\r\n      border-t\r\n      flex flex-col\r\n      xs:flex-row\r\n      items-center\r\n      xs:justify-between\r\n    "
 };
 var _hoisted_2 = {
   "class": "inline-flex mt-2 xs:mt-0"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.pagination.links, function (pagi, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("button", {
-      key: index,
+  return $props.pagination.total ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.pagination.links, function (pagi, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+      key: index
+    }, [index === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("button", {
+      key: 0,
+      onClick: _cache[1] || (_cache[1] = function () {
+        return $setup.changePage($props.pagination.current_page - 1);
+      }),
+      "class": "pagination-previous",
+      disabled: $props.pagination.current_page === 1 ? true : false
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+      innerHTML: pagi.label
+    }, null, 8
+    /* PROPS */
+    , ["innerHTML"])], 8
+    /* PROPS */
+    , ["disabled"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), index !== 0 && index !== $props.pagination.links.length - 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("button", {
+      key: 1,
       onClick: function onClick() {
         return $setup.changePage(pagi.label);
       },
@@ -19723,10 +19740,25 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* PROPS */
     , ["innerHTML"])], 10
     /* CLASS, PROPS */
-    , ["onClick", "disabled"]);
+    , ["onClick", "disabled"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), index === $props.pagination.links.length - 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("button", {
+      key: 2,
+      onClick: _cache[2] || (_cache[2] = function () {
+        return $setup.changePage($props.pagination.current_page + 1);
+      }),
+      "class": "pagination-next",
+      disabled: $props.pagination.current_page === $props.pagination.last_page ? true : false
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+      innerHTML: pagi.label
+    }, null, 8
+    /* PROPS */
+    , ["innerHTML"])], 8
+    /* PROPS */
+    , ["disabled"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+    /* STABLE_FRAGMENT */
+    );
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]);
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
 }
 
 /***/ }),

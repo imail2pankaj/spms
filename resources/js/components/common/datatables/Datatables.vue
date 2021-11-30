@@ -10,7 +10,7 @@
 <script>
 import Search from "./Search";
 import Pagination from "./Pagination";
-import { ref } from '@vue/reactivity';
+import { ref } from "@vue/reactivity";
 export default {
   props: { pagination: { required: true, type: Object } },
   emits: ["changePageEvent"],
@@ -23,11 +23,12 @@ export default {
     const searchPanelForm = ref({});
 
     const searchData = (pgData) => {
-        if(typeof pgData == 'object'){
-            searchPanelForm.value = pgData;
-        } else {
-            searchPanelForm.value.page = pgData;
-        }
+      if (typeof pgData == "object") {
+        searchPanelForm.value = pgData;
+      } else {
+        searchPanelForm.value.page = pgData;
+      }
+      console.log(searchPanelForm.value);
       emit("changePageEvent", searchPanelForm.value);
     };
 
