@@ -20,7 +20,13 @@ class RoleController extends Controller
 
     public function index(Request $request)
     {
-        return Role::all();
+        $roles = Role::where("id",">",0);
+        if(!empty($request->get('keyword'))) {
+            $qry = "%". $request->get('keyword') ."%";
+            $roles->where("name","LIKE",$qry);
+        }
+
+        return $roles->paginate($request->get('pagination'));
     }
 
     public function store(Request $request)
@@ -29,7 +35,7 @@ class RoleController extends Controller
             'name' => 'required|unique:roles,name',
             'permission' => 'required',
         ]);
-    
+
         $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($request->input('permission'));
         return $role;
@@ -50,7 +56,7 @@ class RoleController extends Controller
             'name' => 'required',
             'permission' => 'required',
         ]);
-    
+
         $role->update(['name' => $request->input('name')]);
 
         $role->syncPermissions($request->input('permission'));

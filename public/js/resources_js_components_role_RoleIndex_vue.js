@@ -30,20 +30,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     var _useRoles = (0,_composables_role__WEBPACK_IMPORTED_MODULE_2__.default)(),
         roles = _useRoles.roles,
+        pagination = _useRoles.pagination,
         getRoles = _useRoles.getRoles,
         deleteRole = _useRoles.deleteRole;
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(getRoles);
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
+      getRoles;
+    });
 
-    var togglePopup = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+    var searchData = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(emitPagination) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                showModal.value = !showModal.value;
+                _context.next = 2;
+                return getRoles(emitPagination);
 
-              case 1:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -51,26 +55,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }));
 
-      return function togglePopup() {
+      return function searchData(_x) {
         return _ref.apply(this, arguments);
       };
     }();
 
-    var destroyRole = /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(id) {
+    var togglePopup = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return deleteRole(id);
+                showModal.value = !showModal.value;
 
-              case 2:
-                togglePopup();
-                _context2.next = 5;
-                return getRoles();
-
-              case 5:
+              case 1:
               case "end":
                 return _context2.stop();
             }
@@ -78,8 +76,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }));
 
-      return function destroyRole(_x) {
+      return function togglePopup() {
         return _ref2.apply(this, arguments);
+      };
+    }();
+
+    var destroyRole = /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(id) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return deleteRole(id);
+
+              case 2:
+                togglePopup();
+                _context3.next = 5;
+                return getRoles();
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      return function destroyRole(_x2) {
+        return _ref3.apply(this, arguments);
       };
     }();
 
@@ -87,9 +112,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       item_id: item_id,
       showModal: showModal,
       roles: roles,
+      pagination: pagination,
       destroyRole: destroyRole,
       togglePopup: togglePopup,
-      deleteRole: deleteRole
+      deleteRole: deleteRole,
+      searchData: searchData
     };
   }
 });
@@ -115,7 +142,7 @@ var _hoisted_1 = {
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", {
   "class": "text-2xl font-bold"
-}, " Roles ", -1
+}, "Roles", -1
 /* HOISTED */
 );
 
@@ -153,30 +180,16 @@ var _hoisted_10 = {
 var _hoisted_11 = {
   "class": "flex item-center justify-center"
 };
-
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-  src: "/images/view-icon.svg",
-  alt: "View"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-  src: "/images/edit-icon.svg",
-  alt: "Edit"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-  src: "/images/delete-icon.svg",
-  alt: "Delete"
-}, null, -1
-/* HOISTED */
-);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+
+  var _component_view_icon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("view-icon");
+
+  var _component_edit_icon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("edit-icon");
+
+  var _component_delete_icon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("delete-icon");
+
+  var _component_app_datatables = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-datatables");
 
   var _component_app_confirm_delete = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-confirm-delete");
 
@@ -194,52 +207,64 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.roles, function (item, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
-      key: index,
-      "class": "border-b border-gray-200 hover:bg-gray-100"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1
-    /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-      to: "",
-      "class": "no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
-    }, {
-      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [_hoisted_12];
-      }),
-      _: 1
-      /* STABLE */
+  , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_datatables, {
+    pagination: $setup.pagination,
+    onChangePageEvent: $setup.searchData
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.roles, function (item, index) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
+          key: index,
+          "class": "border-b border-gray-200 hover:bg-gray-100"
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1
+        /* TEXT */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+          to: "",
+          "class": "no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110 "
+        }, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_view_icon)];
+          }),
+          _: 1
+          /* STABLE */
 
-    }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-      to: {
-        name: 'role.edit',
-        params: {
-          id: item.id
-        }
-      },
-      "class": "no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
-    }, {
-      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [_hoisted_13];
-      }),
-      _: 2
-      /* DYNAMIC */
+        }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+          to: {
+            name: 'role.edit',
+            params: {
+              id: item.id
+            }
+          },
+          "class": "no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+        }, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_edit_icon)];
+          }),
+          _: 2
+          /* DYNAMIC */
 
-    }, 1032
-    /* PROPS, DYNAMIC_SLOTS */
-    , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-      type: "button",
-      onClick: function onClick($event) {
-        $setup.item_id = item.id;
-        $setup.togglePopup();
-      },
-      "class": "no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
-    }, [_hoisted_14], 8
-    /* PROPS */
-    , ["onClick"])])])]);
-  }), 128
-  /* KEYED_FRAGMENT */
-  ))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_confirm_delete, {
+        }, 1032
+        /* PROPS, DYNAMIC_SLOTS */
+        , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+          type: "button",
+          onClick: function onClick($event) {
+            $setup.item_id = item.id;
+            $setup.togglePopup();
+          },
+          "class": "no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110 "
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_delete_icon)], 8
+        /* PROPS */
+        , ["onClick"])])])]);
+      }), 128
+      /* KEYED_FRAGMENT */
+      ))])])];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["pagination", "onChangePageEvent"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_confirm_delete, {
     modalHeadline: "Delete Role?",
     deleteMessage: "Are you sure?",
     onDeleteRecordEvent: _cache[1] || (_cache[1] = function ($event) {
@@ -290,26 +315,46 @@ function useRoles() {
   });
   var roles = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var permissionsOptions = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
+  var pagination = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
+    current_page: 1,
+    total: 0,
+    per_page: 5,
+    last_page: 0,
+    links: []
+  });
   var errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
     name: '',
     permission: ''
   });
 
   var getRoles = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var response;
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
+      var parameters, key, response, _key;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/roles');
+              // const response = await axios.get('/api/roles');
+              // roles.value = response.data;
+              parameters = "?";
 
-            case 2:
-              response = _context.sent;
-              roles.value = response.data;
+              for (key in data) {
+                parameters += key + "=" + data[key] + "&";
+              }
+
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/roles' + parameters);
 
             case 4:
+              response = _context.sent;
+              roles.value = response.data.data;
+
+              for (_key in pagination.value) {
+                pagination.value[_key] = response.data[_key];
+              }
+
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -317,7 +362,7 @@ function useRoles() {
       }, _callee);
     }));
 
-    return function getRoles() {
+    return function getRoles(_x) {
       return _ref.apply(this, arguments);
     };
   }();
@@ -344,7 +389,7 @@ function useRoles() {
       }, _callee2);
     }));
 
-    return function getRole(_x) {
+    return function getRole(_x2) {
       return _ref2.apply(this, arguments);
     };
   }();
@@ -378,7 +423,7 @@ function useRoles() {
 
   var storeRole = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(data) {
-      var key, responseErrors, _key;
+      var key, responseErrors, _key2;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
         while (1) {
@@ -409,8 +454,8 @@ function useRoles() {
               if (_context4.t0.response.code === 422) {
                 responseErrors = _context4.t0.response.data.errors;
 
-                for (_key in responseErrors) {
-                  errors.value[_key] = responseErrors[_key][0];
+                for (_key2 in responseErrors) {
+                  errors.value[_key2] = responseErrors[_key2][0];
                 }
               }
 
@@ -422,14 +467,14 @@ function useRoles() {
       }, _callee4, null, [[1, 8]]);
     }));
 
-    return function storeRole(_x2) {
+    return function storeRole(_x3) {
       return _ref4.apply(this, arguments);
     };
   }();
 
   var updateRole = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id, data) {
-      var key, responseErrors, _key2;
+      var key, responseErrors, _key3;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
         while (1) {
@@ -460,8 +505,8 @@ function useRoles() {
               if (_context5.t0.response.code === 422) {
                 responseErrors = _context5.t0.response.data.errors;
 
-                for (_key2 in responseErrors) {
-                  errors.value[_key2] = responseErrors[_key2][0];
+                for (_key3 in responseErrors) {
+                  errors.value[_key3] = responseErrors[_key3][0];
                 }
               }
 
@@ -473,7 +518,7 @@ function useRoles() {
       }, _callee5, null, [[1, 8]]);
     }));
 
-    return function updateRole(_x3, _x4) {
+    return function updateRole(_x4, _x5) {
       return _ref5.apply(this, arguments);
     };
   }();
@@ -495,7 +540,7 @@ function useRoles() {
       }, _callee6);
     }));
 
-    return function deleteRole(_x5) {
+    return function deleteRole(_x6) {
       return _ref6.apply(this, arguments);
     };
   }();
@@ -507,6 +552,7 @@ function useRoles() {
     getRole: getRole,
     getRoles: getRoles,
     storeRole: storeRole,
+    pagination: pagination,
     deleteRole: deleteRole,
     updateRole: updateRole,
     permissionsOptions: permissionsOptions,

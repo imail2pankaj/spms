@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="pagination.total"
+    v-if="pagination.last_page !== 1"
     class="
       px-5
       py-5
@@ -41,7 +41,7 @@
         </button>
 
         <button
-          v-if="index === pagination.links.length - 1"
+          v-if="(index === pagination.links.length - 1)"
           @click="() => changePage(pagination.current_page + 1)"
           class="pagination-next"
           :disabled="pagination.current_page === pagination.last_page ? true : false"

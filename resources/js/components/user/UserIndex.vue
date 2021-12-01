@@ -8,7 +8,6 @@
   </div>
 
   <div class="bg-white overflow-hidden shadow-sm rounded-lg">
-
     <div class="p-6 bg-white border-b border-gray-200">
       <app-datatables :pagination="pagination" @changePageEvent="searchData">
         <table class="min-w-max w-full table-auto">
@@ -70,16 +69,8 @@ export default {
     const showModal = ref(false);
     const item_id = ref(0);
 
-    const searchPanelForm = ref({
-      pagination: 1,
-      status: -1,
-      keyword: '',
-      page: 1,
-    })
-
-
     onMounted(async () => {
-      await getUsers(searchPanelForm.value);
+      await getUsers();
     })
 
     const searchData = async (emitPagination) => {
@@ -100,8 +91,7 @@ export default {
       pagination,
       searchData,
       togglePopup,
-      destroyUser,
-      searchPanelForm,
+      destroyUser
     }
   },
 }

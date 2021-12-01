@@ -11,14 +11,32 @@ export default function useRoles() {
     });
     const roles = ref([]);
     const permissionsOptions = ref([]);
+    const pagination = ref({
+        current_page: 1,
+        total: 0,
+        per_page: 5,
+        last_page: 0,
+        links: [],
+    });
     const errors = ref({
         name: '',
         permission: '',
     });
 
-    const getRoles = async() => {
-        const response = await axios.get('/api/roles');
-        roles.value = response.data;
+    const getRoles = async(data) => {
+        // const response = await axios.get('/api/roles');
+        // roles.value = response.data;
+
+        let parameters = "?";
+        for (const key in data) {
+            parameters += key + "=" + data[key] + "&";
+        }
+        const response = await axios.get('/api/roles' + parameters);
+        roles.value = response.data.data;
+        for (const key in pagination.value) {
+            pagination.value[key] = response.data[key];
+        }
+
     }
 
     const getRole = async(id) => {
@@ -75,6 +93,7 @@ export default function useRoles() {
         getRole,
         getRoles,
         storeRole,
+        pagination,
         deleteRole,
         updateRole,
         permissionsOptions,

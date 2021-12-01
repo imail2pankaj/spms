@@ -259,26 +259,46 @@ function useRoles() {
   });
   var roles = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var permissionsOptions = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
+  var pagination = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
+    current_page: 1,
+    total: 0,
+    per_page: 5,
+    last_page: 0,
+    links: []
+  });
   var errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
     name: '',
     permission: ''
   });
 
   var getRoles = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var response;
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
+      var parameters, key, response, _key;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/roles');
+              // const response = await axios.get('/api/roles');
+              // roles.value = response.data;
+              parameters = "?";
 
-            case 2:
-              response = _context.sent;
-              roles.value = response.data;
+              for (key in data) {
+                parameters += key + "=" + data[key] + "&";
+              }
+
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/roles' + parameters);
 
             case 4:
+              response = _context.sent;
+              roles.value = response.data.data;
+
+              for (_key in pagination.value) {
+                pagination.value[_key] = response.data[_key];
+              }
+
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -286,7 +306,7 @@ function useRoles() {
       }, _callee);
     }));
 
-    return function getRoles() {
+    return function getRoles(_x) {
       return _ref.apply(this, arguments);
     };
   }();
@@ -313,7 +333,7 @@ function useRoles() {
       }, _callee2);
     }));
 
-    return function getRole(_x) {
+    return function getRole(_x2) {
       return _ref2.apply(this, arguments);
     };
   }();
@@ -347,7 +367,7 @@ function useRoles() {
 
   var storeRole = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(data) {
-      var key, responseErrors, _key;
+      var key, responseErrors, _key2;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
         while (1) {
@@ -378,8 +398,8 @@ function useRoles() {
               if (_context4.t0.response.code === 422) {
                 responseErrors = _context4.t0.response.data.errors;
 
-                for (_key in responseErrors) {
-                  errors.value[_key] = responseErrors[_key][0];
+                for (_key2 in responseErrors) {
+                  errors.value[_key2] = responseErrors[_key2][0];
                 }
               }
 
@@ -391,14 +411,14 @@ function useRoles() {
       }, _callee4, null, [[1, 8]]);
     }));
 
-    return function storeRole(_x2) {
+    return function storeRole(_x3) {
       return _ref4.apply(this, arguments);
     };
   }();
 
   var updateRole = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id, data) {
-      var key, responseErrors, _key2;
+      var key, responseErrors, _key3;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
         while (1) {
@@ -429,8 +449,8 @@ function useRoles() {
               if (_context5.t0.response.code === 422) {
                 responseErrors = _context5.t0.response.data.errors;
 
-                for (_key2 in responseErrors) {
-                  errors.value[_key2] = responseErrors[_key2][0];
+                for (_key3 in responseErrors) {
+                  errors.value[_key3] = responseErrors[_key3][0];
                 }
               }
 
@@ -442,7 +462,7 @@ function useRoles() {
       }, _callee5, null, [[1, 8]]);
     }));
 
-    return function updateRole(_x3, _x4) {
+    return function updateRole(_x4, _x5) {
       return _ref5.apply(this, arguments);
     };
   }();
@@ -464,7 +484,7 @@ function useRoles() {
       }, _callee6);
     }));
 
-    return function deleteRole(_x5) {
+    return function deleteRole(_x6) {
       return _ref6.apply(this, arguments);
     };
   }();
@@ -476,6 +496,7 @@ function useRoles() {
     getRole: getRole,
     getRoles: getRoles,
     storeRole: storeRole,
+    pagination: pagination,
     deleteRole: deleteRole,
     updateRole: updateRole,
     permissionsOptions: permissionsOptions,

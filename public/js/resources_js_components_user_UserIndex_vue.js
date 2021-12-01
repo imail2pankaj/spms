@@ -33,19 +33,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     var showModal = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     var item_id = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(0);
-    var searchPanelForm = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)({
-      pagination: 1,
-      status: -1,
-      keyword: '',
-      page: 1
-    });
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return getUsers(searchPanelForm.value);
+              return getUsers();
 
             case 2:
             case "end":
@@ -117,8 +111,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       pagination: pagination,
       searchData: searchData,
       togglePopup: togglePopup,
-      destroyUser: destroyUser,
-      searchPanelForm: searchPanelForm
+      destroyUser: destroyUser
     };
   }
 });
