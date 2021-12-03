@@ -55,6 +55,9 @@ class UserController extends Controller
         }
         $user = User::create($data);
         $user->assignRole($request->input('roles'));
+
+        $user->user_code = "SIS".str_repeat("0", 5-strlen($user->id)) . $user->id;
+        $user->save();
         return $user;
     }
 

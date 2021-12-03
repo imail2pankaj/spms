@@ -20,6 +20,9 @@ class PermissionsSeeder extends Seeder
         // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
+        $role3 = Role::create(['name' => 'super-admin']);
+        // gets all permissions via Gate::before rule; see AuthServiceProvider
+
         // create permissions
         Permission::create(['name' => 'Edit User']);
         Permission::create(['name' => 'Delete User']);
@@ -61,9 +64,6 @@ class PermissionsSeeder extends Seeder
         $role2->givePermissionTo('View Project');
         $role2->givePermissionTo('List Project');
 
-        $role3 = Role::create(['name' => 'super-admin']);
-        // gets all permissions via Gate::before rule; see AuthServiceProvider
-
         $user = \App\Models\User::create([
             'first_name' => 'Super',
             'last_name' => 'Admin',
@@ -100,5 +100,12 @@ class PermissionsSeeder extends Seeder
             'user_status' => 1,
         ]);
         $user->assignRole($role1);
+
+        $role = Role::create(['name' => 'hr']);
+        $role = Role::create(['name' => 'qa']);
+        $role = Role::create(['name' => 'developer']);
+        $role = Role::create(['name' => 'designer']);
+        $role = Role::create(['name' => 'trainee']);
+        $role = Role::create(['name' => 'customer']);
     }
 }

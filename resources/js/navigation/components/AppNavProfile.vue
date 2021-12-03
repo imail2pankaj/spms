@@ -7,9 +7,14 @@
     >
       <div class="flex items-center">
         <div>
-          <img
+          <img v-if="user.profile_image"
             class="inline-block h-10 w-10 rounded-full"
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=DS9XwDWeLa&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+            :src="'uploads/user/profile_image/' + user.profile_image"
+            alt=""
+          />
+          <img v-else
+            class="inline-block h-10 w-10 rounded-full"
+            src="https://ui-avatars.com/api/?name=Pankaj%20Makwana&rounded=true&background=a0a0a0"
             alt=""
           />
         </div>

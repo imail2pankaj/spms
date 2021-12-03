@@ -28,7 +28,6 @@ export default {
       } else {
         searchPanelForm.value.page = pgData;
       }
-      console.log(searchPanelForm.value);
       emit("changePageEvent", searchPanelForm.value);
     };
 
