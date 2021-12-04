@@ -668,7 +668,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "statusOptions": () => (/* binding */ statusOptions),
 /* harmony export */   "genderOptions": () => (/* binding */ genderOptions),
-/* harmony export */   "maritalStatusOptions": () => (/* binding */ maritalStatusOptions)
+/* harmony export */   "maritalStatusOptions": () => (/* binding */ maritalStatusOptions),
+/* harmony export */   "projectStatusOptions": () => (/* binding */ projectStatusOptions),
+/* harmony export */   "projectTypeOptions": () => (/* binding */ projectTypeOptions),
+/* harmony export */   "taskStatusOptions": () => (/* binding */ taskStatusOptions)
 /* harmony export */ });
 var statusOptions = [{
   value: 1,
@@ -697,6 +700,9 @@ var maritalStatusOptions = [{
   value: 2,
   display: 'Divorced'
 }];
+var projectStatusOptions = ['Active', 'Hold', 'Completed', 'Closed', 'Archieved'];
+var projectTypeOptions = ['Fixed', 'Hourly', 'Contract'];
+var taskStatusOptions = ['Created', 'Active', 'Started', 'Paused', 'Completed', 'Archieved'];
 
 /***/ }),
 

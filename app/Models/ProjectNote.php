@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ProjectNote extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['project_id','description'];
 }

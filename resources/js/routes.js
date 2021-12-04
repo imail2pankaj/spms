@@ -84,6 +84,39 @@ export default {
                 primary: false
             },
         },
+
+        {
+            path: '/app/projects',
+            component: () =>
+                import ('./components/project/ProjectIndex'),
+            name: 'project.index',
+            meta: {
+                title: 'Project',
+                primary: true
+            },
+        },
+        {
+            path: '/app/projects/create',
+            component: () =>
+                import ('./components/project/ProjectCreate'),
+            name: 'project.create',
+            meta: {
+                title: 'Project',
+                primary: false
+            },
+        },
+        {
+            path: '/app/projects/:id/edit',
+            component: () =>
+                import ('./components/project/ProjectEdit'),
+            name: 'project.edit',
+            props: true,
+            meta: {
+                title: 'Project',
+                primary: false
+            },
+        },
+
         {
             path: '/app/categories',
             component: () =>

@@ -80,7 +80,7 @@ export default function useUsers() {
     }
 
     const getRolesDropdown = async() => {
-        const response = await axios.get('/api/roles');
+        const response = await axios.get('/api/user/roles');
         rolesOptions.value = response.data;
     }
 

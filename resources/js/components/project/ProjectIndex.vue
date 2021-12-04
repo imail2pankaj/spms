@@ -1,9 +1,9 @@
 <template>
   <div class="flex justify-between mb-2">
     <h1 class="text-2xl font-bold">
-      Users
+      Projects
     </h1>
-    <router-link :to="{name:'user.create'}" class="link-blue"> Add </router-link>
+    <router-link :to="{name:'project.create'}" class="link-blue"> Add </router-link>
 
   </div>
 
@@ -14,33 +14,45 @@
           <thead>
             <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
               <th class="py-2 px-2 text-left">Name</th>
-              <th class="py-2 px-2 text-left">Role</th>
-              <th class="py-2 px-2 text-left">Email</th>
+              <th class="py-2 px-2 text-left">Assigned</th>
+              <th class="py-2 px-2 text-left">Type</th>
               <th class="py-2 px-2 text-center">Status</th>
               <th class="py-2 px-2 text-center">Action</th>
             </tr>
           </thead>
           <tbody class="text-gray-900 text-sm font-light">
-            <template v-for="(item, index) in users" :key="index">
+            <template v-for="(item, index) in projects" :key="index">
               <tr class="border-b border-gray-200 hover:bg-gray-100">
                 <td class="py-2 px-2 text-left whitespace-nowrap">
-                  {{item.first_name + " " + item.last_name}}
+                  {{item.title}}
                 </td>
                 <td class="py-2 px-2 text-left whitespace-nowrap">
-                  <template v-for="(role, index1) in item.roles" :key="index1">
-                    {{role.name}}
+                  <template v-for="(dev, index1) in item.developers" :key="index1">
+                    <b>Dev - </b>{{dev.first_name}}<br/>
+                  </template>
+                  <template v-for="(des, index1) in item.designers" :key="index1">
+                    <b>Des - </b>{{des.first_name}}<br/>
+                  </template>
+                  <template v-for="(pm, index1) in item.pms" :key="index1">
+                    <b>PM - </b>{{pm.first_name}}<br/>
+                  </template>
+                  <template v-for="(bde, index1) in item.bdes" :key="index1">
+                    <b>BDE - </b>{{bde.first_name}}<br/>
+                  </template>
+                  <template v-for="(qa, index1) in item.qas" :key="index1">
+                    <b>QA - </b>{{qa.first_name}}<br/>
                   </template>
                 </td>
-                <td class="py-2 px-2 text-left whitespace-nowrap">{{ item.email }}</td>
+                <td class="py-2 px-2 text-left whitespace-nowrap">{{ item.project_type }}</td>
                 <td class="py-2 px-2 text-center whitespace-nowrap">
-                    <app-status :status="item.user_status"></app-status>
+                    {{item.project_status}}
                   </td>
                 <td class="py-2 px-2 text-center whitespace-nowrap">
                   <div class="flex item-center justify-center">
                     <router-link to="" class="no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                         <view-icon />
                     </router-link>
-                    <router-link :to="{name:'user.edit', params: {id:item.id}}"  class="no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                    <router-link :to="{name:'project.edit', params: {id:item.id}}"  class="no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                         <edit-icon />
                     </router-link>
                     <button type="button" @click="item_id = item.id; togglePopup();" class="no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
@@ -55,17 +67,17 @@
       </app-datatables>
     </div>
   </div>
-  <app-confirm-delete v-show="showModal" modalHeadline="Delete User?" deleteMessage="Are you sure?" @deleteRecordEvent="destroyUser(item_id)" @close="togglePopup" ></app-confirm-delete>
+  <app-confirm-delete v-show="showModal" modalHeadline="Delete Project?" deleteMessage="Are you sure?" @deleteRecordEvent="destroyProject(item_id)" @close="togglePopup" ></app-confirm-delete>
 </template>
 
 
 <script>
 import { onMounted, ref } from 'vue';
-import useUsers from "../../composables/user";
+import useProjects from "../../composables/project";
 
 export default {
   setup(props) {
-    const { users, pagination, getUsers, deleteUser} = useUsers();
+    const { projects, pagination, getProjects, deleteProject} = useProjects();
     const showModal = ref(false);
     const item_id = ref(0);
     const emitPaginationLocal = ref({});
@@ -76,24 +88,24 @@ export default {
 
     const searchData = async (emitPagination) => {
       emitPaginationLocal.value = emitPaginationLocal;
-      await getUsers(emitPagination);
+      await getProjects(emitPagination);
     }
-    const destroyUser = async (itemId) => {
-      await deleteUser(itemId);
-      await getUsers(emitPaginationLocal.value);
+    const destroyProject = async (itemId) => {
+      await deleteProject(itemId);
+      await getProjects(emitPaginationLocal.value);
       togglePopup();
     }
     const togglePopup = () => {
       showModal.value = !showModal.value;
     }
     return {
-      users,
+      projects,
       item_id,
       showModal,
       pagination,
       searchData,
       togglePopup,
-      destroyUser
+      destroyProject
     }
   },
 }

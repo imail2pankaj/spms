@@ -27,3 +27,7 @@ export const maritalStatusOptions = [{
     value: 2,
     display: 'Divorced',
 }];
+
+export const projectStatusOptions = ['Active', 'Hold', 'Completed', 'Closed', 'Archieved'];
+export const projectTypeOptions = ['Fixed', 'Hourly', 'Contract'];
+export const taskStatusOptions = ['Created', 'Active', 'Started', 'Paused', 'Completed', 'Archieved'];

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ProjectMilestone extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['project_id','title','start_date','end_date'];
 }

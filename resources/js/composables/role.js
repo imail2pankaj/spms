@@ -57,7 +57,7 @@ export default function useRoles() {
             await axios.post('/api/roles', data);
             await router.push({ name: 'role.index' });
         } catch (error) {
-            if (error.response.code === 422) {
+            if (error.response.status === 422) {
                 const responseErrors = error.response.data.errors;
                 for (const key in responseErrors) {
                     errors.value[key] = responseErrors[key][0];
@@ -74,7 +74,7 @@ export default function useRoles() {
             await axios.post('/api/roles/' + id, data);
             await router.push({ name: 'role.index' });
         } catch (error) {
-            if (error.response.code === 422) {
+            if (error.response.status === 422) {
                 const responseErrors = error.response.data.errors;
                 for (const key in responseErrors) {
                     errors.value[key] = responseErrors[key][0];

@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             'first_name' => 'required|string|max:64',
-            'middle_name' => 'string|max:64',
+            'middle_name' => 'max:64',
             'last_name' => 'required|string|max:64',
             'user_code' => "",
             'email' => request()->has('id') ? 'required|string|email|max:255' : 'required|string|email|max:255|unique:users',

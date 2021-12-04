@@ -21144,6 +21144,37 @@ __webpack_require__.r(__webpack_exports__);
       primary: false
     }
   }, {
+    path: '/app/projects',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_project_ProjectIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/project/ProjectIndex */ "./resources/js/components/project/ProjectIndex.vue"));
+    },
+    name: 'project.index',
+    meta: {
+      title: 'Project',
+      primary: true
+    }
+  }, {
+    path: '/app/projects/create',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_project_ProjectCreate_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/project/ProjectCreate */ "./resources/js/components/project/ProjectCreate.vue"));
+    },
+    name: 'project.create',
+    meta: {
+      title: 'Project',
+      primary: false
+    }
+  }, {
+    path: '/app/projects/:id/edit',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_project_ProjectEdit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/project/ProjectEdit */ "./resources/js/components/project/ProjectEdit.vue"));
+    },
+    name: 'project.edit',
+    props: true,
+    meta: {
+      title: 'Project',
+      primary: false
+    }
+  }, {
     path: '/app/categories',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_components_category_CategoryIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/category/CategoryIndex */ "./resources/js/components/category/CategoryIndex.vue"));
@@ -45473,7 +45504,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_role_RoleIndex_vue":1,"resources_js_components_role_RoleCreate_vue":1,"resources_js_components_role_RoleEdit_vue":1,"resources_js_components_user_UserIndex_vue":1,"resources_js_components_user_UserCreate_vue":1,"resources_js_components_user_UserEdit_vue":1,"resources_js_components_category_CategoryIndex_vue":1,"resources_js_components_category_CategoryCreate_vue":1,"resources_js_components_category_CategoryEdit_vue":1,"resources_js_components_product_ProductCreate_vue":1,"resources_js_components_product_ProductEdit_vue":1,"resources_js_components_company_CompanyIndex_vue":1,"resources_js_components_company_CompanyCreate_vue":1,"resources_js_components_company_CompanyEdit_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_role_RoleIndex_vue":1,"resources_js_components_role_RoleCreate_vue":1,"resources_js_components_role_RoleEdit_vue":1,"resources_js_components_user_UserIndex_vue":1,"resources_js_components_user_UserCreate_vue":1,"resources_js_components_user_UserEdit_vue":1,"resources_js_components_project_ProjectIndex_vue":1,"resources_js_components_project_ProjectCreate_vue":1,"resources_js_components_project_ProjectEdit_vue":1,"resources_js_components_category_CategoryIndex_vue":1,"resources_js_components_category_CategoryCreate_vue":1,"resources_js_components_category_CategoryEdit_vue":1,"resources_js_components_product_ProductCreate_vue":1,"resources_js_components_product_ProductEdit_vue":1,"resources_js_components_company_CompanyIndex_vue":1,"resources_js_components_company_CompanyCreate_vue":1,"resources_js_components_company_CompanyEdit_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

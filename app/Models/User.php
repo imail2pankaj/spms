@@ -12,6 +12,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
 
+    public $guard_name = 'sanctum';
     /**
      * The attributes that are mass assignable.
      *

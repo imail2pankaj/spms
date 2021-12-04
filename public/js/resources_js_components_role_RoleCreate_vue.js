@@ -395,7 +395,7 @@ function useRoles() {
               _context4.prev = 8;
               _context4.t0 = _context4["catch"](1);
 
-              if (_context4.t0.response.code === 422) {
+              if (_context4.t0.response.status === 422) {
                 responseErrors = _context4.t0.response.data.errors;
 
                 for (_key2 in responseErrors) {
@@ -446,7 +446,7 @@ function useRoles() {
               _context5.prev = 8;
               _context5.t0 = _context5["catch"](1);
 
-              if (_context5.t0.response.code === 422) {
+              if (_context5.t0.response.status === 422) {
                 responseErrors = _context5.t0.response.data.errors;
 
                 for (_key3 in responseErrors) {
@@ -517,7 +517,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "statusOptions": () => (/* binding */ statusOptions),
 /* harmony export */   "genderOptions": () => (/* binding */ genderOptions),
-/* harmony export */   "maritalStatusOptions": () => (/* binding */ maritalStatusOptions)
+/* harmony export */   "maritalStatusOptions": () => (/* binding */ maritalStatusOptions),
+/* harmony export */   "projectStatusOptions": () => (/* binding */ projectStatusOptions),
+/* harmony export */   "projectTypeOptions": () => (/* binding */ projectTypeOptions),
+/* harmony export */   "taskStatusOptions": () => (/* binding */ taskStatusOptions)
 /* harmony export */ });
 var statusOptions = [{
   value: 1,
@@ -546,6 +549,9 @@ var maritalStatusOptions = [{
   value: 2,
   display: 'Divorced'
 }];
+var projectStatusOptions = ['Active', 'Hold', 'Completed', 'Closed', 'Archieved'];
+var projectTypeOptions = ['Fixed', 'Hourly', 'Contract'];
+var taskStatusOptions = ['Created', 'Active', 'Started', 'Paused', 'Completed', 'Archieved'];
 
 /***/ }),
 

@@ -29,6 +29,12 @@ class RoleController extends Controller
         return $roles->paginate($request->get('pagination'));
     }
 
+    public function allRoles(Request $request)
+    {
+        $roles = Role::all();
+        return $roles;
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [

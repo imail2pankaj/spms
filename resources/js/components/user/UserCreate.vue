@@ -20,7 +20,7 @@
               </div>
               <div>
                   <label for="middle_name" class="input-form-label">Middle Name</label>
-                  <input type="text" placeholder="Middle Name" v-model="form.middle_name" id="middle_name" name="middle_name" class="input-form-control" required >
+                  <input type="text" placeholder="Middle Name" v-model="form.middle_name" id="middle_name" name="middle_name" class="input-form-control">
                   <span class="input-error" v-if="errors.middle_name">{{errors.middle_name}}</span>
               </div>
               <div>

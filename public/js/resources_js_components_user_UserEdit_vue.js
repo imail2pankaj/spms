@@ -492,8 +492,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "middle_name",
     name: "middle_name",
-    "class": "input-form-control",
-    required: ""
+    "class": "input-form-control"
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.user.middle_name]]), $setup.errors.middle_name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.middle_name), 1
@@ -970,7 +969,7 @@ function useUsers() {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/roles');
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/user/roles');
 
             case 2:
               response = _context3.sent;
@@ -1147,7 +1146,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "statusOptions": () => (/* binding */ statusOptions),
 /* harmony export */   "genderOptions": () => (/* binding */ genderOptions),
-/* harmony export */   "maritalStatusOptions": () => (/* binding */ maritalStatusOptions)
+/* harmony export */   "maritalStatusOptions": () => (/* binding */ maritalStatusOptions),
+/* harmony export */   "projectStatusOptions": () => (/* binding */ projectStatusOptions),
+/* harmony export */   "projectTypeOptions": () => (/* binding */ projectTypeOptions),
+/* harmony export */   "taskStatusOptions": () => (/* binding */ taskStatusOptions)
 /* harmony export */ });
 var statusOptions = [{
   value: 1,
@@ -1176,6 +1178,9 @@ var maritalStatusOptions = [{
   value: 2,
   display: 'Divorced'
 }];
+var projectStatusOptions = ['Active', 'Hold', 'Completed', 'Closed', 'Archieved'];
+var projectTypeOptions = ['Fixed', 'Hourly', 'Contract'];
+var taskStatusOptions = ['Created', 'Active', 'Started', 'Paused', 'Completed', 'Archieved'];
 
 /***/ }),
 

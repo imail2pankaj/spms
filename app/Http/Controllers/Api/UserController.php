@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -53,6 +54,7 @@ class UserController extends Controller
 
             $data['resume_file'] = $imageName;
         }
+        $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
         $user->assignRole($request->input('roles'));
 
@@ -94,6 +96,11 @@ class UserController extends Controller
             if($user->resume_file && file_exists($destinationPath . $user->resume_file)) {
                 unlink($destinationPath . $user->resume_file);
             }
+        }
+        if (!empty($data['password'])) {
+            $data['password'] = Hash::make($data['password']);
+        } else {
+            unset($data['password']);
         }
         $user->update($data);
 
