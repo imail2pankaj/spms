@@ -56,19 +56,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var profile_image = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
     var resume_file = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)({
-      title: 'Title',
-      description: 'description',
-      start_date: '2021-04-07',
-      end_date: '2021-12-02',
-      approx_hours: '10',
-      project_type: 'Fixed',
-      project_cost: '10',
-      project_status: 'Active',
+      title: '',
+      description: '',
+      start_date: '',
+      end_date: '',
+      approx_hours: '',
+      project_type: '',
+      project_cost: '',
+      project_status: '',
       developer: [],
       qa: [],
       bde: [],
       pm: [],
-      designer: []
+      designer: [],
+      customer: []
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -265,7 +266,7 @@ var _hoisted_23 = {
   "class": "input-error"
 };
 var _hoisted_24 = {
-  "class": "md:grid md:grid-cols-5 md:gap-6 mb-6"
+  "class": "md:grid md:grid-cols-3 md:gap-6 mb-6"
 };
 
 var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
@@ -303,35 +304,42 @@ var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 /* HOISTED */
 );
 
-var _hoisted_30 = {
+var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "customer",
+  "class": "input-form-label"
+}, "Customer", -1
+/* HOISTED */
+);
+
+var _hoisted_31 = {
   "class": "md:grid md:grid-cols-1 md:gap-6 mb-6"
 };
 
-var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "description",
   "class": "input-form-label"
 }, "Description", -1
 /* HOISTED */
 );
 
-var _hoisted_32 = {
+var _hoisted_33 = {
   key: 0
 };
 
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "note",
   "class": "input-form-label"
 }, "Notes", -1
 /* HOISTED */
 );
 
-var _hoisted_34 = {
+var _hoisted_35 = {
   key: 0
 };
-var _hoisted_35 = {
+var _hoisted_36 = {
   "class": "px-4 py-3 bg-gray-50 text-left sm:px-6"
 };
-var _hoisted_36 = {
+var _hoisted_37 = {
   type: "submit",
   "class": "btn-blue"
 };
@@ -357,7 +365,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, 8
   /* PROPS */
   , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
-    onSubmit: _cache[15] || (_cache[15] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onSubmit: _cache[16] || (_cache[16] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.saveProject && $setup.saveProject.apply($setup, arguments);
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_required)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
@@ -559,26 +567,45 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* KEYED_FRAGMENT */
   ))], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.bde]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ckeditor, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.bde]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
+    "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
+      return $setup.form.customer = $event;
+    }),
+    name: "customer",
+    id: "customer",
+    "class": "input-form-control",
+    multiple: ""
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.usersOptions.customer, function (item) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
+      key: item.id,
+      value: item.id
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.first_name) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.last_name), 9
+    /* TEXT, PROPS */
+    , ["value"]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))], 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.customer]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ckeditor, {
     editor: $setup.editor,
     modelValue: $setup.form.description,
-    "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
+    "onUpdate:modelValue": _cache[14] || (_cache[14] = function ($event) {
       return $setup.form.description = $event;
     })
   }, null, 8
   /* PROPS */
-  , ["editor", "modelValue"]), $setup.errors.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.description), 1
+  , ["editor", "modelValue"]), $setup.errors.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.description), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
     "class": "input-form-control",
-    "onUpdate:modelValue": _cache[14] || (_cache[14] = function ($event) {
+    "onUpdate:modelValue": _cache[15] || (_cache[15] = function ($event) {
       return $setup.form.note = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.note]]), $setup.errors.note ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.note), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.note]]), $setup.errors.note ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.note), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.submitting ? "Saving" : "Save"), 1
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.submitting ? "Saving" : "Save"), 1
   /* TEXT */
   )])])])], 32
   /* HYDRATE_EVENTS */
@@ -623,7 +650,8 @@ function useProjects() {
     developer: [],
     designer: [],
     bde: [],
-    qa: []
+    qa: [],
+    customer: []
   });
   var pagination = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
     current_page: 1,
@@ -641,6 +669,12 @@ function useProjects() {
     project_type: '',
     project_cost: '',
     project_status: '',
+    developer: [],
+    qa: [],
+    bde: [],
+    pm: [],
+    designer: [],
+    customer: [],
     _method: 'post'
   });
   var errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
@@ -651,7 +685,13 @@ function useProjects() {
     approx_hours: '',
     project_type: '',
     project_cost: '',
-    project_status: ''
+    project_status: '',
+    developer: "",
+    qa: '',
+    bde: '',
+    pm: '',
+    designer: '',
+    customer: ''
   });
 
   var getProjects = /*#__PURE__*/function () {
@@ -704,10 +744,9 @@ function useProjects() {
 
             case 2:
               response = _context2.sent;
-              project.value = response.data;
-              project.value.roles = response.data.roles[0].id;
+              project.value = response.data; // project.value.roles = response.data.roles[0].id;
 
-            case 5:
+            case 4:
             case "end":
               return _context2.stop();
           }
@@ -722,7 +761,7 @@ function useProjects() {
 
   var getUsersDropdown = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-      var response;
+      var response, key;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
@@ -732,13 +771,12 @@ function useProjects() {
 
             case 2:
               response = _context3.sent;
-              usersOptions.value.developer = response.data.developer;
-              usersOptions.value.pm = response.data.pm;
-              usersOptions.value.qa = response.data.qa;
-              usersOptions.value.designer = response.data.designer;
-              usersOptions.value.bde = response.data.bde;
 
-            case 8:
+              for (key in usersOptions.value) {
+                usersOptions.value[key] = response.data[key];
+              }
+
+            case 4:
             case "end":
               return _context3.stop();
           }

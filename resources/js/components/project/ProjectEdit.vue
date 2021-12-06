@@ -1,159 +1,205 @@
 <template>
   <div class="flex justify-between mb-2">
     <h1 class="text-2xl font-bold">
-      User Edit
+      Project Edit
     </h1>
-    <router-link :to="{name:'user.index'}" class="link-blue">
+    <router-link :to="{name:'project.index'}" class="link-blue">
       List
     </router-link>
   </div>
-  <form @submit.prevent="saveUser">
+<form @submit.prevent="saveProject">
     <div class="bg-white overflow-hidden shadow-sm rounded-lg">
       <div class="bg-white border-b border-gray-200">
-          <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-            <h3 class="input-form-sub-heading">Personal Information</h3>
-            <div class="md:grid md:grid-cols-3 md:gap-6 mb-6">
-              <div>
-                  <label for="first_name" class="input-form-label">First Name <app-required /></label>
-                  <input type="text" placeholder="First Name" v-model="user.first_name" id="first_name" name="first_name" class="input-form-control" required >
-                  <span class="input-error" v-if="errors.first_name">{{errors.first_name}}</span>
-              </div>
-              <div>
-                  <label for="middle_name" class="input-form-label">Middle Name</label>
-                  <input type="text" placeholder="Middle Name" v-model="user.middle_name" id="middle_name" name="middle_name" class="input-form-control" >
-                  <span class="input-error" v-if="errors.middle_name">{{errors.middle_name}}</span>
-              </div>
-              <div>
-                  <label for="last_name" class="input-form-label">Last Name <app-required /></label>
-                  <input type="text" placeholder="Last Name" v-model="user.last_name" id="last_name" name="last_name" class="input-form-control" required >
-                  <span class="input-error" v-if="errors.last_name">{{errors.last_name}}</span>
-              </div>
-              <div>
-                  <label for="gender" class="input-form-label">Gender</label>
-                  <select v-model="user.gender" name="gender" id="gender" class="input-form-control">
-                    <option v-for="item in genderOptions" :key="item.value" :value="item.value">
-                      {{item.display}}
-                    </option>
-                  </select>
-              </div>
-              <div>
-                  <label for="marital_status" class="input-form-label">Marital Status</label>
-                  <select v-model="user.marital_status" name="marital_status" id="marital_status" class="input-form-control">
-                    <option v-for="item in maritalStatusOptions" :key="item.value" :value="item.value">
-                      {{item.display}}
-                    </option>
-                  </select>
-              </div>
-              <div>
-                  <label for="dob" class="input-form-label">Date of Birth</label>
-                  <input type="date" v-model="user.dob" id="dob" name="dob" class="input-form-control" placeholder="Joining Date" required >
-                  <span class="input-error" v-if="errors.dob">{{errors.dob}}</span>
-              </div>
+        <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+          <div class="md:grid md:grid-cols-3 md:gap-6 mb-6">
+            <div>
+              <label for="title" class="input-form-label"
+                >Project Title <app-required/></label>
+              <input
+                type="text"
+                placeholder="Project Title"
+                v-model="project.title"
+                id="title"
+                name="title"
+                class="input-form-control"
+                required
+              />
+              <span class="input-error" v-if="errors.title">{{
+                errors.title
+              }}</span>
             </div>
-            <h3 class="input-form-sub-heading">Profile Information</h3>
-            <div class="md:grid md:grid-cols-3 md:gap-6 mb-6">
-              <div>
-                  <label for="email" class="input-form-label">Email <app-required /></label>
-                  <input type="email" placeholder="Email" v-model="user.email" id="email" name="email" class="input-form-control" required >
-                  <span class="input-error" v-if="errors.email">{{errors.email}}</span>
-              </div>
-
-              <div>
-                  <label for="password" class="input-form-label">Password</label>
-                  <input type="password" placeholder="Password" v-model="user.password" id="password" name="password" class="input-form-control" >
-                  <span class="input-error" v-if="errors.password">{{errors.password}}</span>
-              </div>
-              <div>
-                <label for="password_confirmation" class="input-form-label">Confirm Password</label>
-                <input type="password" placeholder="Confirm Password" v-model="user.password_confirmation" id="password_confirmation" name="password_confirmation" class="input-form-control">
-                <span class="input-error" v-if="errors.password_confirmation">{{errors.password_confirmation}}</span>
-              </div>
-              <div class=" ">
-                  <label for="roles" class="input-form-label">Role <app-required /></label>
-                  <select v-model="user.roles" name="roles" id="roles" class="input-form-control">
-                    <option value=""> - Select Role -</option>
-                    <option v-for="item in rolesOptions" :key="item.id" :value="item.id">
-                      {{item.name}}
-                    </option>
-                  </select>
-                  <span class="input-error" v-if="errors.roles">{{errors.roles}}</span>
-              </div>
-              <div>
-                <label for="join_date" class="input-form-label">Joining Date</label>
-                <input type="date" v-model="user.join_date" id="join_date" name="join_date" class="input-form-control" placeholder="Joining Date">
-                <span class="input-error" v-if="errors.join_date">{{errors.join_date}}</span>
-              </div>
-              <div>
-                <label for="resign_date" class="input-form-label">Resign Date</label>
-                <input type="date" v-model="user.resign_date" id="resign_date" name="resign_date" class="input-form-control" placeholder="Resign Date">
-                <span class="input-error" v-if="errors.resign_date">{{errors.resign_date}}</span>
-              </div>
+            <div>
+              <label for="project_type" class="input-form-label">Project Type</label>
+              <select
+                v-model="project.project_type"
+                name="project_type"
+                id="project_type"
+                class="input-form-control"
+              >
+                <option
+                  v-for="item in projectTypeOptions"
+                  :key="item"
+                  :value="item"
+                >
+                  {{ item }}
+                </option>
+              </select>
             </div>
-            <h3 class="input-form-sub-heading">Contact Information</h3>
-            <div class="md:grid md:grid-cols-3 md:gap-6 mb-6">
-              <div>
-                <label for="phone_number" class="input-form-label">Phone Number <app-required /></label>
-                <input type="tel" placeholder="Phone Number" v-model="user.phone_number" id="phone_number" name="phone_number" class="input-form-control" required>
-                <span class="input-error" v-if="errors.phone_number">{{errors.phone_number}}</span>
-              </div>
-              <div>
-                <label for="emergency_phone_number" class="input-form-label">Emergency Phone Number</label>
-                <input type="tel" placeholder="Emergency Phone Number" v-model="user.emergency_phone_number" id="emergency_phone_number" name="emergency_phone_number" class="input-form-control">
-                <span class="input-error" v-if="errors.emergency_phone_number">{{errors.emergency_phone_number}}</span>
-              </div>
-              <div>
-                <label for="address" class="input-form-label">Address <app-required /></label>
-                <input type="text" placeholder="Address" v-model="user.address" id="address" name="address" class="input-form-control" required >
-                <span class="input-error" v-if="errors.address">{{errors.address}}</span>
-              </div>
-              <div>
-                <label for="city" class="input-form-label">City <app-required /></label>
-                <input type="text" placeholder="City" v-model="user.city" id="city" name="city" class="input-form-control" required >
-                <span class="input-error" v-if="errors.city">{{errors.city}}</span>
-              </div>
-              <div>
-                <label for="state" class="input-form-label">State <app-required /></label>
-                <input type="text" placeholder="State" v-model="user.state" id="state" name="state" class="input-form-control" required >
-                <span class="input-error" v-if="errors.state">{{errors.state}}</span>
-              </div>
-              <div>
-                <label for="country" class="input-form-label">Country <app-required /></label>
-                <input type="text" v-model="user.country" id="country" name="country" class="input-form-control" placeholder="Country" required >
-                <span class="input-error" v-if="errors.country">{{errors.country}}</span>
-              </div>
-            </div>
-            <h3 class="input-form-sub-heading">Other Information</h3>
-            <div class="md:grid md:grid-cols-3 md:gap-6 mb-6">
-              <div>
-                <label for="profile_image" class="input-form-label">Profile Image</label>
-                <input type="file" accept="image/jpeg, image/png" ref="profile_image" v-on:change="(e) => handleFileUpload(e, 'profile_image')" id="profile_image" name="profile_image" class="input-form-control">
-                <span class="input-error" v-if="errors.profile_image">{{errors.profile_image}}</span>
-                <img :src="'uploads/user/profile_image/' + user.profile_image" alt="">
-                <img v-if="user.profile_image" :src="'/uploads/user/profile_image/' + user.profile_image" class="w-20" alt="">
-              </div>
-
-              <div>
-                <label for="resume_file" class="input-form-label">Resume</label>
-                <input type="file" accept=".doc, .docx,application/pdf, application/msword" ref="resume_file" v-on:change="(e) => handleFileUpload(e, 'resume_file')" id="resume_file" name="resume_file" class="input-form-control">
-                <span class="input-error" v-if="errors.resume_file">{{errors.resume_file}}</span>
-                <a v-if="user.resume_file" :href="'/uploads/user/resume_file/' + user.resume_file" class="text-sm text-blue-500" download>Download Resume</a>
-              </div>
-
-              <div>
-                  <label for="user_status" class="input-form-label">Status  <app-required /></label>
-                  <select v-model="user.user_status" name="user_status" id="user_status" class="input-form-control">
-                    <option v-for="item in statusOptions" :key="item.value" :value="item.value">
-                      {{item.display}}
-                    </option>
-                  </select>
-              </div>
+            <div>
+              <label for="project_status" class="input-form-label"
+                >Project Status</label
+              >
+              <select
+                v-model="project.project_status"
+                name="project_status"
+                id="project_status"
+                class="input-form-control"
+              >
+                <option
+                  v-for="item in projectStatusOptions"
+                  :key="item"
+                  :value="item"
+                >
+                  {{ item }}
+                </option>
+              </select>
             </div>
           </div>
-          <div class="px-4 py-3 bg-gray-50 text-left sm:px-6">
-            <button type="submit" class="btn-blue" :disabled="submitting">
-              {{submitting ? 'Saving' : "Save"}}
-            </button>
+          <div class="md:grid md:grid-cols-4 md:gap-6 mb-6">
+            <div>
+              <label for="approx_hours" class="input-form-label">Approx Hours <app-required/></label>
+              <input
+                type="number"
+                placeholder="Approx. Hours"
+                v-model="project.approx_hours"
+                id="approx_hours"
+                name="approx_hours"
+                class="input-form-control"
+                required
+              />
+              <span class="input-error" v-if="errors.approx_hours">{{
+                errors.approx_hours
+              }}</span>
+            </div>
+            <div>
+              <label for="project_cost" class="input-form-label"
+                >Project Cost <app-required/></label>
+              <input
+                type="number"
+                placeholder="Project Cost"
+                v-model="project.project_cost"
+                id="project_cost"
+                name="project_cost"
+                class="input-form-control"
+                required
+              />
+              <span class="input-error" v-if="errors.project_cost">{{
+                errors.project_cost
+              }}</span>
+            </div>
+            <div>
+              <label for="start_date" class="input-form-label"
+                >Start Date</label
+              >
+              <input
+                type="date"
+                v-model="project.start_date"
+                id="start_date"
+                name="start_date"
+                class="input-form-control"
+                placeholder="Start Date"
+              />
+              <span class="input-error" v-if="errors.start_date">{{
+                errors.start_date
+              }}</span>
+            </div>
+            <div>
+              <label for="end_date" class="input-form-label"
+                >End Date</label
+              >
+              <input
+                type="date"
+                v-model="project.end_date"
+                id="end_date"
+                name="end_date"
+                class="input-form-control"
+                placeholder="End Date"
+              />
+              <span class="input-error" v-if="errors.end_date">{{
+                errors.end_date
+              }}</span>
+            </div>
           </div>
+
+          <div class="md:grid md:grid-cols-3 md:gap-6 mb-6">
+            <div>
+              <label for="pm" class="input-form-label">Project Manager</label>
+              <select v-model="project.pm" name="pm" id="pm" class="input-form-control" multiple>
+                <option v-for="item in usersOptions.pm" :key="item.id" :value="item.id">
+                  {{ item.first_name }} {{ item.last_name }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label for="developer" class="input-form-label">Developer</label>
+              <select v-model="project.developer" name="developer" id="developer" class="input-form-control" multiple>
+                <option v-for="item in usersOptions.developer" :key="item.id" :value="item.id">
+                  {{ item.first_name }} {{ item.last_name }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label for="designer" class="input-form-label">Designer</label>
+              <select v-model="project.designer" name="designer" id="designer" class="input-form-control" multiple>
+                <option v-for="item in usersOptions.designer" :key="item.id" :value="item.id">
+                  {{ item.first_name }} {{ item.last_name }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label for="qa" class="input-form-label">QA</label>
+              <select v-model="project.qa" name="qa" id="qa" class="input-form-control" multiple>
+                <option v-for="item in usersOptions.qa" :key="item.id" :value="item.id">
+                  {{ item.first_name }} {{ item.last_name }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label for="bde" class="input-form-label">BDE</label>
+              <select v-model="project.bde" name="bde" id="bde" class="input-form-control" multiple>
+                <option v-for="item in usersOptions.bde" :key="item.id" :value="item.id">
+                  {{ item.first_name }} {{ item.last_name }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label for="customer" class="input-form-label">Customer</label>
+              <select v-model="project.customer" name="customer" id="customer" class="input-form-control" multiple>
+                <option v-for="item in usersOptions.customer" :key="item.id" :value="item.id">
+                  {{ item.first_name }} {{ item.last_name }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="md:grid md:grid-cols-1 md:gap-6 mb-6">
+            <div>
+              <label for="description" class="input-form-label">Description</label>
+              <ckeditor :editor="editor" v-model="project.description"></ckeditor>
+              <span v-if="errors.description">{{errors.description}}</span>
+            </div>
+            <div>
+              <label for="note" class="input-form-label">Notes</label>
+              <textarea class="input-form-control" v-model="project.note"></textarea>
+              <span v-if="errors.note">{{errors.note}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="px-4 py-3 bg-gray-50 text-left sm:px-6">
+          <button type="submit" class="btn-blue">
+            {{ submitting ? "Saving" : "Save" }}
+          </button>
+        </div>
       </div>
     </div>
   </form>
@@ -161,8 +207,9 @@
 
 <script>
 import { onMounted, ref } from 'vue';
-import {statusOptions, genderOptions, maritalStatusOptions} from '../../utils';
-import useUsers from "../../composables/user";
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {projectTypeOptions, projectStatusOptions} from '../../utils';
+import useProjects from "../../composables/project";
 export default {
   props: {
     id: {required: true, type: String}
@@ -170,52 +217,33 @@ export default {
   setup(props) {
     const submitting = ref(false);
     const { id } = props;
-    const {errors, user, updateUser, getUser, rolesOptions, getRolesDropdown} = useUsers();
-    const profile_image = ref(null);
-    const resume_file = ref(null);
+    const {errors, project, updateProject, getProject, usersOptions, getUsersDropdown} = useProjects();
 
     onMounted(async () => {
-      await getRolesDropdown();
-      await getUser(id);
+      await getUsersDropdown();
+      await getProject(id);
     });
 
-    const handleFileUpload = (e, file_type) => {
-      e.preventDefault();
-      e.stopPropagation();
-      if(file_type === 'profile_image') {
-        profile_image.value = e.target.files[0];
-      } else if(file_type === 'resume_file') {
-        resume_file.value = e.target.files[0];
-      }
-    }
-
-    const saveUser = async () => {
+    const saveProject = async () => {
       submitting.value = true;
       const formData = new FormData();
-      for(const key in user.value) {
-        if(key === 'profile_image'){
-          formData.append(key, profile_image.value);
-        } else if(key === 'resume_file') {
-          formData.append(key, resume_file.value);
-        } else {
-          formData.append(key, user.value[key]);
-        }
+      for(const key in project.value) {
+        formData.append(key, project.value[key]);
       }
       formData.append('_method', 'PATCH');
 
-      await updateUser(id, formData);
+      await updateProject(id, formData);
       submitting.value = false;
     }
     return {
-      user,
+      project,
       errors,
-      saveUser,
+      saveProject,
       submitting,
-      rolesOptions,
-      statusOptions,
-      genderOptions,
-      handleFileUpload,
-      maritalStatusOptions
+      usersOptions,
+      projectTypeOptions,
+      projectStatusOptions,
+      editor: ClassicEditor,
 }
   },
 }

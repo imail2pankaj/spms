@@ -11,6 +11,7 @@ export default function useProjects() {
         designer: [],
         bde: [],
         qa: [],
+        customer: [],
     });
     const pagination = ref({
         current_page: 1,
@@ -28,6 +29,12 @@ export default function useProjects() {
         project_type: '',
         project_cost: '',
         project_status: '',
+        developer: [],
+        qa: [],
+        bde: [],
+        pm: [],
+        designer: [],
+        customer: [],
         _method: 'post',
     });
     const errors = ref({
@@ -39,6 +46,12 @@ export default function useProjects() {
         project_type: '',
         project_cost: '',
         project_status: '',
+        developer: "",
+        qa: '',
+        bde: '',
+        pm: '',
+        designer: '',
+        customer: '',
     });
 
     const getProjects = async(data) => {
@@ -56,16 +69,14 @@ export default function useProjects() {
     const getProject = async(id) => {
         const response = await axios.get('/api/projects/' + id);
         project.value = response.data;
-        project.value.roles = response.data.roles[0].id;
+        // project.value.roles = response.data.roles[0].id;
     }
 
     const getUsersDropdown = async() => {
         const response = await axios.get('/api/project/users');
-        usersOptions.value.developer = response.data.developer;
-        usersOptions.value.pm = response.data.pm;
-        usersOptions.value.qa = response.data.qa;
-        usersOptions.value.designer = response.data.designer;
-        usersOptions.value.bde = response.data.bde;
+        for (const key in usersOptions.value) {
+            usersOptions.value[key] = response.data[key];
+        }
     }
 
     const storeProject = async(data) => {

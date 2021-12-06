@@ -69,7 +69,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       };
     }();
 
-    var destroyProject = /*#__PURE__*/function () {
+    var destroyRecord = /*#__PURE__*/function () {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(itemId) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
@@ -93,7 +93,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }));
 
-      return function destroyProject(_x2) {
+      return function destroyRecord(_x2) {
         return _ref3.apply(this, arguments);
       };
     }();
@@ -109,7 +109,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       pagination: pagination,
       searchData: searchData,
       togglePopup: togglePopup,
-      destroyProject: destroyProject
+      destroyRecord: destroyRecord
     };
   }
 });
@@ -371,7 +371,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     modalHeadline: "Delete Project?",
     deleteMessage: "Are you sure?",
     onDeleteRecordEvent: _cache[1] || (_cache[1] = function ($event) {
-      return $setup.destroyProject($setup.item_id);
+      return $setup.destroyRecord($setup.item_id);
     }),
     onClose: $setup.togglePopup
   }, null, 8
@@ -417,7 +417,8 @@ function useProjects() {
     developer: [],
     designer: [],
     bde: [],
-    qa: []
+    qa: [],
+    customer: []
   });
   var pagination = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
     current_page: 1,
@@ -435,6 +436,12 @@ function useProjects() {
     project_type: '',
     project_cost: '',
     project_status: '',
+    developer: [],
+    qa: [],
+    bde: [],
+    pm: [],
+    designer: [],
+    customer: [],
     _method: 'post'
   });
   var errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
@@ -445,7 +452,13 @@ function useProjects() {
     approx_hours: '',
     project_type: '',
     project_cost: '',
-    project_status: ''
+    project_status: '',
+    developer: "",
+    qa: '',
+    bde: '',
+    pm: '',
+    designer: '',
+    customer: ''
   });
 
   var getProjects = /*#__PURE__*/function () {
@@ -498,10 +511,9 @@ function useProjects() {
 
             case 2:
               response = _context2.sent;
-              project.value = response.data;
-              project.value.roles = response.data.roles[0].id;
+              project.value = response.data; // project.value.roles = response.data.roles[0].id;
 
-            case 5:
+            case 4:
             case "end":
               return _context2.stop();
           }
@@ -516,7 +528,7 @@ function useProjects() {
 
   var getUsersDropdown = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-      var response;
+      var response, key;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
@@ -526,13 +538,12 @@ function useProjects() {
 
             case 2:
               response = _context3.sent;
-              usersOptions.value.developer = response.data.developer;
-              usersOptions.value.pm = response.data.pm;
-              usersOptions.value.qa = response.data.qa;
-              usersOptions.value.designer = response.data.designer;
-              usersOptions.value.bde = response.data.bde;
 
-            case 8:
+              for (key in usersOptions.value) {
+                usersOptions.value[key] = response.data[key];
+              }
+
+            case 4:
             case "end":
               return _context3.stop();
           }

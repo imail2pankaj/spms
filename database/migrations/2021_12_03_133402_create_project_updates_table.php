@@ -16,6 +16,7 @@ class CreateProjectUpdatesTable extends Migration
         Schema::create('project_updates', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('project_id');
             $table->text('description');
             $table->timestamps();
         });

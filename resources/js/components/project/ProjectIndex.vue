@@ -67,7 +67,7 @@
       </app-datatables>
     </div>
   </div>
-  <app-confirm-delete v-show="showModal" modalHeadline="Delete Project?" deleteMessage="Are you sure?" @deleteRecordEvent="destroyProject(item_id)" @close="togglePopup" ></app-confirm-delete>
+  <app-confirm-delete v-show="showModal" modalHeadline="Delete Project?" deleteMessage="Are you sure?" @deleteRecordEvent="destroyRecord(item_id)" @close="togglePopup" ></app-confirm-delete>
 </template>
 
 
@@ -90,7 +90,7 @@ export default {
       emitPaginationLocal.value = emitPaginationLocal;
       await getProjects(emitPagination);
     }
-    const destroyProject = async (itemId) => {
+    const destroyRecord = async (itemId) => {
       await deleteProject(itemId);
       await getProjects(emitPaginationLocal.value);
       togglePopup();
@@ -105,7 +105,7 @@ export default {
       pagination,
       searchData,
       togglePopup,
-      destroyProject
+      destroyRecord
     }
   },
 }

@@ -129,7 +129,7 @@
             </div>
           </div>
 
-          <div class="md:grid md:grid-cols-5 md:gap-6 mb-6">
+          <div class="md:grid md:grid-cols-3 md:gap-6 mb-6">
             <div>
               <label for="pm" class="input-form-label">Project Manager</label>
               <select v-model="form.pm" name="pm" id="pm" class="input-form-control" multiple>
@@ -166,6 +166,14 @@
               <label for="bde" class="input-form-label">BDE</label>
               <select v-model="form.bde" name="bde" id="bde" class="input-form-control" multiple>
                 <option v-for="item in usersOptions.bde" :key="item.id" :value="item.id">
+                  {{ item.first_name }} {{ item.last_name }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label for="customer" class="input-form-label">Customer</label>
+              <select v-model="form.customer" name="customer" id="customer" class="input-form-control" multiple>
+                <option v-for="item in usersOptions.customer" :key="item.id" :value="item.id">
                   {{ item.first_name }} {{ item.last_name }}
                 </option>
               </select>
@@ -207,19 +215,20 @@ export default {
     const profile_image = ref(null);
     const resume_file = ref(null);
     const form = ref({
-        title: 'Title',
-        description: 'description',
-        start_date: '2021-04-07',
-        end_date: '2021-12-02',
-        approx_hours: '10',
-        project_type: 'Fixed',
-        project_cost: '10',
-        project_status: 'Active',
+        title: '',
+        description: '',
+        start_date: '',
+        end_date: '',
+        approx_hours: '',
+        project_type: '',
+        project_cost: '',
+        project_status: '',
         developer: [],
         qa: [],
         bde: [],
         pm: [],
         designer: [],
+        customer: [],
     });
 
     onMounted(async () => {
