@@ -130,7 +130,14 @@ export default {
                     path: 'task',
                     component: () =>
                         import ('./components/project/project-details/ProjectTask'),
-                    name: "project.task"
+                    name: "project.task",
+                    children: [{
+                        path: "/:id/task",
+                        component: () =>
+                            import ('./components/project/project-details/TaskEdit'),
+                        props: true,
+                        name: 'project.task.edit'
+                    }]
                 },
                 {
                     path: 'update',

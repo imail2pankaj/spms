@@ -21,6 +21,7 @@ export default function useProjects() {
         links: [],
     });
     const project = ref({
+        id: 0,
         title: '',
         description: '',
         start_date: '',
@@ -121,6 +122,24 @@ export default function useProjects() {
         await axios.delete('/api/projects/' + id);
         await router.push({ name: 'project.index' });
     }
+
+
+    const storeTask = async(id, data) => {
+        for (const key in errors.value) {
+            errors.value[key] = '';
+        }
+        try {
+            await axios.post('/api/projects/' + id + '/store-task', data);
+            // await router.go();
+        } catch (error) {
+            if (error.response.status === 422) {
+                const responseErrors = error.response.data.errors;
+                for (const key in responseErrors) {
+                    errors.value[key] = responseErrors[key][0];
+                }
+            }
+        }
+    }
     return {
         project,
         projects,
@@ -133,6 +152,8 @@ export default function useProjects() {
         deleteProject,
         updateProject,
         usersOptions,
-        getUsersDropdown
+        getUsersDropdown,
+
+        storeTask
     }
 }

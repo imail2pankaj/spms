@@ -144,6 +144,7 @@ function useProjects() {
     links: []
   });
   var project = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
+    id: 0,
     title: '',
     description: '',
     start_date: '',
@@ -429,6 +430,51 @@ function useProjects() {
     };
   }();
 
+  var storeTask = /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(id, data) {
+      var key, responseErrors, _key4;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              for (key in errors.value) {
+                errors.value[key] = '';
+              }
+
+              _context8.prev = 1;
+              _context8.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/projects/' + id + '/store-task', data);
+
+            case 4:
+              _context8.next = 9;
+              break;
+
+            case 6:
+              _context8.prev = 6;
+              _context8.t0 = _context8["catch"](1);
+
+              if (_context8.t0.response.status === 422) {
+                responseErrors = _context8.t0.response.data.errors;
+
+                for (_key4 in responseErrors) {
+                  errors.value[_key4] = responseErrors[_key4][0];
+                }
+              }
+
+            case 9:
+            case "end":
+              return _context8.stop();
+          }
+        }
+      }, _callee8, null, [[1, 6]]);
+    }));
+
+    return function storeTask(_x9, _x10) {
+      return _ref8.apply(this, arguments);
+    };
+  }();
+
   return {
     project: project,
     projects: projects,
@@ -441,7 +487,8 @@ function useProjects() {
     deleteProject: deleteProject,
     updateProject: updateProject,
     usersOptions: usersOptions,
-    getUsersDropdown: getUsersDropdown
+    getUsersDropdown: getUsersDropdown,
+    storeTask: storeTask
   };
 }
 
