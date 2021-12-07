@@ -30,6 +30,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('users',UserController::class);
     Route::get('user/roles', [RoleController::class,'allRoles'])->name("allRoles");
     Route::apiResource('companies',CompanyController::class);
+    Route::get('projects/{slug}/{page}', [ProjectController::class,'getBySlug'])->name("getBySlug");
     Route::apiResource('projects',ProjectController::class);
     Route::get('project/users', [ProjectController::class,'getDifferentRoleUsers'])->name("getDifferentRoleUsers");
     Route::apiResource('categories',CategoryController::class);

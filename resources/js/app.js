@@ -24,6 +24,7 @@ import EditIcon from "./components/common/EditIcon";
 import DeleteIcon from "./components/common/DeleteIcon";
 import ViewIcon from "./components/common/ViewIcon";
 import ConfirmDelete from "./components/common/ConfirmDelete";
+import ProjectNav from "./components/common/ProjectNav";
 import Datatables from "./components/common/datatables/Datatables";
 
 const app = createApp({
@@ -42,6 +43,7 @@ app.component('delete-icon', DeleteIcon);
 app.component('view-icon', ViewIcon);
 app.component('app-datatables', Datatables);
 app.component('app-pagination', Pagination);
+app.component('app-project-nav', ProjectNav);
 app.use(router);
 app.use(store);
 app.use(CKEditor);

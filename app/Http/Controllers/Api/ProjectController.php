@@ -27,7 +27,7 @@ class ProjectController extends Controller
 
     public function index(Request $request)
     {
-        $projects = Project::with(['developers','designers','pms','qas','bdes']);
+        $projects = Project::with(['developers','designers','pms','qas','bdes','customers']);
         if ($request->get('status') > -1) {
             $projects->where("project_status", $request->get('status'));
         }
@@ -117,5 +117,13 @@ class ProjectController extends Controller
         $qa = User::select('id', 'first_name', 'last_name')->role('qa')->where('user_status', 1)->get()->toArray();
         $customer = User::select('id', 'first_name', 'last_name')->role('customer')->where('user_status', 1)->get()->toArray();
         return response()->json(['developer'=>$developers,'bde'=>$bde,'pm'=>$pm,'designer'=>$designer,'qa'=>$qa,'customer'=>$customer]);
+    }
+
+
+    public function getBySlug($slug, $page)
+    {
+        $project = Project::where('slug',$slug)->first();
+
+        return response()->json($project);
     }
 }

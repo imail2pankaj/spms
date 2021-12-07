@@ -722,7 +722,7 @@ function useProjects() {
 
             case 2:
               response = _context2.sent;
-              project.value = response.data; // project.value.roles = response.data.roles[0].id;
+              project.value = response.data;
 
             case 4:
             case "end":
@@ -737,22 +737,19 @@ function useProjects() {
     };
   }();
 
-  var getUsersDropdown = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-      var response, key;
+  var getProjectBySlug = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(slug, page) {
+      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/project/users');
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/projects/' + slug + '/' + page);
 
             case 2:
               response = _context3.sent;
-
-              for (key in usersOptions.value) {
-                usersOptions.value[key] = response.data[key];
-              }
+              project.value = response.data;
 
             case 4:
             case "end":
@@ -762,65 +759,44 @@ function useProjects() {
       }, _callee3);
     }));
 
-    return function getUsersDropdown() {
+    return function getProjectBySlug(_x3, _x4) {
       return _ref3.apply(this, arguments);
     };
   }();
 
-  var storeProject = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(data) {
-      var key, responseErrors, _key2;
-
+  var getUsersDropdown = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+      var response, key;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              for (key in errors.value) {
-                errors.value[key] = '';
-              }
+              _context4.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/project/users');
 
-              _context4.prev = 1;
-              _context4.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/projects', data);
+            case 2:
+              response = _context4.sent;
+
+              for (key in usersOptions.value) {
+                usersOptions.value[key] = response.data[key];
+              }
 
             case 4:
-              _context4.next = 6;
-              return router.push({
-                name: 'project.index'
-              });
-
-            case 6:
-              _context4.next = 11;
-              break;
-
-            case 8:
-              _context4.prev = 8;
-              _context4.t0 = _context4["catch"](1);
-
-              if (_context4.t0.response.status === 422) {
-                responseErrors = _context4.t0.response.data.errors;
-
-                for (_key2 in responseErrors) {
-                  errors.value[_key2] = responseErrors[_key2][0];
-                }
-              }
-
-            case 11:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[1, 8]]);
+      }, _callee4);
     }));
 
-    return function storeProject(_x3) {
+    return function getUsersDropdown() {
       return _ref4.apply(this, arguments);
     };
   }();
 
-  var updateProject = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id, data) {
-      var key, responseErrors, _key3;
+  var storeProject = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(data) {
+      var key, responseErrors, _key2;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
         while (1) {
@@ -832,7 +808,7 @@ function useProjects() {
 
               _context5.prev = 1;
               _context5.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/projects/' + id, data);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/projects', data);
 
             case 4:
               _context5.next = 6;
@@ -851,8 +827,8 @@ function useProjects() {
               if (_context5.t0.response.status === 422) {
                 responseErrors = _context5.t0.response.data.errors;
 
-                for (_key3 in responseErrors) {
-                  errors.value[_key3] = responseErrors[_key3][0];
+                for (_key2 in responseErrors) {
+                  errors.value[_key2] = responseErrors[_key2][0];
                 }
               }
 
@@ -864,36 +840,87 @@ function useProjects() {
       }, _callee5, null, [[1, 8]]);
     }));
 
-    return function updateProject(_x4, _x5) {
+    return function storeProject(_x5) {
       return _ref5.apply(this, arguments);
     };
   }();
 
-  var deleteProject = /*#__PURE__*/function () {
-    var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(id) {
+  var updateProject = /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(id, data) {
+      var key, responseErrors, _key3;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
         while (1) {
           switch (_context6.prev = _context6.next) {
             case 0:
-              _context6.next = 2;
+              for (key in errors.value) {
+                errors.value[key] = '';
+              }
+
+              _context6.prev = 1;
+              _context6.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/projects/' + id, data);
+
+            case 4:
+              _context6.next = 6;
+              return router.push({
+                name: 'project.index'
+              });
+
+            case 6:
+              _context6.next = 11;
+              break;
+
+            case 8:
+              _context6.prev = 8;
+              _context6.t0 = _context6["catch"](1);
+
+              if (_context6.t0.response.status === 422) {
+                responseErrors = _context6.t0.response.data.errors;
+
+                for (_key3 in responseErrors) {
+                  errors.value[_key3] = responseErrors[_key3][0];
+                }
+              }
+
+            case 11:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6, null, [[1, 8]]);
+    }));
+
+    return function updateProject(_x6, _x7) {
+      return _ref6.apply(this, arguments);
+    };
+  }();
+
+  var deleteProject = /*#__PURE__*/function () {
+    var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(id) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              _context7.next = 2;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().delete('/api/projects/' + id);
 
             case 2:
-              _context6.next = 4;
+              _context7.next = 4;
               return router.push({
                 name: 'project.index'
               });
 
             case 4:
             case "end":
-              return _context6.stop();
+              return _context7.stop();
           }
         }
-      }, _callee6);
+      }, _callee7);
     }));
 
-    return function deleteProject(_x6) {
-      return _ref6.apply(this, arguments);
+    return function deleteProject(_x8) {
+      return _ref7.apply(this, arguments);
     };
   }();
 
@@ -904,6 +931,7 @@ function useProjects() {
     getProject: getProject,
     getProjects: getProjects,
     storeProject: storeProject,
+    getProjectBySlug: getProjectBySlug,
     pagination: pagination,
     deleteProject: deleteProject,
     updateProject: updateProject,

@@ -69,7 +69,11 @@ export default function useProjects() {
     const getProject = async(id) => {
         const response = await axios.get('/api/projects/' + id);
         project.value = response.data;
-        // project.value.roles = response.data.roles[0].id;
+    }
+
+    const getProjectBySlug = async(slug, page) => {
+        const response = await axios.get('/api/projects/' + slug + '/' + page);
+        project.value = response.data;
     }
 
     const getUsersDropdown = async() => {
@@ -124,6 +128,7 @@ export default function useProjects() {
         getProject,
         getProjects,
         storeProject,
+        getProjectBySlug,
         pagination,
         deleteProject,
         updateProject,

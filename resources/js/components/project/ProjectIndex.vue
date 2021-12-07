@@ -42,6 +42,9 @@
                   <template v-for="(qa, index1) in item.qas" :key="index1">
                     <b>QA - </b>{{qa.first_name}}<br/>
                   </template>
+                  <template v-for="(customer, index1) in item.customers" :key="index1">
+                    <b>Customer - </b>{{customer.first_name}}<br/>
+                  </template>
                 </td>
                 <td class="py-2 px-2 text-left whitespace-nowrap">{{ item.project_type }}</td>
                 <td class="py-2 px-2 text-center whitespace-nowrap">
@@ -49,7 +52,7 @@
                   </td>
                 <td class="py-2 px-2 text-center whitespace-nowrap">
                   <div class="flex item-center justify-center">
-                    <router-link to="" class="no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                    <router-link :to="{name:'project.task', params: {slug: item.slug}}" class="no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                         <view-icon />
                     </router-link>
                     <router-link :to="{name:'project.edit', params: {id:item.id}}"  class="no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110">

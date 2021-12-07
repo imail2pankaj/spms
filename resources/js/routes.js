@@ -116,6 +116,48 @@ export default {
                 primary: false
             },
         },
+        {
+            path: '/app/projects/:slug',
+            component: () =>
+                import ('./components/project/ProjectDetails'),
+            name: 'project.details',
+            props: true,
+            meta: {
+                title: 'Project',
+                primary: false
+            },
+            children: [{
+                    path: 'task',
+                    component: () =>
+                        import ('./components/project/project-details/ProjectTask'),
+                    name: "project.task"
+                },
+                {
+                    path: 'update',
+                    component: () =>
+                        import ('./components/project/project-details/ProjectUpdate'),
+                    name: "project.update"
+                },
+                {
+                    path: 'milestones',
+                    component: () =>
+                        import ('./components/project/project-details/ProjectMilestone'),
+                    name: "project.milestone"
+                },
+                {
+                    path: 'attachments',
+                    component: () =>
+                        import ('./components/project/project-details/ProjectAttachment'),
+                    name: "project.attachment"
+                },
+                {
+                    path: 'notes',
+                    component: () =>
+                        import ('./components/project/project-details/ProjectNote'),
+                    name: "project.note"
+                }
+            ]
+        },
 
         {
             path: '/app/categories',

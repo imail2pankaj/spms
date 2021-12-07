@@ -31878,6 +31878,14 @@ select {
   }
 }
 
+nav .router-link-active, nav .router-link-exact-active {
+  --tw-border-opacity: 1;
+  border-color: rgba(59, 130, 246, var(--tw-border-opacity));
+  border-bottom-width: 2px;
+  --tw-text-opacity: 1;
+  color: rgba(37, 99, 235, var(--tw-text-opacity))
+}
+
 /*
 * ----------------------------
 * Transitions
