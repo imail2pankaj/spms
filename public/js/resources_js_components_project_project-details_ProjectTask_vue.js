@@ -11,6 +11,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     task: {
@@ -19,12 +21,23 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   setup: function setup(props) {
+    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_0__.useRouter)();
     var task = props.task;
 
-    var openModal = function openModal(id) {};
+    var openModal = function openModal(slug, id) {
+      var data = {
+        name: 'project.task.edit',
+        params: {
+          slug: slug,
+          id: id
+        }
+      };
+      router.push(data);
+    };
 
     return {
-      task: task
+      task: task,
+      openModal: openModal
     };
   }
 });
@@ -152,41 +165,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "p-1 text-sm flex flex-row justify-between hover:bg-gray-100 cursor-pointer border border-gray-200 rounded-md mt-1 "
-};
-var _hoisted_2 = {
   "class": "w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300"
 };
-var _hoisted_3 = {
+var _hoisted_2 = {
   "class": "w-5 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-
   var _component_play_icon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("play-icon");
 
   var _component_delete_icon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("delete-icon");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span @click=\"openModal(task.id)\">\r\n      {{ task.title }}\r\n    </span> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: {
-      name: 'project.task.edit',
-      params: {
-        slug: 'title',
-        id: $setup.task.id
-      }
-    }
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.task.title), 1
-      /* TEXT */
-      )];
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $setup.openModal($setup.task.project.slug, $setup.task.id);
     }),
-    _: 1
-    /* STABLE */
-
-  }, 8
-  /* PROPS */
-  , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_play_icon)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_delete_icon)])])]);
+    "class": "p-1 text-sm flex flex-row justify-between hover:bg-gray-100 cursor-pointer border border-gray-200 rounded-md mt-1 "
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.task.title), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_play_icon)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_delete_icon)])])]);
 }
 
 /***/ }),
@@ -330,7 +326,28 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["task"]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)], 64
+  ))])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view, _ctx.$attrs, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
+      var Component = _ref.Component;
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+        name: "fade"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)(Component)))];
+        }),
+        _: 2
+        /* DYNAMIC */
+
+      }, 1024
+      /* DYNAMIC_SLOTS */
+      )];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 16
+  /* FULL_PROPS */
+  )], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -399,6 +416,7 @@ function useProjects() {
     customer: [],
     _method: 'post'
   });
+  var task = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({});
   var errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
     title: '',
     description: '',
@@ -668,32 +686,59 @@ function useProjects() {
     };
   }();
 
-  var storeTask = /*#__PURE__*/function () {
-    var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(id, data) {
-      var key, responseErrors, _key4;
-
+  var getTask = /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(id) {
+      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
         while (1) {
           switch (_context8.prev = _context8.next) {
+            case 0:
+              _context8.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/tasks/' + id);
+
+            case 2:
+              response = _context8.sent;
+              task.value = response.data;
+
+            case 4:
+            case "end":
+              return _context8.stop();
+          }
+        }
+      }, _callee8);
+    }));
+
+    return function getTask(_x9) {
+      return _ref8.apply(this, arguments);
+    };
+  }();
+
+  var storeTask = /*#__PURE__*/function () {
+    var _ref9 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee9(id, data) {
+      var key, responseErrors, _key4;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee9$(_context9) {
+        while (1) {
+          switch (_context9.prev = _context9.next) {
             case 0:
               for (key in errors.value) {
                 errors.value[key] = '';
               }
 
-              _context8.prev = 1;
-              _context8.next = 4;
+              _context9.prev = 1;
+              _context9.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/projects/' + id + '/store-task', data);
 
             case 4:
-              _context8.next = 9;
+              _context9.next = 9;
               break;
 
             case 6:
-              _context8.prev = 6;
-              _context8.t0 = _context8["catch"](1);
+              _context9.prev = 6;
+              _context9.t0 = _context9["catch"](1);
 
-              if (_context8.t0.response.status === 422) {
-                responseErrors = _context8.t0.response.data.errors;
+              if (_context9.t0.response.status === 422) {
+                responseErrors = _context9.t0.response.data.errors;
 
                 for (_key4 in responseErrors) {
                   errors.value[_key4] = responseErrors[_key4][0];
@@ -702,18 +747,64 @@ function useProjects() {
 
             case 9:
             case "end":
-              return _context8.stop();
+              return _context9.stop();
           }
         }
-      }, _callee8, null, [[1, 6]]);
+      }, _callee9, null, [[1, 6]]);
     }));
 
-    return function storeTask(_x9, _x10) {
-      return _ref8.apply(this, arguments);
+    return function storeTask(_x10, _x11) {
+      return _ref9.apply(this, arguments);
+    };
+  }();
+
+  var updateTask = /*#__PURE__*/function () {
+    var _ref10 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee10(id, data) {
+      var key, responseErrors, _key5;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee10$(_context10) {
+        while (1) {
+          switch (_context10.prev = _context10.next) {
+            case 0:
+              for (key in errors.value) {
+                errors.value[key] = '';
+              }
+
+              _context10.prev = 1;
+              _context10.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/tasks/' + id, data);
+
+            case 4:
+              _context10.next = 9;
+              break;
+
+            case 6:
+              _context10.prev = 6;
+              _context10.t0 = _context10["catch"](1);
+
+              if (_context10.t0.response.status === 422) {
+                responseErrors = _context10.t0.response.data.errors;
+
+                for (_key5 in responseErrors) {
+                  errors.value[_key5] = responseErrors[_key5][0];
+                }
+              }
+
+            case 9:
+            case "end":
+              return _context10.stop();
+          }
+        }
+      }, _callee10, null, [[1, 6]]);
+    }));
+
+    return function updateTask(_x12, _x13) {
+      return _ref10.apply(this, arguments);
     };
   }();
 
   return {
+    task: task,
     project: project,
     projects: projects,
     errors: errors,
@@ -726,7 +817,9 @@ function useProjects() {
     updateProject: updateProject,
     usersOptions: usersOptions,
     getUsersDropdown: getUsersDropdown,
-    storeTask: storeTask
+    getTask: getTask,
+    storeTask: storeTask,
+    updateTask: updateTask
   };
 }
 

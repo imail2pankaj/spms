@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\ProjectTaskController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,7 +32,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('user/roles', [RoleController::class,'allRoles'])->name("allRoles");
     Route::apiResource('companies',CompanyController::class);
     Route::get('projects/{slug}/{page}', [ProjectController::class,'getBySlug'])->name("getBySlug");
-    Route::post('projects/{project_id}/store-task', [ProjectController::class,'storeTask'])->name("storeTask");
+    Route::post('projects/{project_id}/store-task', [ProjectTaskController::class,'storeTask'])->name("storeTask");
+    Route::get('tasks/{id}', [ProjectTaskController::class,'show'])->name("show");
+    Route::put('tasks/{id}', [ProjectTaskController::class,'update'])->name("update");
     Route::apiResource('projects',ProjectController::class);
     Route::get('project/users', [ProjectController::class,'getDifferentRoleUsers'])->name("getDifferentRoleUsers");
     Route::apiResource('categories',CategoryController::class);

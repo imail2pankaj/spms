@@ -21464,7 +21464,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       name: "project.task",
       children: [{
-        path: "/:id/task",
+        path: ":id/task",
         component: function component() {
           return __webpack_require__.e(/*! import() */ "resources_js_components_project_project-details_TaskEdit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/project/project-details/TaskEdit */ "./resources/js/components/project/project-details/TaskEdit.vue"));
         },

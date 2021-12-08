@@ -132,7 +132,7 @@ export default {
                         import ('./components/project/project-details/ProjectTask'),
                     name: "project.task",
                     children: [{
-                        path: "/:id/task",
+                        path: ":id/task",
                         component: () =>
                             import ('./components/project/project-details/TaskEdit'),
                         props: true,

@@ -38,6 +38,7 @@ export default function useProjects() {
         customer: [],
         _method: 'post',
     });
+    const task = ref({});
     const errors = ref({
         title: '',
         description: '',
@@ -123,6 +124,10 @@ export default function useProjects() {
         await router.push({ name: 'project.index' });
     }
 
+    const getTask = async(id) => {
+        const response = await axios.get('/api/tasks/' + id);
+        task.value = response.data;
+    }
 
     const storeTask = async(id, data) => {
         for (const key in errors.value) {
@@ -130,7 +135,6 @@ export default function useProjects() {
         }
         try {
             await axios.post('/api/projects/' + id + '/store-task', data);
-            // await router.go();
         } catch (error) {
             if (error.response.status === 422) {
                 const responseErrors = error.response.data.errors;
@@ -140,7 +144,25 @@ export default function useProjects() {
             }
         }
     }
+
+    const updateTask = async(id, data) => {
+        for (const key in errors.value) {
+            errors.value[key] = '';
+        }
+        try {
+            await axios.post('/api/tasks/' + id, data);
+        } catch (error) {
+            if (error.response.status === 422) {
+                const responseErrors = error.response.data.errors;
+                for (const key in responseErrors) {
+                    errors.value[key] = responseErrors[key][0];
+                }
+            }
+        }
+    }
+
     return {
+        task,
         project,
         projects,
         errors,
@@ -153,7 +175,8 @@ export default function useProjects() {
         updateProject,
         usersOptions,
         getUsersDropdown,
-
-        storeTask
+        getTask,
+        storeTask,
+        updateTask
     }
 }

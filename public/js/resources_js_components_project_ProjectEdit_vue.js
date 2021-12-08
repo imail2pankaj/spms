@@ -656,6 +656,7 @@ function useProjects() {
     customer: [],
     _method: 'post'
   });
+  var task = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({});
   var errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
     title: '',
     description: '',
@@ -925,32 +926,59 @@ function useProjects() {
     };
   }();
 
-  var storeTask = /*#__PURE__*/function () {
-    var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(id, data) {
-      var key, responseErrors, _key4;
-
+  var getTask = /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(id) {
+      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
         while (1) {
           switch (_context8.prev = _context8.next) {
+            case 0:
+              _context8.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/tasks/' + id);
+
+            case 2:
+              response = _context8.sent;
+              task.value = response.data;
+
+            case 4:
+            case "end":
+              return _context8.stop();
+          }
+        }
+      }, _callee8);
+    }));
+
+    return function getTask(_x9) {
+      return _ref8.apply(this, arguments);
+    };
+  }();
+
+  var storeTask = /*#__PURE__*/function () {
+    var _ref9 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee9(id, data) {
+      var key, responseErrors, _key4;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee9$(_context9) {
+        while (1) {
+          switch (_context9.prev = _context9.next) {
             case 0:
               for (key in errors.value) {
                 errors.value[key] = '';
               }
 
-              _context8.prev = 1;
-              _context8.next = 4;
+              _context9.prev = 1;
+              _context9.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/projects/' + id + '/store-task', data);
 
             case 4:
-              _context8.next = 9;
+              _context9.next = 9;
               break;
 
             case 6:
-              _context8.prev = 6;
-              _context8.t0 = _context8["catch"](1);
+              _context9.prev = 6;
+              _context9.t0 = _context9["catch"](1);
 
-              if (_context8.t0.response.status === 422) {
-                responseErrors = _context8.t0.response.data.errors;
+              if (_context9.t0.response.status === 422) {
+                responseErrors = _context9.t0.response.data.errors;
 
                 for (_key4 in responseErrors) {
                   errors.value[_key4] = responseErrors[_key4][0];
@@ -959,18 +987,64 @@ function useProjects() {
 
             case 9:
             case "end":
-              return _context8.stop();
+              return _context9.stop();
           }
         }
-      }, _callee8, null, [[1, 6]]);
+      }, _callee9, null, [[1, 6]]);
     }));
 
-    return function storeTask(_x9, _x10) {
-      return _ref8.apply(this, arguments);
+    return function storeTask(_x10, _x11) {
+      return _ref9.apply(this, arguments);
+    };
+  }();
+
+  var updateTask = /*#__PURE__*/function () {
+    var _ref10 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee10(id, data) {
+      var key, responseErrors, _key5;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee10$(_context10) {
+        while (1) {
+          switch (_context10.prev = _context10.next) {
+            case 0:
+              for (key in errors.value) {
+                errors.value[key] = '';
+              }
+
+              _context10.prev = 1;
+              _context10.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/tasks/' + id, data);
+
+            case 4:
+              _context10.next = 9;
+              break;
+
+            case 6:
+              _context10.prev = 6;
+              _context10.t0 = _context10["catch"](1);
+
+              if (_context10.t0.response.status === 422) {
+                responseErrors = _context10.t0.response.data.errors;
+
+                for (_key5 in responseErrors) {
+                  errors.value[_key5] = responseErrors[_key5][0];
+                }
+              }
+
+            case 9:
+            case "end":
+              return _context10.stop();
+          }
+        }
+      }, _callee10, null, [[1, 6]]);
+    }));
+
+    return function updateTask(_x12, _x13) {
+      return _ref10.apply(this, arguments);
     };
   }();
 
   return {
+    task: task,
     project: project,
     projects: projects,
     errors: errors,
@@ -983,7 +1057,9 @@ function useProjects() {
     updateProject: updateProject,
     usersOptions: usersOptions,
     getUsersDropdown: getUsersDropdown,
-    storeTask: storeTask
+    getTask: getTask,
+    storeTask: storeTask,
+    updateTask: updateTask
   };
 }
 
@@ -1003,7 +1079,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "maritalStatusOptions": () => (/* binding */ maritalStatusOptions),
 /* harmony export */   "projectStatusOptions": () => (/* binding */ projectStatusOptions),
 /* harmony export */   "projectTypeOptions": () => (/* binding */ projectTypeOptions),
-/* harmony export */   "taskStatusOptions": () => (/* binding */ taskStatusOptions)
+/* harmony export */   "taskStatusOptions": () => (/* binding */ taskStatusOptions),
+/* harmony export */   "priorityOptions": () => (/* binding */ priorityOptions),
+/* harmony export */   "taskTypeOptions": () => (/* binding */ taskTypeOptions)
 /* harmony export */ });
 var statusOptions = [{
   value: 1,
@@ -1035,6 +1113,8 @@ var maritalStatusOptions = [{
 var projectStatusOptions = ['Active', 'Hold', 'Completed', 'Closed', 'Archieved'];
 var projectTypeOptions = ['Fixed', 'Hourly', 'Contract'];
 var taskStatusOptions = ['Created', 'Active', 'Started', 'Paused', 'Completed', 'Archieved'];
+var priorityOptions = ['Very Low', 'Low', 'Normal', 'High', 'Very High'];
+var taskTypeOptions = ['Feature', 'Bug', 'Design', 'Other'];
 
 /***/ }),
 

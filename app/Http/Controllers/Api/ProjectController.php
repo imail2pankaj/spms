@@ -124,18 +124,11 @@ class ProjectController extends Controller
     {
         $project = Project::where('slug',$slug)->first();
         if($page == 'task') {
-            $created = ProjectTask::where('project_id',$project->id)->where('user_id', $request->user()->id)->latest()->get();
+            $created = ProjectTask::with('project')->where('project_id',$project->id)->where('user_id', $request->user()->id)->latest()->get();
             $project->created = $created;
         }
 
         return response()->json($project);
     }
 
-    public function storeTask(Request $request, $project_id) {
-        $projectTask = ProjectTask::create([
-            'title' => $request->input('title'),
-            'project_id' => $project_id,
-            'user_id' => $request->user()->id,
-        ]);
-    }
 }

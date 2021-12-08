@@ -61,7 +61,11 @@
       </div>
     </div>
   </div>
-  <router-view></router-view>
+  <router-view v-bind="$attrs" v-slot="{ Component }">
+    <transition name="fade">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 
