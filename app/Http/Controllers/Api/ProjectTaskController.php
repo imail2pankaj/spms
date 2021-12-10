@@ -30,6 +30,19 @@ class ProjectTaskController extends Controller
         return $projectTask;
     }
 
+    public function assignedToUsers() {
+        $roles = ['developer','designer','qa','trainee'];
+        $assignedUsers = [];
+
+        foreach ($roles as $role) {
+            $users = User::select('id', 'first_name', 'last_name')->role($role)->where('user_status', 1)->get()->toArray();
+            foreach ($users as $user) {
+                array_push($assignedUsers, $user);
+            }
+        }
+        return response()->json($assignedUsers);
+    }
+
     public function update(Request $request, $id) {
         $projectTask = ProjectTask::find($id);
         $projectTask->update($request->all());

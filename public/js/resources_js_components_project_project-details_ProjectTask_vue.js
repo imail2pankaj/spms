@@ -140,11 +140,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       };
     }();
 
+    var onClickChild = /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(value) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                setTimeout( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+                    while (1) {
+                      switch (_context3.prev = _context3.next) {
+                        case 0:
+                          _context3.next = 2;
+                          return getProjectBySlug(slug, "task");
+
+                        case 2:
+                        case "end":
+                          return _context3.stop();
+                      }
+                    }
+                  }, _callee3);
+                })), 3000);
+
+              case 1:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      return function onClickChild(_x) {
+        return _ref3.apply(this, arguments);
+      };
+    }();
+
     return {
       task_title: task_title,
       saveTask: saveTask,
       project: project,
-      slug: slug
+      slug: slug,
+      onClickChild: onClickChild
     };
   }
 });
@@ -165,9 +201,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300"
+  "class": "p-1 text-sm flex hover:bg-gray-100 cursor-pointer border border-gray-200 rounded-md mt-1 "
 };
 var _hoisted_2 = {
+  "class": "w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300"
+};
+var _hoisted_3 = {
   "class": "w-5 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -175,14 +214,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_delete_icon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("delete-icon");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+    "class": "flex-1",
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $setup.openModal($setup.task.project.slug, $setup.task.id);
-    }),
-    "class": "p-1 text-sm flex flex-row justify-between hover:bg-gray-100 cursor-pointer border border-gray-200 rounded-md mt-1 "
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.task.title), 1
+    })
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.task.title), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_play_icon)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_delete_icon)])])]);
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_play_icon)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_delete_icon)])])]);
 }
 
 /***/ }),
@@ -243,29 +282,25 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 /* HOISTED */
 );
 
-var _hoisted_10 = {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "block"
-};
-
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", {
   "class": "input-form-sub-heading mb-4",
   style: {
     paddingTop: 0
   }
-}, "Active", -1
+}, "Active"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <TaskItem\r\n              v-for=\"(task, index) in project.created\"\r\n              :key=\"index\"\r\n              :task=\"task\"\r\n            ></TaskItem> ")])], -1
 /* HOISTED */
 );
 
-var _hoisted_12 = {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "block"
-};
-
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", {
   "class": "input-form-sub-heading mb-4",
   style: {
     paddingTop: 0
   }
-}, "Completed", -1
+}, "Completed"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <TaskItem\r\n              v-for=\"(task, index) in project.created\"\r\n              :key=\"index\"\r\n              :task=\"task\"\r\n            ></TaskItem> ")])], -1
 /* HOISTED */
 );
 
@@ -308,29 +343,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["task"]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.project.created, function (task, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_TaskItem, {
-      key: index,
-      task: task
-    }, null, 8
-    /* PROPS */
-    , ["task"]);
-  }), 128
-  /* KEYED_FRAGMENT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.project.created, function (task, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_TaskItem, {
-      key: index,
-      task: task
-    }, null, 8
-    /* PROPS */
-    , ["task"]);
-  }), 128
-  /* KEYED_FRAGMENT */
-  ))])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view, _ctx.$attrs, {
+  ))])]), _hoisted_10, _hoisted_11])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view, (0,vue__WEBPACK_IMPORTED_MODULE_0__.mergeProps)(_ctx.$attrs, {
+    onClicked: $setup.onClickChild
+  }), {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
       var Component = _ref.Component;
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
-        name: "fade"
+        name: "fade",
+        mode: "out-in"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)(Component)))];
@@ -347,7 +367,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 16
   /* FULL_PROPS */
-  )], 64
+  , ["onClicked"])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -803,6 +823,33 @@ function useProjects() {
     };
   }();
 
+  var getAssignedToUsers = /*#__PURE__*/function () {
+    var _ref11 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee11(id) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee11$(_context11) {
+        while (1) {
+          switch (_context11.prev = _context11.next) {
+            case 0:
+              _context11.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/tasks/assigned-to-users');
+
+            case 2:
+              response = _context11.sent;
+              return _context11.abrupt("return", response.data);
+
+            case 4:
+            case "end":
+              return _context11.stop();
+          }
+        }
+      }, _callee11);
+    }));
+
+    return function getAssignedToUsers(_x14) {
+      return _ref11.apply(this, arguments);
+    };
+  }();
+
   return {
     task: task,
     project: project,
@@ -817,6 +864,7 @@ function useProjects() {
     updateProject: updateProject,
     usersOptions: usersOptions,
     getUsersDropdown: getUsersDropdown,
+    getAssignedToUsers: getAssignedToUsers,
     getTask: getTask,
     storeTask: storeTask,
     updateTask: updateTask

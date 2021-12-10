@@ -26,7 +26,7 @@
           </button>
         </div>
         <form @submit.prevent="saveTask">
-          <div class="block pt-4 pb-4 overflow-y-auto">
+          <div class="block pt-4 pb-4 overflow-y-auto h-screen">
             <div class="block w-full px-4 mb-12">
               <h3 class="input-form-sub-heading mb-4 w-full" :style="{paddingTop:0}">{{task.title ?? "Edit Task" }}</h3>
               <div class="mb-6">
@@ -38,6 +38,16 @@
                 <label for="description" class="input-form-label">Description <app-required/></label>
                 <textarea type="text" placeholder="Task description" v-model="task.description" class="input-form-control" required></textarea>
                 <span class="input-error" v-if="errors.description">{{ errors.description }}</span>
+              </div>
+              <div class="mb-6">
+                <label for="user_id" class="input-form-label">Assigned To <app-required/></label>
+                  <select v-model="task.user_id" class="input-form-control">
+                    <option value=""> - Assign Task To - </option>
+                    <option v-for="item in assignedToUsers" :key="item.id" :value="item.id" >
+                      {{ item.first_name }} {{ item.last_name }}
+                    </option>
+                  </select>
+                <span class="input-error" v-if="errors.user_id">{{ errors.user_id }}</span>
               </div>
               <div class="md:grid md:grid-cols-2 md:gap-6 mb-6">
                 <div>
@@ -92,7 +102,7 @@
 </template>
 
 <script>
-import { onMounted } from '@vue/runtime-core';
+import { onMounted, ref } from '@vue/runtime-core';
 import { useRouter } from 'vue-router';
 import useProjects from '../../../composables/project';
 import {taskTypeOptions, priorityOptions} from '../../../utils';
@@ -102,12 +112,14 @@ export default {
     slug: { required: true, type: String},
     id: { required: true, type: String}
   },
-  setup(props) {
+  setup(props, {emit}) {
     const router = useRouter();
     const {id, slug} = props;
-    const { task, errors, getTask, updateTask } = useProjects();
+    const { task, errors, getTask, updateTask, getAssignedToUsers } = useProjects();
+    const assignedToUsers = ref([]);
 
     onMounted(async () => {
+      assignedToUsers.value = await getAssignedToUsers();
       await getTask(id);
     });
 
@@ -117,6 +129,7 @@ export default {
       goBack();
     }
     const goBack = () => {
+      emit('clicked', 'someValue')
       router.push({name: 'project.task', params: {slug: slug}})
     }
 
@@ -126,6 +139,7 @@ export default {
       saveTask,
       taskTypeOptions,
       priorityOptions,
+      assignedToUsers,
       goBack
     }
   },

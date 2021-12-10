@@ -41,28 +41,28 @@
         <div class="block">
           <h3 class="input-form-sub-heading mb-4" :style="{paddingTop:0}">Active</h3>
           <div>
-            <TaskItem
+            <!-- <TaskItem
               v-for="(task, index) in project.created"
               :key="index"
               :task="task"
-            ></TaskItem>
+            ></TaskItem> -->
           </div>
         </div>
         <div class="block">
           <h3 class="input-form-sub-heading mb-4" :style="{paddingTop:0}">Completed</h3>
           <div>
-            <TaskItem
+            <!-- <TaskItem
               v-for="(task, index) in project.created"
               :key="index"
               :task="task"
-            ></TaskItem>
+            ></TaskItem> -->
           </div>
         </div>
       </div>
     </div>
   </div>
-  <router-view v-bind="$attrs" v-slot="{ Component }">
-    <transition name="fade">
+  <router-view v-bind="$attrs" v-slot="{ Component }" @clicked="onClickChild">
+    <transition name="fade" mode="out-in">
       <component :is="Component" />
     </transition>
   </router-view>
@@ -93,11 +93,18 @@ export default {
         task_title.value = "";
       }
     };
+
+    const onClickChild = async (value) => {
+      setTimeout(async () => {
+        await getProjectBySlug(slug, "task");
+      }, 3000);
+    }
     return {
       task_title,
       saveTask,
       project,
       slug,
+      onClickChild,
     };
   },
 };

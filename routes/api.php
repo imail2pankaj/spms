@@ -33,6 +33,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('companies',CompanyController::class);
     Route::get('projects/{slug}/{page}', [ProjectController::class,'getBySlug'])->name("getBySlug");
     Route::post('projects/{project_id}/store-task', [ProjectTaskController::class,'storeTask'])->name("storeTask");
+    Route::get('tasks/assigned-to-users', [ProjectTaskController::class,'assignedToUsers'])->name("assignedToUsers");
     Route::get('tasks/{id}', [ProjectTaskController::class,'show'])->name("show");
     Route::put('tasks/{id}', [ProjectTaskController::class,'update'])->name("update");
     Route::apiResource('projects',ProjectController::class);

@@ -1065,6 +1065,33 @@ function useProjects() {
     };
   }();
 
+  var getAssignedToUsers = /*#__PURE__*/function () {
+    var _ref11 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee11(id) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee11$(_context11) {
+        while (1) {
+          switch (_context11.prev = _context11.next) {
+            case 0:
+              _context11.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/tasks/assigned-to-users');
+
+            case 2:
+              response = _context11.sent;
+              return _context11.abrupt("return", response.data);
+
+            case 4:
+            case "end":
+              return _context11.stop();
+          }
+        }
+      }, _callee11);
+    }));
+
+    return function getAssignedToUsers(_x14) {
+      return _ref11.apply(this, arguments);
+    };
+  }();
+
   return {
     task: task,
     project: project,
@@ -1079,6 +1106,7 @@ function useProjects() {
     updateProject: updateProject,
     usersOptions: usersOptions,
     getUsersDropdown: getUsersDropdown,
+    getAssignedToUsers: getAssignedToUsers,
     getTask: getTask,
     storeTask: storeTask,
     updateTask: updateTask

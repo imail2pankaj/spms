@@ -1,6 +1,6 @@
 <template>
-  <div @click="openModal(task.project.slug, task.id)" class="p-1 text-sm flex flex-row justify-between hover:bg-gray-100 cursor-pointer border border-gray-200 rounded-md mt-1 ">
-    <span>
+  <div class="p-1 text-sm flex hover:bg-gray-100 cursor-pointer border border-gray-200 rounded-md mt-1 ">
+    <span class="flex-1" @click="openModal(task.project.slug, task.id)">
       {{ task.title }}
     </span>
     <span>

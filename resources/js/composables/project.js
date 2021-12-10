@@ -161,6 +161,10 @@ export default function useProjects() {
         }
     }
 
+    const getAssignedToUsers = async(id) => {
+        const response = await axios.get('/api/tasks/assigned-to-users');
+        return response.data;
+    }
     return {
         task,
         project,
@@ -175,6 +179,7 @@ export default function useProjects() {
         updateProject,
         usersOptions,
         getUsersDropdown,
+        getAssignedToUsers,
         getTask,
         storeTask,
         updateTask
