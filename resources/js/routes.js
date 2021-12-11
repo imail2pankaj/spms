@@ -9,7 +9,7 @@ export default {
             meta: {
                 title: 'Dashboard',
                 primary: true,
-                roles: ['super-admin']
+                roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer']
             },
         },
         {
@@ -19,7 +19,8 @@ export default {
             name: 'role.index',
             meta: {
                 title: 'Role',
-                primary: true
+                primary: true,
+                roles: ['super-admin', 'admin']
             },
         },
         {
@@ -29,7 +30,8 @@ export default {
             name: 'role.create',
             meta: {
                 title: 'Role',
-                primary: false
+                primary: false,
+                roles: ['super-admin', 'admin']
             },
         },
         {
@@ -40,7 +42,8 @@ export default {
             props: true,
             meta: {
                 title: 'Role',
-                primary: false
+                primary: false,
+                roles: ['super-admin', 'admin']
             },
         },
         {
@@ -50,7 +53,8 @@ export default {
             name: 'user.index',
             meta: {
                 title: 'User',
-                primary: true
+                primary: true,
+                roles: ['super-admin', 'admin']
             },
         },
         {
@@ -60,7 +64,8 @@ export default {
             name: 'user.create',
             meta: {
                 title: 'User',
-                primary: false
+                primary: false,
+                roles: ['super-admin', 'admin']
             },
         },
         {
@@ -71,7 +76,8 @@ export default {
             props: true,
             meta: {
                 title: 'User',
-                primary: false
+                primary: false,
+                roles: ['super-admin', 'admin']
             },
         },
 
@@ -82,7 +88,8 @@ export default {
             name: 'project.index',
             meta: {
                 title: 'Project',
-                primary: true
+                primary: true,
+                roles: ['super-admin', 'admin', 'bde']
             },
         },
         {
@@ -92,7 +99,8 @@ export default {
             name: 'project.create',
             meta: {
                 title: 'Project',
-                primary: false
+                primary: false,
+                roles: ['super-admin', 'admin', 'bde']
             },
         },
         {
@@ -103,7 +111,8 @@ export default {
             props: true,
             meta: {
                 title: 'Project',
-                primary: false
+                primary: false,
+                roles: ['super-admin', 'admin', 'bde']
             },
         },
         {
@@ -114,7 +123,8 @@ export default {
             props: true,
             meta: {
                 title: 'Project',
-                primary: false
+                primary: false,
+                roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer'],
             },
             children: [{
                     path: 'task',
@@ -126,32 +136,37 @@ export default {
                         component: () =>
                             import ('./components/project/project-details/TaskEdit'),
                         props: true,
-                        name: 'project.task.edit'
+                        name: 'project.task.edit',
+                        roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer']
                     }]
                 },
                 {
                     path: 'update',
                     component: () =>
                         import ('./components/project/project-details/ProjectUpdate'),
-                    name: "project.update"
+                    name: "project.update",
+                    roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer']
                 },
                 {
                     path: 'milestones',
                     component: () =>
                         import ('./components/project/project-details/ProjectMilestone'),
-                    name: "project.milestone"
+                    name: "project.milestone",
+                    roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer']
                 },
                 {
                     path: 'attachments',
                     component: () =>
                         import ('./components/project/project-details/ProjectAttachment'),
-                    name: "project.attachment"
+                    name: "project.attachment",
+                    roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer']
                 },
                 {
                     path: 'notes',
                     component: () =>
                         import ('./components/project/project-details/ProjectNote'),
-                    name: "project.note"
+                    name: "project.note",
+                    roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer']
                 }
             ]
         },

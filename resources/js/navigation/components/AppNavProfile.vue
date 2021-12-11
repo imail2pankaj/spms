@@ -7,14 +7,14 @@
     >
       <div class="flex items-center">
         <div>
-          <img v-if="user.profile_image"
+          <img v-if="user.profile_image != 'null' && user.profile_image != null"
             class="inline-block h-10 w-10 rounded-full"
-            :src="'uploads/user/profile_image/' + user.profile_image"
+            :src="'/uploads/user/profile_image/' + user.profile_image"
             alt=""
           />
           <img v-else
             class="inline-block h-10 w-10 rounded-full"
-            src="https://ui-avatars.com/api/?name=Pankaj%20Makwana&rounded=true&background=a0a0a0"
+            :src="'https://ui-avatars.com/api/?name=' + user.first_name + ' ' + user.last_name + '&rounded=true&background=a0a0a0'"
             alt=""
           />
         </div>
@@ -22,7 +22,7 @@
           <p
             class="text-base font-medium text-gray-700 group-hover:text-gray-900"
           >
-            {{ user.name }}
+            {{ user.first_name }} {{ user.last_name }}
           </p>
           <p
             class="text-sm font-medium text-gray-500 group-hover:text-gray-700"

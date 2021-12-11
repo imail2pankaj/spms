@@ -31921,7 +31921,7 @@ select {
   }
 }
 
-nav .router-link-active, nav .router-link-exact-active {
+.project-tabs .router-link-active, .project-tabs .router-link-exact-active {
   --tw-border-opacity: 1;
   border-color: rgba(59, 130, 246, var(--tw-border-opacity));
   border-bottom-width: 2px;

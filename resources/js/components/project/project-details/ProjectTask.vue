@@ -70,22 +70,33 @@
 
 
 <script>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watchEffect, watch } from "vue";
 import useProjects from "../../../composables/project";
 import TaskItem from "../../common/TaskItem";
+import { useRoute } from 'vue-router';
 export default {
   components: { TaskItem },
   props: {
     slug: { required: true, type: String },
   },
   setup(props) {
+    const route = useRoute()
     const { slug } = props;
     const { project, storeTask, getProjectBySlug } = useProjects();
     const task_title = ref(null);
 
-    onMounted(async () => {
-      await getProjectBySlug(slug, "task");
+    watchEffect(async () => {
+        await getProjectBySlug(slug, "task");
     });
+    watch(
+      () => route.params.slug,
+      async newSlug => {
+        if(newSlug){
+          await getProjectBySlug(newSlug, "task");
+        }
+      }
+    );
+
     const saveTask = async () => {
       if (task_title.value) {
         await storeTask(project.value.id, { title: task_title.value });

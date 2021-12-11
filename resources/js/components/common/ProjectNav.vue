@@ -1,5 +1,5 @@
 <template>
-    <nav class="flex flex-col sm:flex-row">
+    <nav class="project-tabs flex flex-col sm:flex-row">
         <router-link :to="{name:'project.task', params: {slug : slug}}" class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none">
             Tasks
         </router-link>

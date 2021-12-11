@@ -74,4 +74,10 @@ class User extends Authenticatable
     {
         return "SIS".str_repeat("0", 5-strlen($id)) . $id;
     }
+
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'project_users');
+    }
 }

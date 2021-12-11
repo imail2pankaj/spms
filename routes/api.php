@@ -24,8 +24,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     $user = $request->user();
     $user->role = $user->roles->first()->name;
+    unset($user->roles);
     return $user;
-    // return $request->user();
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {

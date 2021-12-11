@@ -18924,12 +18924,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   setup: function setup() {
-    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.useRouter)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_1__.useStore)();
+    var user = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      return store.state.user;
+    });
+    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
     var primaryRoutes = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return router.options.routes.filter(function (route) {
         return route.meta.primary;
@@ -18937,6 +18943,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     return {
       // Data
+      user: user,
       primaryRoutes: primaryRoutes
     };
   }
@@ -19455,7 +19462,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "flex flex-col sm:flex-row"
+  "class": "project-tabs flex flex-col sm:flex-row"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Tasks ");
@@ -20273,14 +20280,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "mt-5 px-2 space-y-1"
+  "class": "mt-5 space-y-1 border-0 border-t border-yellow-500"
 };
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", {
+  "class": "bg-yellow-500 p-2 font-semibold uppercase text-sm text-white"
+}, "Active Projects", -1
+/* HOISTED */
+);
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", {
+  "class": "bg-yellow-500 p-2 font-semibold uppercase text-sm text-white"
+}, "Hold Projects", -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("nav", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.primaryRoutes, function (route, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
-      key: index,
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+      key: index
+    }, [route.meta.roles.includes($setup.user.role) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+      key: 0,
       to: {
         name: route.name
       },
@@ -20289,6 +20311,58 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(route.meta.title), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+    /* STABLE_FRAGMENT */
+    );
+  }), 128
+  /* KEYED_FRAGMENT */
+  )), _hoisted_2, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.user.active_projects, function (project, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+      key: index,
+      to: {
+        name: 'project.task',
+        params: {
+          'slug': project.slug
+        }
+      },
+      exact: "",
+      "class": "hover:bg-gray-50 text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(project.title), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  )), _hoisted_3, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.user.hold_projects, function (project, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+      key: index,
+      to: {
+        name: 'project.task',
+        params: {
+          'slug': project.slug
+        }
+      },
+      exact: "",
+      "class": "hover:bg-gray-50 text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(project.title), 1
         /* TEXT */
         )];
       }),
@@ -20325,19 +20399,13 @@ var _hoisted_2 = {
   "class": "flex items-center"
 };
 var _hoisted_3 = {
-  key: 1,
-  "class": "inline-block h-10 w-10 rounded-full",
-  src: "https://ui-avatars.com/api/?name=Pankaj%20Makwana&rounded=true&background=a0a0a0",
-  alt: ""
-};
-var _hoisted_4 = {
   "class": "ml-3"
 };
-var _hoisted_5 = {
+var _hoisted_4 = {
   "class": "text-base font-medium text-gray-700 group-hover:text-gray-900"
 };
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
   "class": "text-sm font-medium text-gray-500 group-hover:text-gray-700"
 }, " View profile ", -1
 /* HOISTED */
@@ -20354,16 +20422,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "flex-shrink-0 w-full group block p-4"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [$setup.user.profile_image ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("img", {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [$setup.user.profile_image != 'null' && $setup.user.profile_image != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("img", {
         key: 0,
         "class": "inline-block h-10 w-10 rounded-full",
-        src: 'uploads/user/profile_image/' + $setup.user.profile_image,
+        src: '/uploads/user/profile_image/' + $setup.user.profile_image,
         alt: ""
       }, null, 8
       /* PROPS */
-      , ["src"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("img", _hoisted_3))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.name), 1
+      , ["src"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("img", {
+        key: 1,
+        "class": "inline-block h-10 w-10 rounded-full",
+        src: 'https://ui-avatars.com/api/?name=' + $setup.user.first_name + ' ' + $setup.user.last_name + '&rounded=true&background=a0a0a0',
+        alt: ""
+      }, null, 8
+      /* PROPS */
+      , ["src"]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.first_name) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.user.last_name), 1
       /* TEXT */
-      ), _hoisted_6])])];
+      ), _hoisted_5])])];
     }),
     _: 1
     /* STABLE */
@@ -20804,7 +20879,7 @@ __webpack_require__.r(__webpack_exports__);
     meta: {
       title: 'Dashboard',
       primary: true,
-      roles: ['super-admin']
+      roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer']
     }
   }, {
     path: '/app/roles',
@@ -20814,7 +20889,8 @@ __webpack_require__.r(__webpack_exports__);
     name: 'role.index',
     meta: {
       title: 'Role',
-      primary: true
+      primary: true,
+      roles: ['super-admin', 'admin']
     }
   }, {
     path: '/app/roles/create',
@@ -20824,7 +20900,8 @@ __webpack_require__.r(__webpack_exports__);
     name: 'role.create',
     meta: {
       title: 'Role',
-      primary: false
+      primary: false,
+      roles: ['super-admin', 'admin']
     }
   }, {
     path: '/app/roles/:id/edit',
@@ -20835,7 +20912,8 @@ __webpack_require__.r(__webpack_exports__);
     props: true,
     meta: {
       title: 'Role',
-      primary: false
+      primary: false,
+      roles: ['super-admin', 'admin']
     }
   }, {
     path: '/app/users',
@@ -20845,7 +20923,8 @@ __webpack_require__.r(__webpack_exports__);
     name: 'user.index',
     meta: {
       title: 'User',
-      primary: true
+      primary: true,
+      roles: ['super-admin', 'admin']
     }
   }, {
     path: '/app/users/create',
@@ -20855,7 +20934,8 @@ __webpack_require__.r(__webpack_exports__);
     name: 'user.create',
     meta: {
       title: 'User',
-      primary: false
+      primary: false,
+      roles: ['super-admin', 'admin']
     }
   }, {
     path: '/app/users/:id/edit',
@@ -20866,7 +20946,8 @@ __webpack_require__.r(__webpack_exports__);
     props: true,
     meta: {
       title: 'User',
-      primary: false
+      primary: false,
+      roles: ['super-admin', 'admin']
     }
   }, {
     path: '/app/projects',
@@ -20876,7 +20957,8 @@ __webpack_require__.r(__webpack_exports__);
     name: 'project.index',
     meta: {
       title: 'Project',
-      primary: true
+      primary: true,
+      roles: ['super-admin', 'admin', 'bde']
     }
   }, {
     path: '/app/projects/create',
@@ -20886,7 +20968,8 @@ __webpack_require__.r(__webpack_exports__);
     name: 'project.create',
     meta: {
       title: 'Project',
-      primary: false
+      primary: false,
+      roles: ['super-admin', 'admin', 'bde']
     }
   }, {
     path: '/app/projects/:id/edit',
@@ -20897,7 +20980,8 @@ __webpack_require__.r(__webpack_exports__);
     props: true,
     meta: {
       title: 'Project',
-      primary: false
+      primary: false,
+      roles: ['super-admin', 'admin', 'bde']
     }
   }, {
     path: '/app/projects/:slug',
@@ -20908,7 +20992,8 @@ __webpack_require__.r(__webpack_exports__);
     props: true,
     meta: {
       title: 'Project',
-      primary: false
+      primary: false,
+      roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer']
     },
     children: [{
       path: 'task',
@@ -20922,32 +21007,37 @@ __webpack_require__.r(__webpack_exports__);
           return __webpack_require__.e(/*! import() */ "resources_js_components_project_project-details_TaskEdit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/project/project-details/TaskEdit */ "./resources/js/components/project/project-details/TaskEdit.vue"));
         },
         props: true,
-        name: 'project.task.edit'
+        name: 'project.task.edit',
+        roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer']
       }]
     }, {
       path: 'update',
       component: function component() {
         return __webpack_require__.e(/*! import() */ "resources_js_components_project_project-details_ProjectUpdate_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/project/project-details/ProjectUpdate */ "./resources/js/components/project/project-details/ProjectUpdate.vue"));
       },
-      name: "project.update"
+      name: "project.update",
+      roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer']
     }, {
       path: 'milestones',
       component: function component() {
         return __webpack_require__.e(/*! import() */ "resources_js_components_project_project-details_ProjectMilestone_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/project/project-details/ProjectMilestone */ "./resources/js/components/project/project-details/ProjectMilestone.vue"));
       },
-      name: "project.milestone"
+      name: "project.milestone",
+      roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer']
     }, {
       path: 'attachments',
       component: function component() {
         return __webpack_require__.e(/*! import() */ "resources_js_components_project_project-details_ProjectAttachment_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/project/project-details/ProjectAttachment */ "./resources/js/components/project/project-details/ProjectAttachment.vue"));
       },
-      name: "project.attachment"
+      name: "project.attachment",
+      roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer']
     }, {
       path: 'notes',
       component: function component() {
         return __webpack_require__.e(/*! import() */ "resources_js_components_project_project-details_ProjectNote_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/project/project-details/ProjectNote */ "./resources/js/components/project/project-details/ProjectNote.vue"));
       },
-      name: "project.note"
+      name: "project.note",
+      roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer']
     }]
   }, // {
   //     path: '/app/categories',
