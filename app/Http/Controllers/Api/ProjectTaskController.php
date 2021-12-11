@@ -48,4 +48,15 @@ class ProjectTaskController extends Controller
         $projectTask->update($request->all());
         return $projectTask;
     }
+
+    public function getTasks(Request $request, $project_id) {
+        $createdTask = ProjectTask::with('project')->where('project_id',$project_id)->where('task_status','Created')->get();
+        $activeTask = ProjectTask::with('project')->where('project_id',$project_id)->whereIn('task_status',['Active','Started','Paused'])->get();
+        $completedTask = ProjectTask::with('project')->where('project_id',$project_id)->where('task_status','Completed')->get();
+        return [
+            'created' => $createdTask,
+            'active' => $activeTask,
+            'completed' => $completedTask,
+        ];
+    }
 }

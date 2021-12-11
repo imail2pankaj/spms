@@ -32,7 +32,7 @@
 
           <div>
             <TaskItem
-              v-for="(task, index) in project.created"
+              v-for="(task, index) in tasks.created"
               :key="index"
               :task="task"
             ></TaskItem>
@@ -70,7 +70,7 @@
 
 
 <script>
-import { onMounted, ref, watchEffect, watch } from "vue";
+import { onMounted, ref, watchEffect, watch, computed } from "vue";
 import useProjects from "../../../composables/project";
 import TaskItem from "../../common/TaskItem";
 import { useRoute } from 'vue-router';
@@ -82,17 +82,22 @@ export default {
   setup(props) {
     const route = useRoute()
     const { slug } = props;
-    const { project, storeTask, getProjectBySlug } = useProjects();
+    const { project, storeTask, getProjectBySlug, getTasks } = useProjects();
     const task_title = ref(null);
+    const tasks = ref({created: [], active: [], completed:[]});
 
-    watchEffect(async () => {
+    onMounted(async () => {
         await getProjectBySlug(slug, "task");
+        tasks.value.created = [];
+        tasks.value = await getTasks();
     });
     watch(
       () => route.params.slug,
       async newSlug => {
         if(newSlug){
           await getProjectBySlug(newSlug, "task");
+          tasks.value.created = [];
+          tasks.value = await getTasks();
         }
       }
     );
@@ -108,10 +113,12 @@ export default {
     const onClickChild = async (value) => {
       setTimeout(async () => {
         await getProjectBySlug(slug, "task");
+        tasks.value = await getTasks();
       }, 3000);
     }
     return {
       task_title,
+      tasks,
       saveTask,
       project,
       slug,

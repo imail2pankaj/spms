@@ -575,11 +575,39 @@ function useProjects() {
     };
   }();
 
+  var getTasks = /*#__PURE__*/function () {
+    var _ref12 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee12() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee12$(_context12) {
+        while (1) {
+          switch (_context12.prev = _context12.next) {
+            case 0:
+              _context12.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/tasks/' + project.value.id + '/project');
+
+            case 2:
+              response = _context12.sent;
+              return _context12.abrupt("return", response.data);
+
+            case 4:
+            case "end":
+              return _context12.stop();
+          }
+        }
+      }, _callee12);
+    }));
+
+    return function getTasks() {
+      return _ref12.apply(this, arguments);
+    };
+  }();
+
   return {
     task: task,
     project: project,
     projects: projects,
     errors: errors,
+    getTasks: getTasks,
     getProject: getProject,
     getProjects: getProjects,
     storeProject: storeProject,

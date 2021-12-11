@@ -88,10 +88,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _useProjects = (0,_composables_project__WEBPACK_IMPORTED_MODULE_2__.default)(),
         project = _useProjects.project,
         storeTask = _useProjects.storeTask,
-        getProjectBySlug = _useProjects.getProjectBySlug;
+        getProjectBySlug = _useProjects.getProjectBySlug,
+        getTasks = _useProjects.getTasks;
 
     var task_title = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
-    (0,vue__WEBPACK_IMPORTED_MODULE_1__.watchEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+    var tasks = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)({
+      created: [],
+      active: [],
+      completed: []
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -100,6 +106,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return getProjectBySlug(slug, "task");
 
             case 2:
+              tasks.value.created = [];
+              _context.next = 5;
+              return getTasks();
+
+            case 5:
+              tasks.value = _context.sent;
+
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -115,7 +129,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 if (!newSlug) {
-                  _context2.next = 3;
+                  _context2.next = 7;
                   break;
                 }
 
@@ -123,6 +137,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return getProjectBySlug(newSlug, "task");
 
               case 3:
+                tasks.value.created = [];
+                _context2.next = 6;
+                return getTasks();
+
+              case 6:
+                tasks.value = _context2.sent;
+
+              case 7:
               case "end":
                 return _context2.stop();
             }
@@ -186,6 +208,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                           return getProjectBySlug(slug, "task");
 
                         case 2:
+                          _context4.next = 4;
+                          return getTasks();
+
+                        case 4:
+                          tasks.value = _context4.sent;
+
+                        case 5:
                         case "end":
                           return _context4.stop();
                       }
@@ -208,6 +237,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     return {
       task_title: task_title,
+      tasks: tasks,
       saveTask: saveTask,
       project: project,
       slug: slug,
@@ -365,7 +395,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.task_title]]), _hoisted_9], 32
   /* HYDRATE_EVENTS */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.project.created, function (task, index) {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.tasks.created, function (task, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_TaskItem, {
       key: index,
       task: task
@@ -881,11 +911,39 @@ function useProjects() {
     };
   }();
 
+  var getTasks = /*#__PURE__*/function () {
+    var _ref12 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee12() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee12$(_context12) {
+        while (1) {
+          switch (_context12.prev = _context12.next) {
+            case 0:
+              _context12.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/tasks/' + project.value.id + '/project');
+
+            case 2:
+              response = _context12.sent;
+              return _context12.abrupt("return", response.data);
+
+            case 4:
+            case "end":
+              return _context12.stop();
+          }
+        }
+      }, _callee12);
+    }));
+
+    return function getTasks() {
+      return _ref12.apply(this, arguments);
+    };
+  }();
+
   return {
     task: task,
     project: project,
     projects: projects,
     errors: errors,
+    getTasks: getTasks,
     getProject: getProject,
     getProjects: getProjects,
     storeProject: storeProject,

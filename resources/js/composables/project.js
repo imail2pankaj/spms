@@ -165,11 +165,18 @@ export default function useProjects() {
         const response = await axios.get('/api/tasks/assigned-to-users');
         return response.data;
     }
+
+    const getTasks = async() => {
+        const response = await axios.get('/api/tasks/' + project.value.id + '/project');
+        return response.data;
+    }
+
     return {
         task,
         project,
         projects,
         errors,
+        getTasks,
         getProject,
         getProjects,
         storeProject,
