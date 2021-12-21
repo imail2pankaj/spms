@@ -39,6 +39,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('tasks/assigned-to-users', [ProjectTaskController::class,'assignedToUsers'])->name("assignedToUsers");
     Route::get('tasks/{id}', [ProjectTaskController::class,'show'])->name("show");
     Route::put('tasks/{id}', [ProjectTaskController::class,'update'])->name("update");
+    Route::put('tasks/{id}/update-status', [ProjectTaskController::class,'updateUtatus'])->name("updateUtatus");
     Route::get('tasks/{project_id}/project', [ProjectTaskController::class,'getTasks'])->name("getTasks");
     Route::apiResource('projects',ProjectController::class);
     Route::get('project/users', [ProjectController::class,'getDifferentRoleUsers'])->name("getDifferentRoleUsers");

@@ -1,18 +1,18 @@
 <template>
-    <nav class="project-tabs flex flex-col sm:flex-row">
-        <router-link :to="{name:'project.task', params: {slug : slug}}" class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none">
+    <nav class="project-tabs flex flex-col sm:flex-row mt-2">
+        <router-link :to="{name:'project.task', params: {slug : slug}}" class="text-gray-600 py-4 px-4 block hover:text-blue-500 focus:outline-none">
             Tasks
         </router-link>
-        <router-link :to="{name:'project.update', params: {slug : slug}}" class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none">
+        <router-link :to="{name:'project.update', params: {slug : slug}}" class="text-gray-600 py-4 px-4 block hover:text-blue-500 focus:outline-none">
             Updates
         </router-link>
-        <router-link :to="{name:'project.milestone', params: {slug : slug}}" class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none">
+        <router-link :to="{name:'project.milestone', params: {slug : slug}}" class="text-gray-600 py-4 px-4 block hover:text-blue-500 focus:outline-none">
             Milestones
         </router-link>
-        <router-link :to="{name:'project.attachment', params: {slug : slug}}" class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none">
+        <router-link :to="{name:'project.attachment', params: {slug : slug}}" class="text-gray-600 py-4 px-4 block hover:text-blue-500 focus:outline-none">
             Attachments
         </router-link>
-        <router-link :to="{name:'project.note', params: {slug : slug}}" class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none">
+        <router-link :to="{name:'project.note', params: {slug : slug}}" class="text-gray-600 py-4 px-4 block hover:text-blue-500 focus:outline-none">
             Notes
         </router-link>
     </nav>

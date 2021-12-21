@@ -9,6 +9,7 @@ use App\Models\ProjectAttachment;
 use App\Models\ProjectMilestone;
 use App\Models\ProjectNote;
 use App\Models\ProjectTask;
+use App\Models\ProjectTaskHistory;
 use App\Models\ProjectUpdate;
 use App\Models\ProjectUser;
 use App\Models\User;
@@ -22,11 +23,12 @@ class ProjectTaskController extends Controller
             'project_id' => $project_id,
             'user_id' => $request->user()->id,
         ]);
+        ProjectTaskHistory::create(['description' => 'Task has Created', 'task_id' => $projectTask->id]);
         return $projectTask;
     }
 
     public function show(Request $request, $id) {
-        $projectTask = ProjectTask::with('project')->find($id);
+        $projectTask = ProjectTask::with('project','history')->find($id);
         return $projectTask;
     }
 
@@ -46,6 +48,23 @@ class ProjectTaskController extends Controller
     public function update(Request $request, $id) {
         $projectTask = ProjectTask::find($id);
         $projectTask->update($request->all());
+
+        ProjectTaskHistory::create(['description' => 'Task Details has Updated', 'task_id' => $id]);
+
+        return $projectTask;
+    }
+
+    public function updateUtatus(Request $request, $id) {
+        $projectTask = ProjectTask::find($id);
+        // $status = 'Stared';
+        // if($request->input('status') == 'Pause') {
+        //     $status = 'Paused';
+        // }
+        $data = ['task_status' => $request->input('status')];
+        $projectTask->update($data);
+
+        ProjectTaskHistory::create(['description' => 'Task has Started', 'task_id' => $projectTask->id]);
+
         return $projectTask;
     }
 

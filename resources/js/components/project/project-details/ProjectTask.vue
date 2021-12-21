@@ -1,12 +1,11 @@
 <template>
-  <div class="flex justify-between mb-2">
+  <div class="flex justify-between flex-col md:flex-row mb-2">
     <h1 class="mt-3 text-2xl font-bold">{{ project.title }} | Tasks</h1>
     <app-project-nav :slug="slug"></app-project-nav>
   </div>
-
-  <div class="bg-white overflow-hidden shadow-sm rounded-lg">
-    <div class="p-6 bg-white border-b border-gray-200">
-      <div class="md:grid md:grid-cols-3 md:gap-6 mb-6">
+  <div class="md:grid md:grid-cols-3 md:gap-6 mb-6">
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg w-full max-w-sm mb-6">
+      <div class="p-6 bg-white border-b border-gray-200">
         <div class="block">
           <h3 class="input-form-sub-heading mb-4" :style="{paddingTop:0}">Created</h3>
           <div class="shadow-md p-4 rounded-md border border-gray-200 mb-4">
@@ -38,16 +37,24 @@
             ></TaskItem>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg w-full max-w-sm mb-6">
+      <div class="p-6 bg-white border-b border-gray-200">
         <div class="block">
           <h3 class="input-form-sub-heading mb-4" :style="{paddingTop:0}">Active</h3>
           <div>
-            <!-- <TaskItem
-              v-for="(task, index) in project.created"
+            <TaskItem
+              v-for="(task, index) in tasks.active"
               :key="index"
               :task="task"
-            ></TaskItem> -->
+            ></TaskItem>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg w-full max-w-sm mb-6">
+      <div class="p-6 bg-white border-b border-gray-200">
         <div class="block">
           <h3 class="input-form-sub-heading mb-4" :style="{paddingTop:0}">Completed</h3>
           <div>

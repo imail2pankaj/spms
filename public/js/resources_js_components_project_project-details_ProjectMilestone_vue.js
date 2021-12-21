@@ -178,6 +178,11 @@ function useProjects() {
     designer: '',
     customer: ''
   });
+  var tasks = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
+    created: [],
+    active: [],
+    completed: []
+  });
 
   var getProjects = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
@@ -602,11 +607,43 @@ function useProjects() {
     };
   }();
 
+  var startTask = /*#__PURE__*/function () {
+    var _ref13 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee13(task_id, status) {
+      var data;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee13$(_context13) {
+        while (1) {
+          switch (_context13.prev = _context13.next) {
+            case 0:
+              data = {
+                task_id: task_id,
+                status: status,
+                _method: 'put'
+              };
+              _context13.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/tasks/' + task_id + '/update-status', data);
+
+            case 3:
+              return _context13.abrupt("return", _context13.sent);
+
+            case 4:
+            case "end":
+              return _context13.stop();
+          }
+        }
+      }, _callee13);
+    }));
+
+    return function startTask(_x15, _x16) {
+      return _ref13.apply(this, arguments);
+    };
+  }();
+
   return {
     task: task,
     project: project,
     projects: projects,
     errors: errors,
+    startTask: startTask,
     getTasks: getTasks,
     getProject: getProject,
     getProjects: getProjects,

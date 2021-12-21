@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div v-show="showMobileMenu" class="fixed inset-0 flex z-40">
+    <div v-show="showMobileMenu" class="fixed inset-0 flex z-50" style="z-index:90">
         <div class="fixed inset-0">
           <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
         </div>

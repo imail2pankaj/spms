@@ -4,6 +4,7 @@ require('alpinejs');
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from 'vue-router';
 import CKEditor from '@ckeditor/ckeditor5-vue';
+import moment from "moment";
 import routes from './routes.js';
 
 import { store } from './store/app';
@@ -37,6 +38,7 @@ const app = createApp({
         Home,
     }
 });
+
 app.component('app-status', Status);
 app.component('app-confirm-delete', ConfirmDelete);
 app.component('app-required', Required);
@@ -50,6 +52,12 @@ app.component('stop-icon', StopIcon);
 app.component('app-datatables', Datatables);
 app.component('app-pagination', Pagination);
 app.component('app-project-nav', ProjectNav);
+
+app.config.globalProperties.$filters = {
+    convertDateFormat(value) {
+        return moment(value).format("MM/DD/YYYY hh:mm")
+    }
+};
 app.use(router);
 app.use(store);
 app.use(CKEditor);

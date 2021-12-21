@@ -55,6 +55,7 @@ export default function useProjects() {
         designer: '',
         customer: '',
     });
+    const tasks = ref({ created: [], active: [], completed: [] });
 
     const getProjects = async(data) => {
         let parameters = "?";
@@ -171,11 +172,21 @@ export default function useProjects() {
         return response.data;
     }
 
+    const startTask = async(task_id, status) => {
+        const data = {
+            task_id: task_id,
+            status: status,
+            _method: 'put'
+        }
+        return await axios.put('/api/tasks/' + task_id + '/update-status', data);
+    }
+
     return {
         task,
         project,
         projects,
         errors,
+        startTask,
         getTasks,
         getProject,
         getProjects,

@@ -4,10 +4,11 @@
       {{ task.title }}
     </span>
     <span>
-      <button class="w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
-        <play-icon />
+      <button @click="startTaskStatus(task.id, (task.task_status == 'Created') ? 'Started' : (task.task_status == 'Active' ? 'Paused' :'Active'))" class="w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
+        <play-icon v-if="task.task_status != 'Paused'" />
+        <pause-icon v-if="task.task_status == 'Paused'" />
       </button>
-      <button class="w-5 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
+      <button @click="deleteTask(task.id)" class="w-5 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
         <delete-icon />
       </button>
     </span>
@@ -16,21 +17,30 @@
 
 <script>
 import {useRouter} from 'vue-router';
+import useProjects from '../../composables/project';
 export default {
     props :{
         task: {required: true, type:Object}
     },
     setup(props) {
         const router = useRouter();
+        const { startTask } = useProjects();
         const {task} = props;
 
         const openModal = (slug, id) => {
-          const data = {name: 'project.task.edit', params: {slug:slug, id: id}};
+          const data = { name: 'project.task.edit', params: { slug:slug, id: id } };
           router.push(data);
         }
+        const startTaskStatus = async (task_id, status) => {
+          await startTask(task_id, status);
+        }
+        const deleteTask = () => {
 
+        }
         return {
             task,
+            deleteTask,
+            startTaskStatus,
             openModal
         }
     },

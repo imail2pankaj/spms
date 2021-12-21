@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed inset-0 flex justify-end z-40">
+  <div class="fixed inset-0 flex justify-end z-50">
     <div class="fixed inset-0">
       <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
     </div>
@@ -40,7 +40,7 @@
                 <span class="input-error" v-if="errors.description">{{ errors.description }}</span>
               </div>
               <div class="mb-6">
-                <label for="user_id" class="input-form-label">Assigned To <app-required/></label>
+                <label for="user_id" class="input-form-label">Assigned To</label>
                   <select v-model="task.user_id" class="input-form-control">
                     <option value=""> - Assign Task To - </option>
                     <option v-for="item in assignedToUsers" :key="item.id" :value="item.id" >
@@ -72,16 +72,30 @@
 
               <div class="md:grid md:grid-cols-2 md:gap-6 mb-6">
                 <div class="mb-6">
-                  <label for="due_date" class="input-form-label">Due Date <app-required/></label>
+                  <label for="due_date" class="input-form-label">Due Date</label>
                   <input type="date" placeholder="Task Due Date" v-model="task.due_date" class="input-form-control" required />
                   <span class="input-error" v-if="errors.due_date">{{ errors.due_date }}</span>
                 </div>
                 <div>
-                  <label for="completion_rate" class="input-form-label">Completed<app-required/></label>
+                  <label for="completion_rate" class="input-form-label">Completed</label>
                   <input type="range" step="1" min="0" max="100" class="w-full" v-model="task.completion_rate"><br/>
                   <span class="text-xs text-gray-400">{{task.completion_rate}}%</span>
                 </div>
               </div>
+
+              <h3>History</h3>
+              <table class="w-full font-xs text-gray-500">
+                <thead>
+                  <tr>
+                    <th class="text-left">Description</th>
+                    <th>Date</th>
+                  </tr>
+                  </thead>
+                <tr v-for="(his, index) in task.history" :key="index">
+                  <td>{{his.description}}</td>
+                  <td>{{$filters.convertDateFormat(his.created_at)}}</td>
+                </tr>
+              </table>
             </div>
             <div class="absolute bottom-0 right-0 w-full">
               <div class="px-4 py-3 bg-gray-200 text-left sm:px-6">

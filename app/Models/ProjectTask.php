@@ -15,4 +15,9 @@ class ProjectTask extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function history()
+    {
+        return $this->hasMany(ProjectTaskHistory::class, 'task_id', 'id');
+    }
 }
