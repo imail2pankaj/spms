@@ -1,9 +1,7 @@
 <template>
   <div class="h-screen flex overflow-hidden bg-gray-50">
     <app-nav />
-    <div :class="`justify-center absolute top align-middle ${currentRoute === 'project.task.edit' ? 'z-10' : 'z-30'} text-center left-1/2 w-2/3 max-w-sm`" style="transform: translate(-50%, 0%);">
-      <div @click="open()" class="py-1 px-2 rounded-b-lg bg-white shadow-lg text-sm border-b border-l border-r border-blue-500 min-w-lg">vfdcsc dsdcksdv fvdvdvdvdf cjsdcyscsdjcyhdcjysdhc</div>
-    </div>
+    <ActiveTask v-if="active_task.id" :active_task="active_task"></ActiveTask>
     <div class="flex flex-col w-0 flex-1 overflow-hidden z-20">
       <div class="md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3">
         <button
@@ -47,10 +45,12 @@ import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from 'vue-router';
 import AppNav from '../../navigation/components/AppNav';
+import ActiveTask from '../../components/common/ActiveTask';
 
 export default {
   components: {
     AppNav,
+    ActiveTask
   },
 
   props: {
@@ -58,6 +58,10 @@ export default {
       type: Object,
       required: true,
     },
+    active_task: {
+      type: Object,
+      // required: true,
+    }
   },
 
   setup(props, {}) {
@@ -69,6 +73,7 @@ export default {
 
     onMounted(() => {
       store.commit('setUser', props.user);
+      store.commit('setCurrentTask', props.active_task);
     })
 
     function setShowMobileMenu(value) {
@@ -79,14 +84,15 @@ export default {
 
       store.commit('setShowMoblieMenu', value);
     }
-const open = ()=> {
-  alert(';sdsdccccscscsc');
-}
+    const open = ()=> {
+      // alert(';sdsdccccscscsc');
+    }
     return {
       showMobileMenu,
       currentRoute,
-open,
-      setShowMobileMenu
+      open,
+      setShowMobileMenu,
+      active_task: props.active_task
     };
   },
 };

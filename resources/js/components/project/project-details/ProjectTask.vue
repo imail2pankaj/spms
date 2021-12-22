@@ -34,6 +34,7 @@
               v-for="(task, index) in tasks.created"
               :key="index"
               :task="task"
+              :task_type="'Created'"
             ></TaskItem>
           </div>
         </div>
@@ -48,6 +49,7 @@
               v-for="(task, index) in tasks.active"
               :key="index"
               :task="task"
+              :task_type="'Active'"
             ></TaskItem>
           </div>
         </div>
@@ -58,11 +60,12 @@
         <div class="block">
           <h3 class="input-form-sub-heading mb-4" :style="{paddingTop:0}">Completed</h3>
           <div>
-            <!-- <TaskItem
-              v-for="(task, index) in project.created"
+            <TaskItem
+              v-for="(task, index) in project.completed"
               :key="index"
               :task="task"
-            ></TaskItem> -->
+              :task_type="'Completed'"
+            ></TaskItem>
           </div>
         </div>
       </div>
@@ -96,6 +99,8 @@ export default {
     onMounted(async () => {
         await getProjectBySlug(slug, "task");
         tasks.value.created = [];
+        tasks.value.active = [];
+        tasks.value.completed = [];
         tasks.value = await getTasks();
     });
     watch(
@@ -104,6 +109,8 @@ export default {
         if(newSlug){
           await getProjectBySlug(newSlug, "task");
           tasks.value.created = [];
+          tasks.value.active = [];
+          tasks.value.completed = [];
           tasks.value = await getTasks();
         }
       }

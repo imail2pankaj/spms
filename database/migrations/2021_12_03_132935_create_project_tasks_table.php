@@ -24,6 +24,7 @@ class CreateProjectTasksTable extends Migration
             $table->enum('task_type',['Feature', 'Bug', 'Design', 'Other'])->default('Feature');
             $table->enum('priority',['Very Low', 'Low', 'Normal', 'High', 'Very High'])->default('Normal');
             $table->tinyInteger('completion_rate')->default(0);
+            $table->bigIncrements('total_time')->default(0);
             $table->enum('task_status',['Created', 'Active', 'Started', 'Paused', 'Completed', 'Archieved'])->default('Created');
             $table->timestamps();
         });

@@ -4,11 +4,14 @@
       {{ task.title }}
     </span>
     <span>
-      <button @click="startTaskStatus(task.id, (task.task_status == 'Created') ? 'Started' : (task.task_status == 'Active' ? 'Paused' :'Active'))" class="w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
-        <play-icon v-if="task.task_status != 'Paused'" />
-        <pause-icon v-if="task.task_status == 'Paused'" />
+      <button title="Start Task" v-if="task_type === 'Created'" @click="startTaskStatus(task.id, 'Started')" class="w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
+        <play-icon />
       </button>
-      <button @click="deleteTask(task.id)" class="w-5 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
+      <button v-if="user.id === task.user_id && task_type === 'Active'" @click="startTaskStatus(task.id, (task.task_status == 'Active' ? 'Paused' :'Active'))" class="w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
+        <play-icon v-if="task.task_status == 'Paused'" />
+        <pause-icon v-if="task.task_status == 'Active' || task.task_status == 'Started'" />
+      </button>
+      <button title="Delete Task" @click="deleteTask(task.id)" class="w-5 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
         <delete-icon />
       </button>
     </span>
@@ -16,16 +19,21 @@
 </template>
 
 <script>
+import { computed } from 'vue';
 import {useRouter} from 'vue-router';
+import { useStore } from "vuex";
 import useProjects from '../../composables/project';
 export default {
     props :{
-        task: {required: true, type:Object}
+        task: {required: true, type:Object},
+        task_type: {required:true, type: String}
     },
     setup(props) {
+        const store = useStore();
+        const user = computed(() => store.state.user);
         const router = useRouter();
         const { startTask } = useProjects();
-        const {task} = props;
+        const {task, task_type} = props;
 
         const openModal = (slug, id) => {
           const data = { name: 'project.task.edit', params: { slug:slug, id: id } };
@@ -39,6 +47,8 @@ export default {
         }
         return {
             task,
+            user,
+            task_type,
             deleteTask,
             startTaskStatus,
             openModal

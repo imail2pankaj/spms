@@ -17,7 +17,7 @@ class CreateProjectTaskTimesTable extends Migration
             $table->id();
             $table->bigInteger('task_id')->index('task_id');
             $table->enum('task_status', ['Started','Paused'])->default('Started')->index('task_status');
-            $table->bigInteger('time_duration')->comment('Total seconds between start and pause task');
+            $table->bigInteger('time_duration')->comment('Total seconds between start and pause task')->default(0);
             $table->timestamps();
         });
     }

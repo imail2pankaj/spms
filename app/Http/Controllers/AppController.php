@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\ProjectTask;
 use App\Models\ProjectUser;
 use Illuminate\Http\Request;
 
@@ -17,8 +18,11 @@ class AppController extends Controller
     {
         $projects = ['active'=> [],'hold' => []];
         $user = auth()->user();
+        $currentTask = [];
         if (isset(auth()->user()->roles)) {
             $role = auth()->user()->roles->first()->name;
+            $currentTask = ProjectTask::select('id','project_id','user_id','title','total_time','task_status')->where('user_id', $user->id)->whereIn('task_status',['Active','Started'])->first();
+
             if($role == 'super-admin' || $role == 'admin') {
                 $allProjects = Project::select(['title','slug','project_status'])->whereIn('project_status',['Active','Hold'])->latest()->get();
                 foreach ($allProjects as $key => $project) {
@@ -43,10 +47,13 @@ class AppController extends Controller
                 $user['hold_projects'] = $projects['hold'];
             }
             $user->role = $role;
+            $user['activeTask'] = $currentTask;
             unset($user->roles);
         }
+        // dd($currentTask);
         return view('app', [
-            'user' => $user
+            'user' => $user,
+            'currentTask' => $currentTask ? $currentTask : "{}",
         ]);
     }
 }

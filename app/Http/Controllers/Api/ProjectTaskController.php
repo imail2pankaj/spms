@@ -10,29 +10,34 @@ use App\Models\ProjectMilestone;
 use App\Models\ProjectNote;
 use App\Models\ProjectTask;
 use App\Models\ProjectTaskHistory;
+use App\Models\ProjectTaskTime;
 use App\Models\ProjectUpdate;
 use App\Models\ProjectUser;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProjectTaskController extends Controller
 {
-    public function storeTask(Request $request, $project_id) {
+    public function storeTask(Request $request, $project_id)
+    {
         $projectTask = ProjectTask::create([
             'title' => $request->input('title'),
             'project_id' => $project_id,
             'user_id' => $request->user()->id,
         ]);
-        ProjectTaskHistory::create(['description' => 'Task has Created', 'task_id' => $projectTask->id]);
+        $projectTask->history()->create(['description' => 'Task has Created']);
         return $projectTask;
     }
 
-    public function show(Request $request, $id) {
-        $projectTask = ProjectTask::with('project','history')->find($id);
+    public function show(Request $request, $id)
+    {
+        $projectTask = ProjectTask::with('project', 'history')->find($id);
         return $projectTask;
     }
 
-    public function assignedToUsers() {
+    public function assignedToUsers()
+    {
         $roles = ['developer','designer','qa','trainee'];
         $assignedUsers = [];
 
@@ -45,37 +50,43 @@ class ProjectTaskController extends Controller
         return response()->json($assignedUsers);
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $projectTask = ProjectTask::find($id);
         $projectTask->update($request->all());
-
-        ProjectTaskHistory::create(['description' => 'Task Details has Updated', 'task_id' => $id]);
+        $projectTask->history()->create(['description' => 'Task Details has Updated']);
 
         return $projectTask;
     }
 
-    public function updateUtatus(Request $request, $id) {
+    public function updateUtatus(Request $request, $id)
+    {
         $projectTask = ProjectTask::find($id);
-        // $status = 'Stared';
-        // if($request->input('status') == 'Pause') {
-        //     $status = 'Paused';
-        // }
         $data = ['task_status' => $request->input('status')];
         $projectTask->update($data);
 
-        ProjectTaskHistory::create(['description' => 'Task has Started', 'task_id' => $projectTask->id]);
+        $taskStatus = ['Active','Started','Paused'];
+
+        if (in_array($request->input('status'), $taskStatus)) {
+            $taskTime = ProjectTaskTime::create([
+                "task_id" => $id,
+                "task_status" => ($request->input('status') == "Started" || $request->input('status') == "Active") ? "Started" : "Paused"
+            ]);
+            if ($request->input('status') === 'Paused') {
+                $activeTaskTime = ProjectTaskTime::where('task_id', $id)->where('task_status', 'Started')->latest()->first();
+                $timeDifference = strtotime($taskTime->created_at) - strtotime($activeTaskTime->created_at);
+                $taskTime->update(['time_duration' => $timeDifference]);
+                $totalTime=ProjectTaskTime::where('task_id', $id)->where('task_status', 'Paused')->sum('time_duration');
+                $projectTask->update(['total_time' => $totalTime]);
+            }
+        }
+        $projectTask->history()->create(['description' => 'Task has ' . $request->input('status')]);
 
         return $projectTask;
     }
 
-    public function getTasks(Request $request, $project_id) {
-        $createdTask = ProjectTask::with('project')->where('project_id',$project_id)->where('task_status','Created')->get();
-        $activeTask = ProjectTask::with('project')->where('project_id',$project_id)->whereIn('task_status',['Active','Started','Paused'])->get();
-        $completedTask = ProjectTask::with('project')->where('project_id',$project_id)->where('task_status','Completed')->get();
-        return [
-            'created' => $createdTask,
-            'active' => $activeTask,
-            'completed' => $completedTask,
-        ];
+    public function getTasks(Request $request, $project_id)
+    {
+        return ProjectTask::getProjectTasks($project_id);
     }
 }
