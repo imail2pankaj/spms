@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\ProjectTask;
 use App\Models\ProjectUser;
 use Illuminate\Http\Request;
+use stdClass;
 
 class AppController extends Controller
 {
@@ -50,7 +51,7 @@ class AppController extends Controller
             $user['activeTask'] = $currentTask;
             unset($user->roles);
         }
-        // dd($currentTask);
+        // echo json_encode($currentTask);exit;
         return view('app', [
             'user' => $user,
             'currentTask' => $currentTask ? $currentTask : "{}",

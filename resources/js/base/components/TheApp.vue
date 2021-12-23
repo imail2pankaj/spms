@@ -1,7 +1,8 @@
 <template>
   <div class="h-screen flex overflow-hidden bg-gray-50">
     <app-nav />
-    <ActiveTask v-if="active_task.id" :active_task="active_task"></ActiveTask>
+    <ActiveTask :active_task="active_task"></ActiveTask>
+    <!-- <ActiveTask v-if="active_task.id" :active_task="active_task"></ActiveTask> -->
     <div class="flex flex-col w-0 flex-1 overflow-hidden z-20">
       <div class="md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3">
         <button
@@ -67,6 +68,7 @@ export default {
   setup(props, {}) {
     const store = useStore();
     const showMobileMenu = computed(() => store.state.showMobileMenu);
+    const currentTask = computed(() => store.state.currentTask);
     const currentRoute = computed(() => {
       return useRoute().name
     })
@@ -92,7 +94,7 @@ export default {
       currentRoute,
       open,
       setShowMobileMenu,
-      active_task: props.active_task
+      active_task: currentTask
     };
   },
 };

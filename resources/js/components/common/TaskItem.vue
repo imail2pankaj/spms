@@ -20,7 +20,7 @@
 
 <script>
 import { computed } from 'vue';
-import {useRouter} from 'vue-router';
+import { useRouter } from 'vue-router';
 import { useStore } from "vuex";
 import useProjects from '../../composables/project';
 export default {
@@ -40,7 +40,13 @@ export default {
           router.push(data);
         }
         const startTaskStatus = async (task_id, status) => {
-          await startTask(task_id, status);
+          const initialization = { id: 0, project_id: 0, user_id: 0, title: null, total_time: 0, task_status: '' };
+          const response = await startTask(task_id, status);
+          if(response.data.task_status === 'Started' || response.data.task_status === 'Active') {
+            store.commit('setCurrentTask', response.data);
+          } else if(response.data.task_status === 'Paused') {
+            store.commit('setCurrentTask', initialization);
+          }
         }
         const deleteTask = () => {
 

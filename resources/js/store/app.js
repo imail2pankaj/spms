@@ -5,7 +5,7 @@ export const store = new createStore({
         return {
             showMobileMenu: false,
             user: {},
-            currentTask: {},
+            currentTask: { id: 0, project_id: 0, user_id: 0, title: null, total_time: 0, task_status: '' },
         };
     },
 
@@ -18,6 +18,7 @@ export const store = new createStore({
         },
         setCurrentTask(state, currentTask) {
             state.currentTask = currentTask;
+            console.log(currentTask);
         }
     },
 

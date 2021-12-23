@@ -82,7 +82,15 @@ class ProjectTaskController extends Controller
         }
         $projectTask->history()->create(['description' => 'Task has ' . $request->input('status')]);
 
-        return $projectTask;
+        $returnData = [
+            'id' => $projectTask->id,
+            'project_id' => $projectTask->project_id,
+            'user_id' => $projectTask->user_id,
+            'title' => $projectTask->title,
+            'total_time' => $projectTask->total_time,
+            'task_status' => $projectTask->task_status
+        ];
+        return $returnData;
     }
 
     public function getTasks(Request $request, $project_id)

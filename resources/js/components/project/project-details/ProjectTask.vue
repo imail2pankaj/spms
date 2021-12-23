@@ -5,7 +5,7 @@
   </div>
   <div class="md:grid md:grid-cols-3 md:gap-6 mb-6">
     <div class="bg-white overflow-hidden shadow-sm rounded-lg w-full max-w-sm mb-6">
-      <div class="p-6 bg-white border-b border-gray-200">
+      <div class="p-6 bg-white ">
         <div class="block">
           <h3 class="input-form-sub-heading mb-4" :style="{paddingTop:0}">Created</h3>
           <div class="shadow-md p-4 rounded-md border border-gray-200 mb-4">
@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="bg-white overflow-hidden shadow-sm rounded-lg w-full max-w-sm mb-6">
-      <div class="p-6 bg-white border-b border-gray-200">
+      <div class="p-6 bg-white ">
         <div class="block">
           <h3 class="input-form-sub-heading mb-4" :style="{paddingTop:0}">Active</h3>
           <div>
@@ -56,7 +56,7 @@
       </div>
     </div>
     <div class="bg-white overflow-hidden shadow-sm rounded-lg w-full max-w-sm mb-6">
-      <div class="p-6 bg-white border-b border-gray-200">
+      <div class="p-6 bg-white ">
         <div class="block">
           <h3 class="input-form-sub-heading mb-4" :style="{paddingTop:0}">Completed</h3>
           <div>
@@ -90,7 +90,7 @@ export default {
     slug: { required: true, type: String },
   },
   setup(props) {
-    const route = useRoute()
+    const route = useRoute();
     const { slug } = props;
     const { project, storeTask, getProjectBySlug, getTasks } = useProjects();
     const task_title = ref(null);
@@ -103,6 +103,7 @@ export default {
         tasks.value.completed = [];
         tasks.value = await getTasks();
     });
+
     watch(
       () => route.params.slug,
       async newSlug => {
