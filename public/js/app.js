@@ -18509,14 +18509,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var _composables_project__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../composables/project */ "./resources/js/composables/project.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils */ "./resources/js/utils.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -18535,12 +18537,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _useProjects = (0,_composables_project__WEBPACK_IMPORTED_MODULE_2__.default)(),
         startTask = _useProjects.startTask;
 
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
     var activeTask = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return store.state.currentTask;
     });
     var currentRoute = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
-      return (0,vue_router__WEBPACK_IMPORTED_MODULE_4__.useRoute)().name;
+      return (0,vue_router__WEBPACK_IMPORTED_MODULE_5__.useRoute)().name;
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
       store.commit('setCurrentTask', active_task);
@@ -18559,7 +18561,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   user_id: 0,
                   title: null,
                   total_time: 0,
-                  task_status: ''
+                  task_status: '',
+                  time: (0,_utils__WEBPACK_IMPORTED_MODULE_3__.strtotime)()
                 };
                 _context.next = 3;
                 return startTask(task_id, status);
@@ -19291,7 +19294,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.activeTask.title) + " ", 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.activeTask.total_time), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.activeTask.total_time_converted), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
     title: "Pause Task",
@@ -21533,19 +21536,33 @@ function useProjects() {
 
   var getTasks = /*#__PURE__*/function () {
     var _ref12 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee12() {
-      var response;
+      var tasks, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee12$(_context12) {
         while (1) {
           switch (_context12.prev = _context12.next) {
             case 0:
-              _context12.next = 2;
+              tasks = {
+                active: [],
+                completed: [],
+                created: []
+              };
+              _context12.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/tasks/' + project.value.id + '/project');
 
-            case 2:
+            case 3:
               response = _context12.sent;
-              return _context12.abrupt("return", response.data);
+              tasks.active = response.data.active.map(function (active) {
+                return active;
+              });
+              tasks.created = response.data.created.map(function (created) {
+                return created;
+              });
+              tasks.completed = response.data.completed.map(function (completed) {
+                return completed;
+              });
+              return _context12.abrupt("return", tasks);
 
-            case 4:
+            case 8:
             case "end":
               return _context12.stop();
           }
@@ -21919,6 +21936,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var store = new vuex__WEBPACK_IMPORTED_MODULE_0__.createStore({
   state: function state() {
+    var ts = Date.parse(new Date()) / 1000;
     return {
       showMobileMenu: false,
       user: {},
@@ -21928,7 +21946,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_0__.createStore({
         user_id: 0,
         title: null,
         total_time: 0,
-        task_status: ''
+        task_status: '',
+        time: ts
       }
     };
   },
@@ -21941,7 +21960,6 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_0__.createStore({
     },
     setCurrentTask: function setCurrentTask(state, currentTask) {
       state.currentTask = currentTask;
-      console.log(currentTask);
     }
   },
   getters: {
@@ -21956,6 +21974,63 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_0__.createStore({
     }
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/utils.js":
+/*!*******************************!*\
+  !*** ./resources/js/utils.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "statusOptions": () => (/* binding */ statusOptions),
+/* harmony export */   "genderOptions": () => (/* binding */ genderOptions),
+/* harmony export */   "maritalStatusOptions": () => (/* binding */ maritalStatusOptions),
+/* harmony export */   "projectStatusOptions": () => (/* binding */ projectStatusOptions),
+/* harmony export */   "projectTypeOptions": () => (/* binding */ projectTypeOptions),
+/* harmony export */   "taskStatusOptions": () => (/* binding */ taskStatusOptions),
+/* harmony export */   "priorityOptions": () => (/* binding */ priorityOptions),
+/* harmony export */   "taskTypeOptions": () => (/* binding */ taskTypeOptions),
+/* harmony export */   "strtotime": () => (/* binding */ strtotime)
+/* harmony export */ });
+var statusOptions = [{
+  value: 1,
+  display: 'Active'
+}, {
+  value: 0,
+  display: 'InActive'
+}];
+var genderOptions = [{
+  value: 0,
+  display: 'Male'
+}, {
+  value: 1,
+  display: 'Female'
+}, {
+  value: 2,
+  display: 'Other'
+}];
+var maritalStatusOptions = [{
+  value: 0,
+  display: 'Un-married'
+}, {
+  value: 1,
+  display: 'Married'
+}, {
+  value: 2,
+  display: 'Divorced'
+}];
+var projectStatusOptions = ['Active', 'Hold', 'Completed', 'Closed', 'Archieved'];
+var projectTypeOptions = ['Fixed', 'Hourly', 'Contract'];
+var taskStatusOptions = ['Created', 'Active', 'Started', 'Paused', 'Completed', 'Archieved'];
+var priorityOptions = ['Very Low', 'Low', 'Normal', 'High', 'Very High'];
+var taskTypeOptions = ['Feature', 'Bug', 'Design', 'Other'];
+var strtotime = function strtotime() {
+  return Date.parse(new Date()) / 1000;
+};
 
 /***/ }),
 

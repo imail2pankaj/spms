@@ -168,8 +168,22 @@ export default function useProjects() {
     }
 
     const getTasks = async() => {
+        const tasks = {
+            active: [],
+            completed: [],
+            created: []
+        }
         const response = await axios.get('/api/tasks/' + project.value.id + '/project');
-        return response.data;
+        tasks.active = response.data.active.map((active) => {
+            return active;
+        });
+        tasks.created = response.data.created.map((created) => {
+            return created;
+        });
+        tasks.completed = response.data.completed.map((completed) => {
+            return completed;
+        });
+        return tasks;
     }
 
     const startTask = async(task_id, status) => {

@@ -14,14 +14,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-/* harmony import */ var _composables_project__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../composables/project */ "./resources/js/composables/project.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils */ "./resources/js/utils.js");
+/* harmony import */ var _composables_project__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../composables/project */ "./resources/js/composables/project.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -39,13 +41,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   setup: function setup(props) {
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
     var user = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return store.state.user;
     });
-    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_4__.useRouter)();
+    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_5__.useRouter)();
 
-    var _useProjects = (0,_composables_project__WEBPACK_IMPORTED_MODULE_2__.default)(),
+    var _useProjects = (0,_composables_project__WEBPACK_IMPORTED_MODULE_3__.default)(),
         startTask = _useProjects.startTask;
 
     var task = props.task,
@@ -75,7 +77,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   user_id: 0,
                   title: null,
                   total_time: 0,
-                  task_status: ''
+                  task_status: 'Created',
+                  time: (0,_utils__WEBPACK_IMPORTED_MODULE_2__.strtotime)()
                 };
                 _context.next = 3;
                 return startTask(task_id, status);
@@ -134,11 +137,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _composables_project__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../composables/project */ "./resources/js/composables/project.js");
 /* harmony import */ var _common_TaskItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../common/TaskItem */ "./resources/js/components/common/TaskItem.vue");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -156,6 +161,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   setup: function setup(props) {
     var route = (0,vue_router__WEBPACK_IMPORTED_MODULE_4__.useRoute)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.useStore)();
     var slug = props.slug;
 
     var _useProjects = (0,_composables_project__WEBPACK_IMPORTED_MODULE_2__.default)(),
@@ -165,6 +171,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         getTasks = _useProjects.getTasks;
 
     var task_title = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
+    var currentTask = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
+      return store.state.currentTask;
+    }); // console.log(currentTask,'--------------');
+
     var tasks = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)({
       created: [],
       active: [],
@@ -233,31 +243,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return _ref2.apply(this, arguments);
       };
     }());
-
-    var saveTask = /*#__PURE__*/function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.watch)(function () {
+      return currentTask.value.time;
+    }, /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(newSlug) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                if (!task_title.value) {
-                  _context3.next = 6;
+                if (!newSlug) {
+                  _context3.next = 8;
                   break;
                 }
 
-                _context3.next = 3;
-                return storeTask(project.value.id, {
-                  title: task_title.value
-                });
+                console.log(newSlug);
+                tasks.value.created = [];
+                tasks.value.active = [];
+                tasks.value.completed = [];
+                _context3.next = 7;
+                return getTasks();
 
-              case 3:
-                _context3.next = 5;
-                return getProjectBySlug(slug, "task");
+              case 7:
+                tasks.value = _context3.sent;
 
-              case 5:
-                task_title.value = "";
-
-              case 6:
+              case 8:
               case "end":
                 return _context3.stop();
             }
@@ -265,50 +274,86 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }));
 
-      return function saveTask() {
+      return function (_x2) {
         return _ref3.apply(this, arguments);
+      };
+    }());
+
+    var saveTask = /*#__PURE__*/function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                if (!task_title.value) {
+                  _context4.next = 6;
+                  break;
+                }
+
+                _context4.next = 3;
+                return storeTask(project.value.id, {
+                  title: task_title.value
+                });
+
+              case 3:
+                _context4.next = 5;
+                return getProjectBySlug(slug, "task");
+
+              case 5:
+                task_title.value = "";
+
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      return function saveTask() {
+        return _ref4.apply(this, arguments);
       };
     }();
 
     var onClickChild = /*#__PURE__*/function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(value) {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(value) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context6.prev = _context6.next) {
               case 0:
-                setTimeout( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+                setTimeout( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
                     while (1) {
-                      switch (_context4.prev = _context4.next) {
+                      switch (_context5.prev = _context5.next) {
                         case 0:
-                          _context4.next = 2;
+                          _context5.next = 2;
                           return getProjectBySlug(slug, "task");
 
                         case 2:
-                          _context4.next = 4;
+                          _context5.next = 4;
                           return getTasks();
 
                         case 4:
-                          tasks.value = _context4.sent;
+                          tasks.value = _context5.sent;
 
                         case 5:
                         case "end":
-                          return _context4.stop();
+                          return _context5.stop();
                       }
                     }
-                  }, _callee4);
+                  }, _callee5);
                 })), 3000);
 
               case 1:
               case "end":
-                return _context5.stop();
+                return _context6.stop();
             }
           }
-        }, _callee5);
+        }, _callee6);
       }));
 
-      return function onClickChild(_x2) {
-        return _ref4.apply(this, arguments);
+      return function onClickChild(_x3) {
+        return _ref5.apply(this, arguments);
       };
     }();
 
@@ -318,7 +363,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       saveTask: saveTask,
       project: project,
       slug: slug,
-      onClickChild: onClickChild
+      onClickChild: onClickChild,
+      currentTask: currentTask
     };
   }
 });
@@ -355,7 +401,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.task.title), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, [$setup.task_type === 'Created' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("button", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, [$setup.user.id === $setup.task.user_id && $setup.task_type === 'Created' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("button", {
     key: 0,
     title: "Start Task",
     onClick: _cache[2] || (_cache[2] = function ($event) {
@@ -537,7 +583,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["task"]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view, (0,vue__WEBPACK_IMPORTED_MODULE_0__.mergeProps)(_ctx.$attrs, {
+  ))])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.currentTask) + " ", 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view, (0,vue__WEBPACK_IMPORTED_MODULE_0__.mergeProps)(_ctx.$attrs, {
     onClicked: $setup.onClickChild
   }), {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {

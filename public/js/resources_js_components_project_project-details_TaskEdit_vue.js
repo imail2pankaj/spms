@@ -472,59 +472,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./resources/js/utils.js":
-/*!*******************************!*\
-  !*** ./resources/js/utils.js ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "statusOptions": () => (/* binding */ statusOptions),
-/* harmony export */   "genderOptions": () => (/* binding */ genderOptions),
-/* harmony export */   "maritalStatusOptions": () => (/* binding */ maritalStatusOptions),
-/* harmony export */   "projectStatusOptions": () => (/* binding */ projectStatusOptions),
-/* harmony export */   "projectTypeOptions": () => (/* binding */ projectTypeOptions),
-/* harmony export */   "taskStatusOptions": () => (/* binding */ taskStatusOptions),
-/* harmony export */   "priorityOptions": () => (/* binding */ priorityOptions),
-/* harmony export */   "taskTypeOptions": () => (/* binding */ taskTypeOptions)
-/* harmony export */ });
-var statusOptions = [{
-  value: 1,
-  display: 'Active'
-}, {
-  value: 0,
-  display: 'InActive'
-}];
-var genderOptions = [{
-  value: 0,
-  display: 'Male'
-}, {
-  value: 1,
-  display: 'Female'
-}, {
-  value: 2,
-  display: 'Other'
-}];
-var maritalStatusOptions = [{
-  value: 0,
-  display: 'Un-married'
-}, {
-  value: 1,
-  display: 'Married'
-}, {
-  value: 2,
-  display: 'Divorced'
-}];
-var projectStatusOptions = ['Active', 'Hold', 'Completed', 'Closed', 'Archieved'];
-var projectTypeOptions = ['Fixed', 'Hourly', 'Contract'];
-var taskStatusOptions = ['Created', 'Active', 'Started', 'Paused', 'Completed', 'Archieved'];
-var priorityOptions = ['Very Low', 'Low', 'Normal', 'High', 'Very High'];
-var taskTypeOptions = ['Feature', 'Bug', 'Design', 'Other'];
-
-/***/ }),
-
 /***/ "./resources/js/components/project/project-details/TaskEdit.vue":
 /*!**********************************************************************!*\
   !*** ./resources/js/components/project/project-details/TaskEdit.vue ***!

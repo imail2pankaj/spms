@@ -88,7 +88,8 @@ class ProjectTaskController extends Controller
             'user_id' => $projectTask->user_id,
             'title' => $projectTask->title,
             'total_time' => $projectTask->total_time,
-            'task_status' => $projectTask->task_status
+            'task_status' => $projectTask->task_status,
+            'time' => strtotime(date("Y-m-d H:i:s"))
         ];
         return $returnData;
     }

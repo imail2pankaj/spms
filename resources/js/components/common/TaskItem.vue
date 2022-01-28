@@ -4,7 +4,7 @@
       {{ task.title }}
     </span>
     <span>
-      <button title="Start Task" v-if="task_type === 'Created'" @click="startTaskStatus(task.id, 'Started')" class="w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
+      <button title="Start Task" v-if="user.id === task.user_id && task_type === 'Created'" @click="startTaskStatus(task.id, 'Started')" class="w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
         <play-icon />
       </button>
       <button v-if="user.id === task.user_id && task_type === 'Active'" @click="startTaskStatus(task.id, (task.task_status == 'Active' ? 'Paused' :'Active'))" class="w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
@@ -22,6 +22,7 @@
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from "vuex";
+import { strtotime } from '../../utils';
 import useProjects from '../../composables/project';
 export default {
     props :{
@@ -40,7 +41,7 @@ export default {
           router.push(data);
         }
         const startTaskStatus = async (task_id, status) => {
-          const initialization = { id: 0, project_id: 0, user_id: 0, title: null, total_time: 0, task_status: '' };
+          const initialization = { id: 0, project_id: 0, user_id: 0, title: null, total_time: 0, task_status: 'Created', time:strtotime() };
           const response = await startTask(task_id, status);
           if(response.data.task_status === 'Started' || response.data.task_status === 'Active') {
             store.commit('setCurrentTask', response.data);

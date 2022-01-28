@@ -71,6 +71,7 @@
       </div>
     </div>
   </div>
+  {{currentTask}}
   <router-view v-bind="$attrs" v-slot="{ Component }" @clicked="onClickChild">
     <transition name="fade" mode="out-in">
       <component :is="Component" />
@@ -84,6 +85,7 @@ import { onMounted, ref, watchEffect, watch, computed } from "vue";
 import useProjects from "../../../composables/project";
 import TaskItem from "../../common/TaskItem";
 import { useRoute } from 'vue-router';
+import { useStore } from "vuex";
 export default {
   components: { TaskItem },
   props: {
@@ -91,9 +93,12 @@ export default {
   },
   setup(props) {
     const route = useRoute();
+    const store = useStore();
     const { slug } = props;
     const { project, storeTask, getProjectBySlug, getTasks } = useProjects();
     const task_title = ref(null);
+    const currentTask = computed(() => store.state.currentTask);
+    // console.log(currentTask,'--------------');
     const tasks = ref({created: [], active: [], completed:[]});
 
     onMounted(async () => {
@@ -109,6 +114,19 @@ export default {
       async newSlug => {
         if(newSlug){
           await getProjectBySlug(newSlug, "task");
+          tasks.value.created = [];
+          tasks.value.active = [];
+          tasks.value.completed = [];
+          tasks.value = await getTasks();
+        }
+      }
+    );
+
+    watch(
+      () => currentTask.value.time,
+      async newSlug => {
+        if(newSlug){
+          console.log(newSlug);
           tasks.value.created = [];
           tasks.value.active = [];
           tasks.value.completed = [];
@@ -138,6 +156,7 @@ export default {
       project,
       slug,
       onClickChild,
+      currentTask,
     };
   },
 };

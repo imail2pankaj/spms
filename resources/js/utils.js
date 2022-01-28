@@ -33,3 +33,7 @@ export const projectTypeOptions = ['Fixed', 'Hourly', 'Contract'];
 export const taskStatusOptions = ['Created', 'Active', 'Started', 'Paused', 'Completed', 'Archieved'];
 export const priorityOptions = ['Very Low', 'Low', 'Normal', 'High', 'Very High'];
 export const taskTypeOptions = ['Feature', 'Bug', 'Design', 'Other'];
+
+export const strtotime = () => {
+    return (Date.parse(new Date()) / 1000);
+}

@@ -11,6 +11,25 @@ class ProjectTask extends Model
 
     protected $fillable = ['project_id','user_id','milestone_id','title','description','due_date','task_type','priority','completion_rate', 'total_time','task_status'];
 
+    protected $appends = ['total_time_converted'];
+
+    public function getTotalTimeConvertedAttribute() {
+        // if($this->attributes['id'] != 0) {
+
+            $extraTime = 0;
+            $activeTaskTime = ProjectTaskTime::where('task_id', $this->attributes['id'])->whereIn('task_status', ['Started','Active'])->latest()->first();
+            if($activeTaskTime){
+                $extraTime = strtotime(date('Y-m-d H:i:s')) - strtotime($activeTaskTime->created_at);
+            }
+
+            $ss = $this->attributes['total_time'] + $extraTime;
+            $m = floor(($ss%3600)/60);
+            $h = floor(($ss%86400)/3600);
+            return ($h > 0 ? $h .' hr ' : '') . $m .' min';
+        // }
+        return null;
+    }
+
     public function project()
     {
         return $this->belongsTo(Project::class);

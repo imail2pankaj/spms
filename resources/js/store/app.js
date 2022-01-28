@@ -2,10 +2,11 @@ import { createStore } from 'vuex';
 
 export const store = new createStore({
     state() {
+        var ts = (Date.parse(new Date()) / 1000);
         return {
             showMobileMenu: false,
             user: {},
-            currentTask: { id: 0, project_id: 0, user_id: 0, title: null, total_time: 0, task_status: '' },
+            currentTask: { id: 0, project_id: 0, user_id: 0, title: null, total_time: 0, task_status: '', time: ts },
         };
     },
 
@@ -18,7 +19,6 @@ export const store = new createStore({
         },
         setCurrentTask(state, currentTask) {
             state.currentTask = currentTask;
-            console.log(currentTask);
         }
     },
 
