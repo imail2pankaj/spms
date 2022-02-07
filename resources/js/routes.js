@@ -119,6 +119,41 @@ export default {
 
 
         {
+            path: '/app/holidays',
+            component: () =>
+                import ('./components/holiday/HolidayIndex'),
+            name: 'holiday.index',
+            meta: {
+                title: 'Holidays',
+                primary: true,
+                roles: ['super-admin', 'admin']
+            },
+        },
+        {
+            path: '/app/holidays/create',
+            component: () =>
+                import ('./components/holiday/HolidayCreate'),
+            name: 'holiday.create',
+            meta: {
+                title: 'Holiday Create',
+                primary: false,
+                roles: ['super-admin', 'admin']
+            },
+        },
+        {
+            path: '/app/holidays/:id/edit',
+            component: () =>
+                import ('./components/holiday/HolidayEdit'),
+            name: 'holiday.edit',
+            props: true,
+            meta: {
+                title: 'Holiday Edit',
+                primary: false,
+                roles: ['super-admin', 'admin']
+            },
+        },
+
+        {
             path: '/app/projects',
             component: () =>
                 import ('./components/project/ProjectIndex'),

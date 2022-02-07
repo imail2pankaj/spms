@@ -3,11 +3,13 @@
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\HolidayController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\ProjectTaskController;
 use App\Http\Controllers\Api\ServiceTicketController;
 use App\Http\Controllers\Api\UserController;
+use App\Models\Holiday;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +28,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     $user = $request->user();
     $user->role = $user->roles->first()->name;
     unset($user->roles);
+    $events = [];
+    $holidays = Holiday::all();
+    foreach($holidays as $key => $holiday) {
+        array_push($events, [ "title" => $holiday->title, "start" => $holiday->holiday_date,'backgroundColor' =>'yellow','textColor' =>'#000' ]);
+    }
+    $user['events'] = $events;
     return $user;
 });
 
@@ -48,4 +56,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('products', ProductController::class);
 
     Route::apiResource('service-tickets', ServiceTicketController::class);
+    Route::apiResource('holidays', HolidayController::class);
 });

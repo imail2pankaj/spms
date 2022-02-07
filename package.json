@@ -34,6 +34,11 @@
     "dependencies": {
         "@ckeditor/ckeditor5-build-classic": "^31.0.0",
         "@ckeditor/ckeditor5-vue": "^2.0.1",
+        "@fullcalendar/core": "^5.10.1",
+        "@fullcalendar/daygrid": "^5.10.1",
+        "@fullcalendar/interaction": "^5.10.1",
+        "@fullcalendar/timegrid": "^5.10.1",
+        "@fullcalendar/vue3": "^5.10.1",
         "@yaireo/tagify": "^4.9.2",
         "moment": "^2.29.1",
         "vue": "^3.0.7",

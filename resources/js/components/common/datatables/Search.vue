@@ -15,7 +15,7 @@
         </select>
       </div>
       <div class="relative">
-        <select
+        <!-- <select
           @change="searchData"
           v-model="searchPanelForm.status"
           class="datatable-status"
@@ -23,7 +23,7 @@
           <option value="-1">All</option>
           <option value="1">Active</option>
           <option value="0">Inactive</option>
-        </select>
+        </select> -->
       </div>
     </div>
     <div class="block relative">
