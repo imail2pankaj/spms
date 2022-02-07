@@ -3,18 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProjectRequest;
-use App\Models\Project;
-use App\Models\ProjectAttachment;
-use App\Models\ProjectMilestone;
-use App\Models\ProjectNote;
 use App\Models\ProjectTask;
-use App\Models\ProjectTaskHistory;
 use App\Models\ProjectTaskTime;
-use App\Models\ProjectUpdate;
-use App\Models\ProjectUser;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProjectTaskController extends Controller
@@ -82,6 +73,9 @@ class ProjectTaskController extends Controller
         }
         $projectTask->history()->create(['description' => 'Task has ' . $request->input('status')]);
 
+        $m = floor(($projectTask->total_time%3600)/60);
+        $h = floor(($projectTask->total_time%86400)/3600);
+
         $returnData = [
             'id' => $projectTask->id,
             'project_id' => $projectTask->project_id,
@@ -89,7 +83,8 @@ class ProjectTaskController extends Controller
             'title' => $projectTask->title,
             'total_time' => $projectTask->total_time,
             'task_status' => $projectTask->task_status,
-            'time' => strtotime(date("Y-m-d H:i:s"))
+            'time' => strtotime(date("Y-m-d H:i:s")),
+            'total_time_converted' => ($h > 0 ? $h .' hr ' : '') . $m .' min'
         ];
         return $returnData;
     }

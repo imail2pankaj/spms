@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[738],{1738:(e,r,n)=>{"use strict";n.r(r),n.d(r,{default:()=>o});var t=n(4359);const u={setup:function(e){return{}},render:function(e,r,n,u,o,c){var s=(0,t.resolveComponent)("router-view");return(0,t.openBlock)(),(0,t.createBlock)(s)}},o=u}}]);

@@ -81,6 +81,43 @@ export default {
             },
         },
 
+
+        {
+            path: '/app/service-tickets',
+            component: () =>
+                import ('./components/service-ticket/ServiceTicketIndex'),
+            name: 'service-ticket.index',
+            meta: {
+                title: 'Service Tickets',
+                primary: true,
+                roles: ['super-admin', 'admin', 'developer']
+            },
+        },
+        {
+            path: '/app/service-tickets/create',
+            component: () =>
+                import ('./components/service-ticket/ServiceTicketCreate'),
+            name: 'service-ticket.create',
+            meta: {
+                title: 'Service Tickets',
+                primary: false,
+                roles: ['super-admin', 'admin', 'developer']
+            },
+        },
+        {
+            path: '/app/service-tickets/:id/edit',
+            component: () =>
+                import ('./components/service-ticket/ServiceTicketEdit'),
+            name: 'service-ticket.edit',
+            props: true,
+            meta: {
+                title: 'Service Tickets',
+                primary: false,
+                roles: ['super-admin', 'admin', 'developer']
+            },
+        },
+
+
         {
             path: '/app/projects',
             component: () =>

@@ -21725,6 +21725,40 @@ __webpack_require__.r(__webpack_exports__);
       roles: ['super-admin', 'admin']
     }
   }, {
+    path: '/app/service-tickets',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_service-ticket_ServiceTicketIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/service-ticket/ServiceTicketIndex */ "./resources/js/components/service-ticket/ServiceTicketIndex.vue"));
+    },
+    name: 'service-ticket.index',
+    meta: {
+      title: 'Service Tickets',
+      primary: true,
+      roles: ['super-admin', 'admin', 'developer']
+    }
+  }, {
+    path: '/app/service-tickets/create',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_service-ticket_ServiceTicketCreate_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/service-ticket/ServiceTicketCreate */ "./resources/js/components/service-ticket/ServiceTicketCreate.vue"));
+    },
+    name: 'service-ticket.create',
+    meta: {
+      title: 'Service Tickets',
+      primary: false,
+      roles: ['super-admin', 'admin', 'developer']
+    }
+  }, {
+    path: '/app/service-tickets/:id/edit',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_service-ticket_ServiceTicketEdit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/service-ticket/ServiceTicketEdit */ "./resources/js/components/service-ticket/ServiceTicketEdit.vue"));
+    },
+    name: 'service-ticket.edit',
+    props: true,
+    meta: {
+      title: 'Service Tickets',
+      primary: false,
+      roles: ['super-admin', 'admin', 'developer']
+    }
+  }, {
     path: '/app/projects',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_components_project_ProjectIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/project/ProjectIndex */ "./resources/js/components/project/ProjectIndex.vue"));
@@ -21994,6 +22028,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "taskStatusOptions": () => (/* binding */ taskStatusOptions),
 /* harmony export */   "priorityOptions": () => (/* binding */ priorityOptions),
 /* harmony export */   "taskTypeOptions": () => (/* binding */ taskTypeOptions),
+/* harmony export */   "serviceTicketTypeOptions": () => (/* binding */ serviceTicketTypeOptions),
+/* harmony export */   "serviceTicketStatusOptions": () => (/* binding */ serviceTicketStatusOptions),
 /* harmony export */   "strtotime": () => (/* binding */ strtotime)
 /* harmony export */ });
 var statusOptions = [{
@@ -22028,6 +22064,8 @@ var projectTypeOptions = ['Fixed', 'Hourly', 'Contract'];
 var taskStatusOptions = ['Created', 'Active', 'Started', 'Paused', 'Completed', 'Archieved'];
 var priorityOptions = ['Very Low', 'Low', 'Normal', 'High', 'Very High'];
 var taskTypeOptions = ['Feature', 'Bug', 'Design', 'Other'];
+var serviceTicketTypeOptions = ['Hardware', 'Software', 'Other'];
+var serviceTicketStatusOptions = ['Open', 'Closed'];
 var strtotime = function strtotime() {
   return Date.parse(new Date()) / 1000;
 };
@@ -67774,7 +67812,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_role_RoleIndex_vue":1,"resources_js_components_role_RoleCreate_vue":1,"resources_js_components_role_RoleEdit_vue":1,"resources_js_components_user_UserIndex_vue":1,"resources_js_components_user_UserCreate_vue":1,"resources_js_components_user_UserEdit_vue":1,"resources_js_components_project_ProjectIndex_vue":1,"resources_js_components_project_ProjectCreate_vue":1,"resources_js_components_project_ProjectEdit_vue":1,"resources_js_components_project_ProjectDetails_vue":1,"resources_js_components_project_project-details_ProjectTask_vue":1,"resources_js_components_project_project-details_TaskEdit_vue":1,"resources_js_components_project_project-details_ProjectUpdate_vue":1,"resources_js_components_project_project-details_ProjectMilestone_vue":1,"resources_js_components_project_project-details_ProjectAttachment_vue":1,"resources_js_components_project_project-details_ProjectNote_vue":1,"resources_js_user_components_UserProfile_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_role_RoleIndex_vue":1,"resources_js_components_role_RoleCreate_vue":1,"resources_js_components_role_RoleEdit_vue":1,"resources_js_components_user_UserIndex_vue":1,"resources_js_components_user_UserCreate_vue":1,"resources_js_components_user_UserEdit_vue":1,"resources_js_components_service-ticket_ServiceTicketIndex_vue":1,"resources_js_components_service-ticket_ServiceTicketCreate_vue":1,"resources_js_components_service-ticket_ServiceTicketEdit_vue":1,"resources_js_components_project_ProjectIndex_vue":1,"resources_js_components_project_ProjectCreate_vue":1,"resources_js_components_project_ProjectEdit_vue":1,"resources_js_components_project_ProjectDetails_vue":1,"resources_js_components_project_project-details_ProjectTask_vue":1,"resources_js_components_project_project-details_TaskEdit_vue":1,"resources_js_components_project_project-details_ProjectUpdate_vue":1,"resources_js_components_project_project-details_ProjectMilestone_vue":1,"resources_js_components_project_project-details_ProjectAttachment_vue":1,"resources_js_components_project_project-details_ProjectNote_vue":1,"resources_js_user_components_UserProfile_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
