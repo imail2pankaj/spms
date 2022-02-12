@@ -19,7 +19,8 @@ export default {
             name: 'role.index',
             meta: {
                 title: 'Role',
-                primary: true,
+                primary: false,
+                profile: true,
                 roles: ['super-admin', 'admin']
             },
         },
@@ -89,7 +90,8 @@ export default {
             name: 'service-ticket.index',
             meta: {
                 title: 'Service Tickets',
-                primary: true,
+                primary: false,
+                profile: true,
                 roles: ['super-admin', 'admin', 'developer']
             },
         },
@@ -125,7 +127,8 @@ export default {
             name: 'holiday.index',
             meta: {
                 title: 'Holidays',
-                primary: true,
+                primary: false,
+                profile: true,
                 roles: ['super-admin', 'admin']
             },
         },
@@ -161,7 +164,8 @@ export default {
             name: 'leave.index',
             meta: {
                 title: 'Leaves',
-                primary: true,
+                primary: false,
+                profile: true,
                 roles: allRoles()
             },
         },

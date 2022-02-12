@@ -1,6 +1,7 @@
 <template>
   <nav class="mt-5 space-y-1 border-0 border-t border-yellow-500">
-    <template v-for="(route, index) in primaryRoutes" :key="index">
+    <ul>
+    <li v-for="(route, index) in primaryRoutes" :key="index">
       <router-link
         v-if="route.meta.roles.includes(user.role)"
         :to="{ name: route.name }"
@@ -9,7 +10,8 @@
       >
         {{ route.meta.title }}
       </router-link>
-    </template>
+    </li>
+    </ul>
     <h3 class="bg-yellow-500 p-2 font-semibold uppercase text-sm text-white">Active Projects</h3>
     <router-link
       v-for="(project, index) in user.active_projects"

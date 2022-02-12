@@ -15,9 +15,8 @@ window.axios.interceptors.response.use(undefined, function(error) {
         if (error) {
             const originalRequest = error.config;
             if (error.response.status === 401 && !originalRequest._retry) {
-
                 originalRequest._retry = true;
-                return router.push('/login')
+                return window.location.href = appURL;
             }
         }
     })
