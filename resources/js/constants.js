@@ -1,0 +1,10 @@
+export const SUPER_ADMIN = 'super-admin';
+export const ADMIN = 'admin';
+export const HR = 'hr';
+export const PM = 'pm';
+export const QA = 'qa';
+export const DEVELOPER = 'developer';
+export const DESIGNER = 'designer';
+export const TRAINEE = 'trainee';
+export const BDE = 'bde';
+export const CUSTOMER = 'customer';

@@ -13,7 +13,7 @@ class ServiceTicketController extends Controller
         $serviceTickets = ServiceTicket::with(['user' => function ($query) {
             $query->select('id', 'first_name', 'last_name');
         }])->whereIn('status',['Open','Closed']);
-        if(!auth()->user()->hasRole('super-admin') && !auth()->user()->hasRole('admin') && !auth()->user()->hasRole('admin')) {
+        if(!auth()->user()->hasRole('super-admin') && !auth()->user()->hasRole('admin') && !auth()->user()->hasRole('hr')) {
             $serviceTickets->where('user_id', auth()->user()->id);
         }
         // $serviceTickets

@@ -1,4 +1,4 @@
-import Product from './components/product/ProductIndex.vue';
+import { adminRoles, allRoles } from './utils';
 
 export default {
     routes: [{
@@ -9,7 +9,7 @@ export default {
             meta: {
                 title: 'Dashboard',
                 primary: true,
-                roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer']
+                roles: allRoles()
             },
         },
         {
@@ -150,6 +150,42 @@ export default {
                 title: 'Holiday Edit',
                 primary: false,
                 roles: ['super-admin', 'admin']
+            },
+        },
+
+
+        {
+            path: '/app/leaves',
+            component: () =>
+                import ('./components/leave/LeaveIndex'),
+            name: 'leave.index',
+            meta: {
+                title: 'Leaves',
+                primary: true,
+                roles: allRoles()
+            },
+        },
+        {
+            path: '/app/leaves/create',
+            component: () =>
+                import ('./components/leave/LeaveCreate'),
+            name: 'leave.create',
+            meta: {
+                title: 'Leave Create',
+                primary: false,
+                roles: allRoles()
+            },
+        },
+        {
+            path: '/app/leaves/:id/edit',
+            component: () =>
+                import ('./components/leave/LeaveEdit'),
+            name: 'leave.edit',
+            props: true,
+            meta: {
+                title: 'Leave Edit',
+                primary: false,
+                roles: allRoles()
             },
         },
 
