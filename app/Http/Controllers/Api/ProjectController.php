@@ -131,4 +131,23 @@ class ProjectController extends Controller
         return response()->json($project);
     }
 
+    public function getProjectStatus(Request $request, $project_id)
+    {
+        $updates = ProjectUpdate::with(['user'=> function($query) {
+            return $query->select(['id','first_name','last_name']);
+        }])->where('project_id',$project_id)->latest()->get();
+
+        return response()->json($updates);
+    }
+
+    public function submitProjectStatus(Request $request, $project_id)
+    {
+        $description = $request->input('description');
+        $data = [
+            'user_id' => auth()->user()->id,
+            'project_id' => $project_id,
+            'description' => $description,
+        ];
+        return ProjectUpdate::create($data);
+    }
 }

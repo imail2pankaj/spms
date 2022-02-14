@@ -33755,7 +33755,8 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
       currentRoute: currentRoute,
       open: open,
       setShowMobileMenu: setShowMobileMenu,
-      active_task: currentTask
+      active_task: currentTask,
+      user: props.user
     };
   }
 });
@@ -34446,7 +34447,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     active_task: $setup.active_task
   }, null, 8
   /* PROPS */
-  , ["active_task"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <ActiveTask v-if=\"active_task.id\" :active_task=\"active_task\"></ActiveTask> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  , ["active_task"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $setup.setShowMobileMenu(true);
     }),
@@ -35811,6 +35812,9 @@ app.component('app-project-nav', _components_common_ProjectNav__WEBPACK_IMPORTED
 app.config.globalProperties.$filters = {
   convertDateFormat: function convertDateFormat(value) {
     return moment__WEBPACK_IMPORTED_MODULE_2___default()(value).format("MM/DD/YYYY hh:mm");
+  },
+  convertOnlyDateFormat: function convertOnlyDateFormat(value) {
+    return moment__WEBPACK_IMPORTED_MODULE_2___default()(value).format("MM/DD/YYYY");
   }
 };
 app.use(router);
@@ -36419,6 +36423,64 @@ function useProjects() {
     };
   }();
 
+  var submitProjectStatus = /*#__PURE__*/function () {
+    var _ref14 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee14(id, data) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee14$(_context14) {
+        while (1) {
+          switch (_context14.prev = _context14.next) {
+            case 0:
+              _context14.prev = 0;
+              _context14.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/project/' + id + '/update-status', data);
+
+            case 3:
+              _context14.next = 7;
+              break;
+
+            case 5:
+              _context14.prev = 5;
+              _context14.t0 = _context14["catch"](0);
+
+            case 7:
+            case "end":
+              return _context14.stop();
+          }
+        }
+      }, _callee14, null, [[0, 5]]);
+    }));
+
+    return function submitProjectStatus(_x17, _x18) {
+      return _ref14.apply(this, arguments);
+    };
+  }();
+
+  var getProjectUpdates = /*#__PURE__*/function () {
+    var _ref15 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee15() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee15$(_context15) {
+        while (1) {
+          switch (_context15.prev = _context15.next) {
+            case 0:
+              _context15.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/project/' + project.value.id + '/update-status');
+
+            case 2:
+              response = _context15.sent;
+              return _context15.abrupt("return", response.data);
+
+            case 4:
+            case "end":
+              return _context15.stop();
+          }
+        }
+      }, _callee15);
+    }));
+
+    return function getProjectUpdates() {
+      return _ref15.apply(this, arguments);
+    };
+  }();
+
   return {
     task: task,
     project: project,
@@ -36438,7 +36500,9 @@ function useProjects() {
     getAssignedToUsers: getAssignedToUsers,
     getTask: getTask,
     storeTask: storeTask,
-    updateTask: updateTask
+    updateTask: updateTask,
+    submitProjectStatus: submitProjectStatus,
+    getProjectUpdates: getProjectUpdates
   };
 }
 

@@ -56,6 +56,9 @@ app.component('app-project-nav', ProjectNav);
 app.config.globalProperties.$filters = {
     convertDateFormat(value) {
         return moment(value).format("MM/DD/YYYY hh:mm")
+    },
+    convertOnlyDateFormat(value) {
+        return moment(value).format("MM/DD/YYYY")
     }
 };
 app.use(router);

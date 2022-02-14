@@ -195,6 +195,27 @@ export default function useProjects() {
         return await axios.put('/api/tasks/' + task_id + '/update-status', data);
     }
 
+    const submitProjectStatus = async(id, data) => {
+        // for (const key in errors.value) {
+        //     errors.value[key] = '';
+        // }
+        try {
+            await axios.post('/api/project/' + id + '/update-status', data);
+        } catch (error) {
+            // if (error.response.status === 422) {
+            //     const responseErrors = error.response.data.errors;
+            //     for (const key in responseErrors) {
+            //         errors.value[key] = responseErrors[key][0];
+            //     }
+            // }
+        }
+    }
+
+
+    const getProjectUpdates = async() => {
+        const response = await axios.get('/api/project/' + project.value.id + '/update-status');
+        return response.data;
+    }
     return {
         task,
         project,
@@ -214,6 +235,8 @@ export default function useProjects() {
         getAssignedToUsers,
         getTask,
         storeTask,
-        updateTask
+        updateTask,
+        submitProjectStatus,
+        getProjectUpdates
     }
 }
