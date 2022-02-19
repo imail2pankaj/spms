@@ -122,7 +122,7 @@ class ProjectController extends Controller
 
     public function getBySlug(Request $request, $slug, $page)
     {
-        $project = Project::where('slug',$slug)->first();
+        $project = Project::with('note')->where('slug',$slug)->first();
         if($page == 'task') {
             $created = ProjectTask::with('project')->where('project_id',$project->id)->where('user_id', $request->user()->id)->latest()->get();
             $project->created = $created;
@@ -149,5 +149,40 @@ class ProjectController extends Controller
             'description' => $description,
         ];
         return ProjectUpdate::create($data);
+    }
+
+    public function submitProjectNote(Request $request, $project_id)
+    {
+        $description = $request->has('description') ? $request->input('description') : "";
+        $projectUpdate = ProjectNote::find($project_id);
+        $data = [
+            'description' => $description,
+        ];
+        return $projectUpdate->update($data);
+    }
+
+    public function getProjectMilestones(Request $request, $project_id)
+    {
+        $milestones = ProjectMilestone::where('project_id',$project_id)->latest('start_date')->get();
+
+        return response()->json($milestones);
+    }
+
+    public function deleteProjectMilestones(Request $request, $project_id, $milestone_id) {
+        ProjectMilestone::destroy($milestone_id);
+        return response()->noContent();
+    }
+    public function submitProjectMilestones(Request $request, $project_id)
+    {
+        $title = $request->input('title');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+        $data = [
+            'project_id' => $project_id,
+            'title' => $title,
+            'start_date' => $start_date,
+            'end_date' => $end_date,
+        ];
+        return ProjectMilestone::create($data);
     }
 }

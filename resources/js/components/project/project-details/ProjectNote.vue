@@ -8,24 +8,22 @@
 
   <div class="bg-white overflow-hidden shadow-sm rounded-lg">
     <div class="p-6 bg-white border-b border-gray-200">
-      <div class="md:grid md:grid-cols-3 md:gap-6 mb-6">
-        <div class="block">
-          Created
+      <form @submit.prevent="saveStatus">
+        <ckeditor :editor="editor" v-model="description"></ckeditor>
+        <div class="py-4 text-left">
+          <button type="submit" class="btn-blue">
+            Submit
+          </button>
         </div>
-        <div class="block">
-          Active
-        </div>
-        <div class="block">
-          Completed
-        </div>
-      </div>
+      </form>
     </div>
   </div>
 </template>
 
 
 <script>
-import { onMounted } from '@vue/runtime-core';
+import { onMounted, ref } from 'vue';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import useProjects from '../../../composables/project';
 export default {
   props: {
@@ -33,15 +31,35 @@ export default {
   },
   setup(props) {
     const {slug} = props;
-    const {project, getProjectBySlug} = useProjects();
+    const {project, getProjectBySlug, submitProjectNote} = useProjects();
+    const submitting = ref(false);
+    const description = ref(null);
 
     onMounted(async () => {
       await getProjectBySlug(slug,'note');
+      description.value = project.value.note.description;
     })
+
+    const saveStatus = async (e) => {
+      submitting.value = true;
+      const data = {
+        description: description.value
+      }
+      await submitProjectNote(project.value.id, data);
+      submitting.value = false;
+    }
     return {
       project,
       slug,
+      saveStatus,
+      description,
+      editor: ClassicEditor,
     }
   },
 }
 </script>
+<style>
+  .ck-editor__editable {
+    min-height: 400px;
+  }
+</style>

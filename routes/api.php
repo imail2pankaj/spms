@@ -90,6 +90,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('projects/{slug}/{page}', [ProjectController::class,'getBySlug'])->name("getBySlug");
     Route::get('project/{project_id}/update-status', [ProjectController::class,'getProjectStatus'])->name("getProjectStatus")->where('project_id', '[0-9]+');
     Route::post('project/{project_id}/update-status', [ProjectController::class,'submitProjectStatus'])->name("submitProjectStatus");
+
+    Route::get('project/{project_id}/milestone', [ProjectController::class,'getProjectMilestones'])->name("getProjectMilestones")->where('project_id', '[0-9]+');
+    Route::post('project/{project_id}/milestone', [ProjectController::class,'submitProjectMilestones'])->name("submitProjectMilestones");
+    Route::delete('project/{project_id}/milestone/{milestone_id}', [ProjectController::class,'deleteProjectMilestones'])->name("deleteProjectMilestones");
+    Route::post('project/{project_id}/notes', [ProjectController::class,'submitProjectNote'])->name("submitProjectNote");
+
     Route::post('projects/{project_id}/store-task', [ProjectTaskController::class,'storeTask'])->name("storeTask");
     Route::get('tasks/assigned-to-users', [ProjectTaskController::class,'assignedToUsers'])->name("assignedToUsers");
     Route::get('tasks/{id}', [ProjectTaskController::class,'show'])->name("show");

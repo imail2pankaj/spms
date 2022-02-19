@@ -35930,7 +35930,10 @@ function useProjects() {
     pm: [],
     designer: [],
     customer: [],
-    _method: 'post'
+    _method: 'post',
+    note: {
+      description: ''
+    }
   });
   var task = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({});
   var errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
@@ -36481,6 +36484,117 @@ function useProjects() {
     };
   }();
 
+  var submitProjectMilestone = /*#__PURE__*/function () {
+    var _ref16 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee16(id, data) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee16$(_context16) {
+        while (1) {
+          switch (_context16.prev = _context16.next) {
+            case 0:
+              _context16.prev = 0;
+              _context16.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/project/' + id + '/milestone', data);
+
+            case 3:
+              _context16.next = 7;
+              break;
+
+            case 5:
+              _context16.prev = 5;
+              _context16.t0 = _context16["catch"](0);
+
+            case 7:
+            case "end":
+              return _context16.stop();
+          }
+        }
+      }, _callee16, null, [[0, 5]]);
+    }));
+
+    return function submitProjectMilestone(_x19, _x20) {
+      return _ref16.apply(this, arguments);
+    };
+  }();
+
+  var getProjectMilestones = /*#__PURE__*/function () {
+    var _ref17 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee17() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee17$(_context17) {
+        while (1) {
+          switch (_context17.prev = _context17.next) {
+            case 0:
+              _context17.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/project/' + project.value.id + '/milestone');
+
+            case 2:
+              response = _context17.sent;
+              return _context17.abrupt("return", response.data);
+
+            case 4:
+            case "end":
+              return _context17.stop();
+          }
+        }
+      }, _callee17);
+    }));
+
+    return function getProjectMilestones() {
+      return _ref17.apply(this, arguments);
+    };
+  }();
+
+  var deleteMilestone = /*#__PURE__*/function () {
+    var _ref18 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee18(id, milestone_id) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee18$(_context18) {
+        while (1) {
+          switch (_context18.prev = _context18.next) {
+            case 0:
+              _context18.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete('/api/project/' + id + '/milestone/' + milestone_id);
+
+            case 2:
+            case "end":
+              return _context18.stop();
+          }
+        }
+      }, _callee18);
+    }));
+
+    return function deleteMilestone(_x21, _x22) {
+      return _ref18.apply(this, arguments);
+    };
+  }();
+
+  var submitProjectNote = /*#__PURE__*/function () {
+    var _ref19 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee19(id, data) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee19$(_context19) {
+        while (1) {
+          switch (_context19.prev = _context19.next) {
+            case 0:
+              _context19.prev = 0;
+              _context19.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/project/' + id + '/notes', data);
+
+            case 3:
+              _context19.next = 7;
+              break;
+
+            case 5:
+              _context19.prev = 5;
+              _context19.t0 = _context19["catch"](0);
+
+            case 7:
+            case "end":
+              return _context19.stop();
+          }
+        }
+      }, _callee19, null, [[0, 5]]);
+    }));
+
+    return function submitProjectNote(_x23, _x24) {
+      return _ref19.apply(this, arguments);
+    };
+  }();
+
   return {
     task: task,
     project: project,
@@ -36502,7 +36616,11 @@ function useProjects() {
     storeTask: storeTask,
     updateTask: updateTask,
     submitProjectStatus: submitProjectStatus,
-    getProjectUpdates: getProjectUpdates
+    getProjectUpdates: getProjectUpdates,
+    submitProjectMilestone: submitProjectMilestone,
+    getProjectMilestones: getProjectMilestones,
+    deleteMilestone: deleteMilestone,
+    submitProjectNote: submitProjectNote
   };
 }
 

@@ -37,6 +37,7 @@ export default function useProjects() {
         designer: [],
         customer: [],
         _method: 'post',
+        note: { description: '' }
     });
     const task = ref({});
     const errors = ref({
@@ -211,10 +212,53 @@ export default function useProjects() {
         }
     }
 
-
     const getProjectUpdates = async() => {
         const response = await axios.get('/api/project/' + project.value.id + '/update-status');
         return response.data;
+    }
+
+    const submitProjectMilestone = async(id, data) => {
+        // for (const key in errors.value) {
+        //     errors.value[key] = '';
+        // }
+        try {
+            await axios.post('/api/project/' + id + '/milestone', data);
+        } catch (error) {
+            // if (error.response.status === 422) {
+            //     const responseErrors = error.response.data.errors;
+            //     for (const key in responseErrors) {
+            //         errors.value[key] = responseErrors[key][0];
+            //     }
+            // }
+        }
+    }
+
+
+    const getProjectMilestones = async() => {
+        const response = await axios.get('/api/project/' + project.value.id + '/milestone');
+        return response.data;
+    }
+
+
+    const deleteMilestone = async(id, milestone_id) => {
+        await axios.delete('/api/project/' + id + '/milestone/' + milestone_id);
+    }
+
+
+    const submitProjectNote = async(id, data) => {
+        // for (const key in errors.value) {
+        //     errors.value[key] = '';
+        // }
+        try {
+            await axios.post('/api/project/' + id + '/notes', data);
+        } catch (error) {
+            // if (error.response.status === 422) {
+            //     const responseErrors = error.response.data.errors;
+            //     for (const key in responseErrors) {
+            //         errors.value[key] = responseErrors[key][0];
+            //     }
+            // }
+        }
     }
     return {
         task,
@@ -237,6 +281,10 @@ export default function useProjects() {
         storeTask,
         updateTask,
         submitProjectStatus,
-        getProjectUpdates
+        getProjectUpdates,
+        submitProjectMilestone,
+        getProjectMilestones,
+        deleteMilestone,
+        submitProjectNote
     }
 }

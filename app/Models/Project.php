@@ -44,6 +44,11 @@ class Project extends Model
         return $this->belongsToMany(User::class, 'project_users')->where('role_id', 11);
     }
 
+    public function note()
+    {
+        return $this->hasOne(ProjectNote::class);
+    }
+
     protected static function boot()
     {
         parent::boot();
