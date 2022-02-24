@@ -35430,13 +35430,13 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 );
 
 var _hoisted_7 = {
-  "class": "flex-1 h-0 pt-5 pb-4 overflow-y-auto"
+  "class": "flex-1 h-0 pt-0.5 pb-4 overflow-y-auto"
 };
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "flex-shrink-0 flex items-center px-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-  "class": "h-8 w-auto",
+  "class": "h-14 w-auto",
   src: "/images/logo.png",
   alt: "logo"
 })], -1
@@ -35459,13 +35459,13 @@ var _hoisted_12 = {
   "class": "flex flex-col h-0 flex-1 border-r border-gray-200 bg-white"
 };
 var _hoisted_13 = {
-  "class": "flex-1 flex flex-col pt-5 pb-4 overflow-y-auto"
+  "class": "flex-1 flex flex-col pt-0.5 pb-4 overflow-y-auto"
 };
 
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "flex items-center flex-shrink-0 px-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-  "class": "h-8 w-auto mx-auto",
+  "class": "h-14 w-auto mx-auto",
   src: "/images/logo.png",
   alt: "logo"
 })], -1
@@ -35529,7 +35529,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "mt-5 space-y-1 border-0 border-t border-yellow-500"
+  "class": "mt-0.5 space-y-1 border-0 border-t border-yellow-500"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", {
@@ -35933,7 +35933,8 @@ function useProjects() {
     _method: 'post',
     note: {
       description: ''
-    }
+    },
+    attachments: []
   });
   var task = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({});
   var errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
@@ -36595,6 +36596,59 @@ function useProjects() {
     };
   }();
 
+  var submitProjectAttachment = /*#__PURE__*/function () {
+    var _ref20 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee20(id, data) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee20$(_context20) {
+        while (1) {
+          switch (_context20.prev = _context20.next) {
+            case 0:
+              _context20.prev = 0;
+              _context20.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/project/' + id + '/attachment', data);
+
+            case 3:
+              _context20.next = 7;
+              break;
+
+            case 5:
+              _context20.prev = 5;
+              _context20.t0 = _context20["catch"](0);
+
+            case 7:
+            case "end":
+              return _context20.stop();
+          }
+        }
+      }, _callee20, null, [[0, 5]]);
+    }));
+
+    return function submitProjectAttachment(_x25, _x26) {
+      return _ref20.apply(this, arguments);
+    };
+  }();
+
+  var deleteAttachment = /*#__PURE__*/function () {
+    var _ref21 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee21(id, attachment_id) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee21$(_context21) {
+        while (1) {
+          switch (_context21.prev = _context21.next) {
+            case 0:
+              _context21.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete('/api/project/' + id + '/attachment/' + attachment_id);
+
+            case 2:
+            case "end":
+              return _context21.stop();
+          }
+        }
+      }, _callee21);
+    }));
+
+    return function deleteAttachment(_x27, _x28) {
+      return _ref21.apply(this, arguments);
+    };
+  }();
+
   return {
     task: task,
     project: project,
@@ -36620,7 +36674,9 @@ function useProjects() {
     submitProjectMilestone: submitProjectMilestone,
     getProjectMilestones: getProjectMilestones,
     deleteMilestone: deleteMilestone,
-    submitProjectNote: submitProjectNote
+    submitProjectNote: submitProjectNote,
+    submitProjectAttachment: submitProjectAttachment,
+    deleteAttachment: deleteAttachment
   };
 }
 
@@ -36948,99 +37004,7 @@ __webpack_require__.r(__webpack_exports__);
       name: "project.note",
       roles: ['super-admin', 'admin', 'pm', 'bde', 'developer', 'designer', 'qa', 'customer']
     }]
-  }, // {
-  //     path: '/app/categories',
-  //     component: () =>
-  //         import ('./components/category/CategoryIndex'),
-  //     name: 'category.index',
-  //     meta: {
-  //         title: 'Category',
-  //         primary: true
-  //     },
-  // },
-  // {
-  //     path: '/app/categories/create',
-  //     component: () =>
-  //         import ('./components/category/CategoryCreate'),
-  //     name: 'category.create',
-  //     meta: {
-  //         title: 'Category Create',
-  //         primary: false
-  //     },
-  // },
-  // {
-  //     path: '/app/categories/:id/edit',
-  //     component: () =>
-  //         import ('./components/category/CategoryEdit'),
-  //     name: 'category.edit',
-  //     props: true,
-  //     meta: {
-  //         title: 'Category Edit',
-  //         primary: false
-  //     },
-  // },
-  // {
-  //     path: '/app/products',
-  //     component: Product,
-  //     name: 'product.index',
-  //     meta: {
-  //         title: 'Products',
-  //         primary: true
-  //     },
-  // },
-  // {
-  //     path: '/app/products/create',
-  //     component: () =>
-  //         import ('./components/product/ProductCreate'),
-  //     name: 'product.create',
-  //     meta: {
-  //         title: 'Product Create',
-  //         primary: false
-  //     },
-  // },
-  // {
-  //     path: '/app/products/:id/edit',
-  //     component: () =>
-  //         import ('./components/product/ProductEdit'),
-  //     name: 'product.edit',
-  //     props: true,
-  //     meta: {
-  //         title: 'Product Edit',
-  //         primary: false
-  //     },
-  // },
-  // {
-  //     path: '/app/company',
-  //     component: () =>
-  //         import ('./components/company/CompanyIndex'),
-  //     name: 'company',
-  //     meta: {
-  //         title: 'Company',
-  //         primary: true
-  //     },
-  // },
-  // {
-  //     path: '/app/company/create',
-  //     component: () =>
-  //         import ('./components/company/CompanyCreate'),
-  //     name: 'company.create',
-  //     meta: {
-  //         title: 'Company',
-  //         primary: false
-  //     },
-  // },
-  // {
-  //     path: '/app/company/:id/edit',
-  //     component: () =>
-  //         import ('./components/company/CompanyEdit'),
-  //     name: 'company.edit',
-  //     props: true,
-  //     meta: {
-  //         title: 'Company',
-  //         primary: false
-  //     },
-  // },
-  {
+  }, {
     path: '/app/user-profile',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_user_components_UserProfile_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./user/components/UserProfile.vue */ "./resources/js/user/components/UserProfile.vue"));

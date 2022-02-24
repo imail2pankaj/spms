@@ -37,7 +37,8 @@ export default function useProjects() {
         designer: [],
         customer: [],
         _method: 'post',
-        note: { description: '' }
+        note: { description: '' },
+        attachments: []
     });
     const task = ref({});
     const errors = ref({
@@ -260,6 +261,19 @@ export default function useProjects() {
             // }
         }
     }
+
+    const submitProjectAttachment = async(id, data) => {
+        try {
+            await axios.post('/api/project/' + id + '/attachment', data);
+        } catch (error) {
+
+        }
+    }
+
+
+    const deleteAttachment = async(id, attachment_id) => {
+        await axios.delete('/api/project/' + id + '/attachment/' + attachment_id);
+    }
     return {
         task,
         project,
@@ -285,6 +299,8 @@ export default function useProjects() {
         submitProjectMilestone,
         getProjectMilestones,
         deleteMilestone,
-        submitProjectNote
+        submitProjectNote,
+        submitProjectAttachment,
+        deleteAttachment
     }
 }

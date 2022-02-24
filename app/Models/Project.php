@@ -49,6 +49,11 @@ class Project extends Model
         return $this->hasOne(ProjectNote::class);
     }
 
+    public function attachments()
+    {
+        return $this->hasMany(ProjectAttachment::class)->orderBy('id','desc');
+    }
+
     protected static function boot()
     {
         parent::boot();

@@ -122,7 +122,7 @@ class ProjectController extends Controller
 
     public function getBySlug(Request $request, $slug, $page)
     {
-        $project = Project::with('note')->where('slug',$slug)->first();
+        $project = Project::with('note', 'attachments')->where('slug',$slug)->first();
         if($page == 'task') {
             $created = ProjectTask::with('project')->where('project_id',$project->id)->where('user_id', $request->user()->id)->latest()->get();
             $project->created = $created;
@@ -184,5 +184,32 @@ class ProjectController extends Controller
             'end_date' => $end_date,
         ];
         return ProjectMilestone::create($data);
+    }
+
+    public function submitProjectAttachment(Request $request, $project_id)
+    {
+        $data = $request->all();
+        $data['project_id'] = $project_id;
+        if ($request->hasFile('file_name')) {
+            $image = $request->file('file_name');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path("uploads/project");
+            $image->move($destinationPath, $imageName);
+
+            $data['file_name'] = $imageName;
+        }
+        return ProjectAttachment::create($data);
+    }
+
+
+    public function deleteProjectAttachment(Request $request, $project_id, $attachment_id) {
+
+        $projectAttachment = ProjectAttachment::find($attachment_id);
+        $filePath = public_path('uploads/project/' . $projectAttachment->file_name);
+        if(file_exists($filePath)) {
+            unlink($filePath);
+        }
+        $projectAttachment->destroy($attachment_id);
+        return response()->noContent();
     }
 }

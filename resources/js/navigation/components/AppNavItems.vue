@@ -1,5 +1,5 @@
 <template>
-  <nav class="mt-5 space-y-1 border-0 border-t border-yellow-500">
+  <nav class="mt-0.5 space-y-1 border-0 border-t border-yellow-500">
     <ul>
     <li v-for="(route, index) in primaryRoutes" :key="index">
       <router-link

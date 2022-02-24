@@ -86,7 +86,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('permissions', [RoleController::class,'permissions'])->name("role-permissions");
     Route::apiResource('users', UserController::class);
     Route::get('user/roles', [RoleController::class,'allRoles'])->name("allRoles");
-    Route::apiResource('companies', CompanyController::class);
+
     Route::get('projects/{slug}/{page}', [ProjectController::class,'getBySlug'])->name("getBySlug");
     Route::get('project/{project_id}/update-status', [ProjectController::class,'getProjectStatus'])->name("getProjectStatus")->where('project_id', '[0-9]+');
     Route::post('project/{project_id}/update-status', [ProjectController::class,'submitProjectStatus'])->name("submitProjectStatus");
@@ -95,6 +95,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('project/{project_id}/milestone', [ProjectController::class,'submitProjectMilestones'])->name("submitProjectMilestones");
     Route::delete('project/{project_id}/milestone/{milestone_id}', [ProjectController::class,'deleteProjectMilestones'])->name("deleteProjectMilestones");
     Route::post('project/{project_id}/notes', [ProjectController::class,'submitProjectNote'])->name("submitProjectNote");
+    Route::post('project/{project_id}/attachment', [ProjectController::class,'submitProjectAttachment'])->name("submitProjectAttachment");
+    Route::delete('project/{project_id}/attachment/{attachment}', [ProjectController::class,'deleteProjectAttachment'])->name("deleteProjectAttachment");
 
     Route::post('projects/{project_id}/store-task', [ProjectTaskController::class,'storeTask'])->name("storeTask");
     Route::get('tasks/assigned-to-users', [ProjectTaskController::class,'assignedToUsers'])->name("assignedToUsers");
@@ -104,8 +106,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('tasks/{project_id}/project', [ProjectTaskController::class,'getTasks'])->name("getTasks");
     Route::apiResource('projects', ProjectController::class);
     Route::get('project/users', [ProjectController::class,'getDifferentRoleUsers'])->name("getDifferentRoleUsers");
-    Route::apiResource('categories', CategoryController::class);
-    Route::apiResource('products', ProductController::class);
 
     Route::apiResource('service-tickets', ServiceTicketController::class);
     Route::apiResource('holidays', HolidayController::class);

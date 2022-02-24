@@ -9,5 +9,5 @@ class ProjectAttachment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['project_id','title','description'];
+    protected $fillable = ['project_id','title','file_name'];
 }

@@ -32,10 +32,10 @@
                 </svg>
               </button>
             </div>
-            <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
+            <div class="flex-1 h-0 pt-0.5 pb-4 overflow-y-auto">
               <div class="flex-shrink-0 flex items-center px-4">
                 <img
-                  class="h-8 w-auto"
+                  class="h-14 w-auto"
                   src="/images/logo.png"
                   alt="logo"
                 />
@@ -52,10 +52,10 @@
   <div class="hidden md:flex md:flex-shrink-0">
     <div class="flex flex-col w-64">
       <div class="flex flex-col h-0 flex-1 border-r border-gray-200 bg-white">
-        <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+        <div class="flex-1 flex flex-col pt-0.5 pb-4 overflow-y-auto">
           <div class="flex items-center flex-shrink-0 px-4">
             <img
-              class="h-8 w-auto mx-auto"
+              class="h-14 w-auto mx-auto"
               src="/images/logo.png"
               alt="logo"
             />
