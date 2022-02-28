@@ -4,13 +4,13 @@
     style="transform: translate(-50%, 0%)">
     <div class=" flex flex-column justify-between py-1 px-2 rounded-b-lg bg-white shadow-lg text-xs border-b border-l border-r border-blue-500 min-w-lg text-left">
       <div>
-        {{ activeTask.title }} <label class=" inline-block rounded-xl text-white px-0.5 bg-yellow-400">{{activeTask.total_time_converted}}</label>
+        {{ activeTask.title }} <label class=" inline-block rounded-xl text-white px-1 bg-yellow-400">{{activeTask.total_time_converted}}</label>
       </div>
-      <div>
+      <div class="flex align-middle w-14">
         <button title="Pause Task" @click="startTaskStatus(activeTask.id, (activeTask.task_status == 'Active' ? 'Paused' :'Active'))" class="w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
           <pause-icon />
         </button>
-        <button title="Stop Task" class="w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
+        <button title="Stop Task" @click="startTaskStatus(activeTask.id, 'Completed')" class="w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
           <stop-icon />
         </button>
       </div>

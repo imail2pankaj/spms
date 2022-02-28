@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between mb-2">
+  <div class="flex justify-between flex-col md:flex-row mb-2">
     <h1 class="mt-3 text-2xl font-bold">
       {{project.title}} | Update
     </h1>

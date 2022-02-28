@@ -56,18 +56,19 @@ class ProjectTaskController extends Controller
         $data = ['task_status' => $request->input('status')];
         $projectTask->update($data);
 
-        $taskStatus = ['Active','Started','Paused'];
+        $taskStatus = ['Active','Started','Paused', 'Completed'];
 
         if (in_array($request->input('status'), $taskStatus)) {
+            $status = $request->input('status') != "Completed" ? (($request->input('status') == "Started" || $request->input('status') == "Active") ? "Started" : "Paused") : 'Completed';
             $taskTime = ProjectTaskTime::create([
                 "task_id" => $id,
-                "task_status" => ($request->input('status') == "Started" || $request->input('status') == "Active") ? "Started" : "Paused"
+                "task_status" => $status
             ]);
-            if ($request->input('status') === 'Paused') {
-                $activeTaskTime = ProjectTaskTime::where('task_id', $id)->where('task_status', 'Started')->latest()->first();
+            if ($request->input('status') === 'Paused' || $request->input('status') === 'Completed') {
+                $activeTaskTime = ProjectTaskTime::where('task_id', $id)->whereIn('task_status', ['Started','Active'])->latest()->first();
                 $timeDifference = strtotime($taskTime->created_at) - strtotime($activeTaskTime->created_at);
                 $taskTime->update(['time_duration' => $timeDifference]);
-                $totalTime=ProjectTaskTime::where('task_id', $id)->where('task_status', 'Paused')->sum('time_duration');
+                $totalTime=ProjectTaskTime::where('task_id', $id)->whereIn('task_status', ['Paused','Completed'])->sum('time_duration');
                 $projectTask->update(['total_time' => $totalTime]);
             }
         }
@@ -84,7 +85,7 @@ class ProjectTaskController extends Controller
             'total_time' => $projectTask->total_time,
             'task_status' => $projectTask->task_status,
             'time' => strtotime(date("Y-m-d H:i:s")),
-            'total_time_converted' => ($h > 0 ? $h .' hr ' : '') . $m .' min'
+            'total_time_converted' => ($h > 0 ? $h .' h ' : '') . $m .' m'
         ];
         return $returnData;
     }

@@ -35,8 +35,8 @@
                 <span class="input-error" v-if="errors.title">{{ errors.title }}</span>
               </div>
               <div class="mb-6">
-                <label for="description" class="input-form-label">Description <app-required/></label>
-                <textarea type="text" placeholder="Task description" v-model="task.description" class="input-form-control" required></textarea>
+                <label for="description" class="input-form-label">Description </label>
+                <textarea type="text" placeholder="Task description" v-model="task.description" class="input-form-control"></textarea>
                 <span class="input-error" v-if="errors.description">{{ errors.description }}</span>
               </div>
               <div class="mb-6">
@@ -73,7 +73,7 @@
               <div class="md:grid md:grid-cols-2 md:gap-6 mb-6">
                 <div class="mb-6">
                   <label for="due_date" class="input-form-label">Due Date</label>
-                  <input type="date" placeholder="Task Due Date" v-model="task.due_date" class="input-form-control" required />
+                  <input type="date" placeholder="Task Due Date" v-model="task.due_date" class="input-form-control" />
                   <span class="input-error" v-if="errors.due_date">{{ errors.due_date }}</span>
                 </div>
                 <div>
@@ -119,7 +119,7 @@
 import { onMounted, ref } from '@vue/runtime-core';
 import { useRouter } from 'vue-router';
 import useProjects from '../../../composables/project';
-import {taskTypeOptions, priorityOptions} from '../../../utils';
+import {taskTypeOptions, priorityOptions, strtotime} from '../../../utils';
 
 export default {
   props: {
@@ -144,7 +144,7 @@ export default {
     }
     const goBack = () => {
       emit('clicked', 'someValue')
-      router.push({name: 'project.task', params: {slug: slug}})
+      router.push({name: 'project.task', params: {slug: slug, time: strtotime()}})
     }
 
     return {

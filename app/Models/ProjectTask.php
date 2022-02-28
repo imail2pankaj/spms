@@ -17,15 +17,15 @@ class ProjectTask extends Model
         // if($this->attributes['id'] != 0) {
 
             $extraTime = 0;
-            $activeTaskTime = ProjectTaskTime::where('task_id', $this->attributes['id'])->whereIn('task_status', ['Started','Active'])->latest()->first();
-            if($activeTaskTime){
+            $activeTaskTime = ProjectTaskTime::where('task_id', $this->attributes['id'])->latest()->first();
+            if($activeTaskTime && in_array($activeTaskTime->task_status,['Started','Active'])){
                 $extraTime = strtotime(date('Y-m-d H:i:s')) - strtotime($activeTaskTime->created_at);
             }
 
-            $ss = $this->attributes['total_time'] + $extraTime;
+            $ss = (isset($this->attributes['total_time']) ? $this->attributes['total_time'] : 0) + $extraTime;
             $m = floor(($ss%3600)/60);
             $h = floor(($ss%86400)/3600);
-            return ($h > 0 ? $h .' hr ' : '') . $m .' min';
+            return ($h > 0 ? $h .' h ' : '') . $m .' m';
         // }
         return null;
     }

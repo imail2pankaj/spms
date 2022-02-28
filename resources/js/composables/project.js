@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { strtotime } from '../utils';
 
 export default function useProjects() {
     const router = useRouter();
@@ -171,6 +172,7 @@ export default function useProjects() {
 
     const getTasks = async() => {
         const tasks = {
+            time: strtotime(),
             active: [],
             completed: [],
             created: []

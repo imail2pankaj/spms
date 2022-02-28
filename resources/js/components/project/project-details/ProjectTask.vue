@@ -5,9 +5,9 @@
   </div>
   <div class="md:grid md:grid-cols-3 md:gap-6 mb-6">
     <div class="bg-white overflow-hidden shadow-sm rounded-lg w-full max-w-sm mb-6">
-      <div class="p-6 bg-white ">
+      <div class="p-2 bg-white ">
         <div class="block">
-          <h3 class="input-form-sub-heading mb-4" :style="{paddingTop:0}">Created</h3>
+          <h3 class="input-form-sub-heading mb-4" :style="{paddingTop:0}">Created ({{tasks.created.length}})</h3>
           <div class="shadow-md p-4 rounded-md border border-gray-200 mb-4">
             <form @submit.prevent="saveTask">
               <input
@@ -41,9 +41,9 @@
       </div>
     </div>
     <div class="bg-white overflow-hidden shadow-sm rounded-lg w-full max-w-sm mb-6">
-      <div class="p-6 bg-white ">
+      <div class="p-2 bg-white ">
         <div class="block">
-          <h3 class="input-form-sub-heading mb-4" :style="{paddingTop:0}">Active</h3>
+          <h3 class="input-form-sub-heading mb-4" :style="{paddingTop:0}">Active ({{tasks.active.length}})</h3>
           <div>
             <TaskItem
               v-for="(task, index) in tasks.active"
@@ -56,12 +56,12 @@
       </div>
     </div>
     <div class="bg-white overflow-hidden shadow-sm rounded-lg w-full max-w-sm mb-6">
-      <div class="p-6 bg-white ">
+      <div class="p-2 bg-white ">
         <div class="block">
-          <h3 class="input-form-sub-heading mb-4" :style="{paddingTop:0}">Completed</h3>
+          <h3 class="input-form-sub-heading mb-4" :style="{paddingTop:0}">Completed ({{tasks.completed.length}})</h3>
           <div>
             <TaskItem
-              v-for="(task, index) in project.completed"
+              v-for="(task, index) in tasks.completed"
               :key="index"
               :task="task"
               :task_type="'Completed'"
@@ -71,7 +71,6 @@
       </div>
     </div>
   </div>
-  {{currentTask}}
   <router-view v-bind="$attrs" v-slot="{ Component }" @clicked="onClickChild">
     <transition name="fade" mode="out-in">
       <component :is="Component" />
@@ -99,14 +98,11 @@ export default {
     const task_title = ref(null);
     const currentTask = computed(() => store.state.currentTask);
     // console.log(currentTask,'--------------');
-    const tasks = ref({created: [], active: [], completed:[]});
+    const tasks = ref({time:0, created: [], active: [], completed:[]});
 
     onMounted(async () => {
         await getProjectBySlug(slug, "task");
-        tasks.value.created = [];
-        tasks.value.active = [];
-        tasks.value.completed = [];
-        tasks.value = await getTasks();
+        await getAllTasks();
     });
 
     watch(
@@ -114,10 +110,7 @@ export default {
       async newSlug => {
         if(newSlug){
           await getProjectBySlug(newSlug, "task");
-          tasks.value.created = [];
-          tasks.value.active = [];
-          tasks.value.completed = [];
-          tasks.value = await getTasks();
+          await getAllTasks();
         }
       }
     );
@@ -126,11 +119,7 @@ export default {
       () => currentTask.value.time,
       async newSlug => {
         if(newSlug){
-          console.log(newSlug);
-          tasks.value.created = [];
-          tasks.value.active = [];
-          tasks.value.completed = [];
-          tasks.value = await getTasks();
+          await getAllTasks();
         }
       }
     );
@@ -138,16 +127,24 @@ export default {
     const saveTask = async () => {
       if (task_title.value) {
         await storeTask(project.value.id, { title: task_title.value });
-        await getProjectBySlug(slug, "task");
+        // await getProjectBySlug(slug, "task");
         task_title.value = "";
+        await getAllTasks();
       }
     };
 
     const onClickChild = async (value) => {
       setTimeout(async () => {
         await getProjectBySlug(slug, "task");
-        tasks.value = await getTasks();
+        await getAllTasks();
       }, 3000);
+    }
+    const getAllTasks = async () => {
+        tasks.value.time = 0;
+        tasks.value.created = [];
+        tasks.value.active = [];
+        tasks.value.completed = [];
+        tasks.value = await getTasks();
     }
     return {
       task_title,

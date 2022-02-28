@@ -127,7 +127,6 @@ class ProjectController extends Controller
             $created = ProjectTask::with('project')->where('project_id',$project->id)->where('user_id', $request->user()->id)->latest()->get();
             $project->created = $created;
         }
-
         return response()->json($project);
     }
 

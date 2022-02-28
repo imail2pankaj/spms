@@ -1,20 +1,24 @@
 <template>
-  <div class="p-1 text-sm flex hover:bg-gray-100 cursor-pointer border border-gray-200 rounded-md mt-1 ">
+  <div class="p-1 text-xs flex hover:bg-gray-100 cursor-pointer border border-gray-200 rounded-md mt-1 ">
     <span class="flex-1" @click="openModal(task.project.slug, task.id)">
-      {{ task.title }}
+      {{ task.title }} <label class=" inline-block rounded-xl text-white px-1 bg-yellow-400">{{task.total_time_converted}}</label><br>
+      <span class="text-gray-400">{{task.user.first_name}} {{task.user.last_name.charAt(0)}}</span>
     </span>
-    <span>
+    <!-- <span> -->
       <button title="Start Task" v-if="user.id === task.user_id && task_type === 'Created'" @click="startTaskStatus(task.id, 'Started')" class="w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
         <play-icon />
       </button>
-      <button v-if="user.id === task.user_id && task_type === 'Active'" @click="startTaskStatus(task.id, (task.task_status == 'Active' ? 'Paused' :'Active'))" class="w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
+      <button v-if="user.id === task.user_id && task_type === 'Active'" @click="startTaskStatus(task.id, ((task.task_status == 'Active' || task.task_status == 'Started') ? 'Paused' :'Active'))" class="w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
         <play-icon v-if="task.task_status == 'Paused'" />
         <pause-icon v-if="task.task_status == 'Active' || task.task_status == 'Started'" />
+      </button>
+      <button v-if="user.id === task.user_id && task_type === 'Completed'" title="Archive Task" @click="startTaskStatus(task.id, 'Archieved')" class="w-5 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
+        <archive-icon />
       </button>
       <button title="Delete Task" @click="deleteTask(task.id)" class="w-5 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
         <delete-icon />
       </button>
-    </span>
+    <!-- </span> -->
   </div>
 </template>
 
@@ -45,7 +49,8 @@ export default {
           const response = await startTask(task_id, status);
           if(response.data.task_status === 'Started' || response.data.task_status === 'Active') {
             store.commit('setCurrentTask', response.data);
-          } else if(response.data.task_status === 'Paused') {
+          // } else if(response.data.task_status === 'Paused') {
+          } else {
             store.commit('setCurrentTask', initialization);
           }
         }
