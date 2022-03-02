@@ -39,6 +39,7 @@ export const serviceTicketTypeOptions = ['Hardware', 'Software', 'Other'];
 export const serviceTicketStatusOptions = ['Open', 'Closed'];
 export const leaveStatusOptions = ['Applied', 'Approved', 'Rejected'];
 export const leaveTypeOptions = ['Full', 'Half'];
+export const internalNonProject = ['Internal', 'Non', 'Client'];
 
 export const strtotime = () => {
     return (Date.parse(new Date()) / 1000);

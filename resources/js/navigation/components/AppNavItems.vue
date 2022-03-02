@@ -6,7 +6,7 @@
         v-if="route.meta.roles.includes(user.role)"
         :to="{ name: route.name }"
         exact
-        class="hover:bg-gray-50 text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
+        class="hover:bg-gray-50 text-gray-600 hover:text-gray-900 group flex items-center px-2 py-1 text-base font-medium rounded-md"
       >
         {{ route.meta.title }}
       </router-link>
@@ -18,7 +18,7 @@
       :key="index"
       :to="{ name: 'project.task', params: {'slug' : project.slug} }"
       exact
-      class="hover:bg-gray-50 text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
+      class="hover:bg-gray-50 text-gray-600 hover:text-gray-900 group flex items-center px-2 py-1 text-base font-medium rounded-md"
     >
       {{ project.title }}
     </router-link>
@@ -28,7 +28,7 @@
       :key="index"
       :to="{ name: 'project.task', params: {'slug' : project.slug} }"
       exact
-      class="hover:bg-gray-50 text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
+      class="hover:bg-gray-50 text-gray-600 hover:text-gray-900 group flex items-center px-2 py-1 text-base font-medium rounded-md"
     >
       {{ project.title }}
     </router-link>

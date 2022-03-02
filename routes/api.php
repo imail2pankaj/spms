@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\HolidayController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProjectController;
@@ -40,7 +41,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         array_push($events, [ "title" => $holiday->title, "start" => $holiday->holiday_date, 'backgroundColor' =>'rgb(254 240 138)','textColor' =>'#000' ]);
     }
 
-    $users = User::select(['id','first_name','last_name','join_date','dob'])->where('user_status', 1)->get();
+    $users = User::select(['id','first_name','last_name','join_date','dob'])->whereHas(
+        'roles', function($q){
+            $q->where('name','!=', 'customer');
+        }
+    )->where('user_status', 1)->get();
     foreach ($users as $key => $user) {
         if($user->dob) {
             array_push($events, [ "groupId" => $user->id, "title" => $user->first_name . ' ' . $user->last_name ."'s Birthday", "start" => $user->dob, 'backgroundColor' =>'#3b82f6','textColor' =>'#000' ]);
@@ -82,6 +87,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('dashboard/{user_id}', [DashboardController::class,'getStatistic'])->name("getStatistic")->where('user_id', '[0-9]+');
     Route::apiResource('roles', RoleController::class);
     Route::get('permissions', [RoleController::class,'permissions'])->name("role-permissions");
     Route::apiResource('users', UserController::class);

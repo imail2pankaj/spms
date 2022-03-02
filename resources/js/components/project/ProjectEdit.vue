@@ -11,36 +11,24 @@
     <div class="bg-white overflow-hidden shadow-sm rounded-lg">
       <div class="bg-white border-b border-gray-200">
         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-          <div class="md:grid md:grid-cols-3 md:gap-6 mb-6">
+          <div class="md:grid md:grid-cols-4 md:gap-6 mb-6">
             <div>
-              <label for="title" class="input-form-label"
-                >Project Title <app-required/></label>
-              <input
-                type="text"
-                placeholder="Project Title"
-                v-model="project.title"
-                id="title"
-                name="title"
-                class="input-form-control"
-                required
-              />
-              <span class="input-error" v-if="errors.title">{{
-                errors.title
-              }}</span>
+              <label for="title" class="input-form-label" >Project Title <app-required/></label>
+              <input type="text" placeholder="Project Title" v-model="project.title" id="title" name="title" class="input-form-control" required />
+              <span class="input-error" v-if="errors.title">{{ errors.title }}</span>
             </div>
             <div>
               <label for="project_type" class="input-form-label">Project Type</label>
-              <select
-                v-model="project.project_type"
-                name="project_type"
-                id="project_type"
-                class="input-form-control"
-              >
-                <option
-                  v-for="item in projectTypeOptions"
-                  :key="item"
-                  :value="item"
-                >
+              <select v-model="project.project_type" name="project_type" id="project_type" class="input-form-control" >
+                <option v-for="item in projectTypeOptions" :key="item" :value="item" >
+                  {{ item }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label for="internal_non_project" class="input-form-label" >Internal/Non/Client</label>
+              <select v-model="project.internal_non_project" name="internal_non_project" id="internal_non_project" class="input-form-control">
+                <option v-for="item in internalNonProject" :key="item" :value="item" >
                   {{ item }}
                 </option>
               </select>
@@ -208,7 +196,7 @@
 <script>
 import { onMounted, ref } from 'vue';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {projectTypeOptions, projectStatusOptions} from '../../utils';
+import {projectTypeOptions, projectStatusOptions, internalNonProject} from '../../utils';
 import useProjects from "../../composables/project";
 export default {
   props: {
@@ -243,6 +231,7 @@ export default {
       usersOptions,
       projectTypeOptions,
       projectStatusOptions,
+      internalNonProject,
       editor: ClassicEditor,
 }
   },

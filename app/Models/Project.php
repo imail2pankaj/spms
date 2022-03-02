@@ -10,8 +10,8 @@ use Illuminate\Support\Str;
 class Project extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['project_code','title','slug','description','start_date','end_date','approx_hours','project_type','project_cost','project_status'];
+    // 'Internal','Non','Client'
+    protected $fillable = ['project_code','title','slug','description','start_date','end_date','approx_hours','internal_non_project','project_type','project_cost','project_status'];
 
 
     public function developers()

@@ -22,6 +22,7 @@ class CreateProjectsTable extends Migration
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->tinyInteger('approx_hours')->default(0);
+            $table->enum('internal_non_project',['Internal','Non','Client'])->default('Internal');
             $table->enum('project_type',['Fixed', 'Hourly', 'Contract'])->default('Fixed');
             $table->integer('project_cost')->default(0);
             $table->enum('project_status',['Active', 'Hold', 'Completed', 'Closed', 'Archieved'])->default('Hold');

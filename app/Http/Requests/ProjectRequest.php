@@ -25,15 +25,15 @@ class ProjectRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'description' => 'required|max:64',
+            'description' => 'required',
             'start_date' => 'required',
             'end_date' => '',
             'approx_hours' => '',
             'project_type' => 'required',
             'project_cost' => 'required',
             'project_status' => 'required',
-            'pm' => 'required',
-            'developer' => 'required',
+            'pm' => '',
+            'developer' => '',
             'designer' => '',
             'qa' => '',
             'bde' => '',
