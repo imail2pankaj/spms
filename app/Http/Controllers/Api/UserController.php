@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Models\UserBank;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -29,7 +30,7 @@ class UserController extends Controller
                       ->orWhere('phone_number', 'LIKE', $queryParams);
             });
         }
-        return $users->paginate($request->get('pagination'));
+        return $users->latest()->paginate($request->get('pagination'));
     }
 
     public function store(UserRequest $request)
@@ -58,8 +59,12 @@ class UserController extends Controller
         $user = User::create($data);
         $user->assignRole($request->input('roles'));
 
+        $user = User::find($user->id);
         $user->user_code = "SIS".str_repeat("0", 5-strlen($user->id)) . $user->id;
         $user->save();
+        $data['user_id'] = $user->id;
+
+        UserBank::create($data);
         return $user;
     }
 
@@ -121,5 +126,19 @@ class UserController extends Controller
         }
         $user->delete();
         return response()->noContent();
+    }
+
+
+    public function getBank($id)
+    {
+        $bank = UserBank::where("user_id",$id)->first();
+        return response()->json($bank);
+    }
+
+    public function updateBank(Request $request, $id)
+    {
+        $bank = UserBank::where("user_id",$id)->first();
+        $bank->update($request->all());
+        return response()->json($bank);
     }
 }

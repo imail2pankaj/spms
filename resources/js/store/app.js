@@ -5,7 +5,7 @@ export const store = new createStore({
         var ts = (Date.parse(new Date()) / 1000);
         return {
             showMobileMenu: false,
-            user: {},
+            user: { active_projects: [], hold_projects: [], non_projects: [], internal_projects: [] },
             currentTask: { id: 0, project_id: 0, user_id: 0, title: null, total_time: 0, task_status: '', time: ts },
         };
     },

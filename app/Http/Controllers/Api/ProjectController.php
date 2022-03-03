@@ -42,7 +42,7 @@ class ProjectController extends Controller
                       ->orWhere('end_date', 'LIKE', $queryParams);
             });
         }
-        return $projects->paginate($request->get('pagination'));
+        return $projects->latest()->paginate($request->get('pagination'));
     }
 
     public function store(ProjectRequest $request)

@@ -34689,19 +34689,22 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "mt-0.5 space-y-1 border-0 border-t border-yellow-500"
 };
-
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", {
+var _hoisted_2 = {
+  key: 0,
+  "class": "bg-yellow-400 p-2 font-semibold uppercase text-sm text-white"
+};
+var _hoisted_3 = {
+  key: 1,
+  "class": "bg-yellow-600 p-2 font-semibold uppercase text-sm text-white"
+};
+var _hoisted_4 = {
+  key: 2,
   "class": "bg-yellow-500 p-2 font-semibold uppercase text-sm text-white"
-}, "Active Projects", -1
-/* HOISTED */
-);
-
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", {
+};
+var _hoisted_5 = {
+  key: 3,
   "class": "bg-yellow-500 p-2 font-semibold uppercase text-sm text-white"
-}, "Hold Projects", -1
-/* HOISTED */
-);
-
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
@@ -34729,7 +34732,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["to"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))]), _hoisted_2, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.user.active_projects, function (project, index) {
+  ))]), $setup.user.internal_projects.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("h3", _hoisted_2, "Internal Projects")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.user.internal_projects, function (project, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: index,
       to: {
@@ -34754,7 +34757,57 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["to"]);
   }), 128
   /* KEYED_FRAGMENT */
-  )), _hoisted_3, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.user.hold_projects, function (project, index) {
+  )), $setup.user.non_projects.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("h3", _hoisted_3, "Non Projects")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.user.non_projects, function (project, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+      key: index,
+      to: {
+        name: 'project.task',
+        params: {
+          'slug': project.slug
+        }
+      },
+      exact: "",
+      "class": "hover:bg-gray-50 text-gray-600 hover:text-gray-900 group flex items-center px-2 py-1 text-base font-medium rounded-md"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(project.title), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  )), $setup.user.active_projects.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("h3", _hoisted_4, "Active Projects")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.user.active_projects, function (project, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+      key: index,
+      to: {
+        name: 'project.task',
+        params: {
+          'slug': project.slug
+        }
+      },
+      exact: "",
+      "class": "hover:bg-gray-50 text-gray-600 hover:text-gray-900 group flex items-center px-2 py-1 text-base font-medium rounded-md"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(project.title), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  )), $setup.user.hold_projects.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("h3", _hoisted_5, "Hold Projects")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.user.hold_projects, function (project, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
       key: index,
       to: {
@@ -35996,7 +36049,8 @@ __webpack_require__.r(__webpack_exports__);
       primary: true,
       roles: (0,_utils__WEBPACK_IMPORTED_MODULE_0__.allRoles)()
     }
-  }, {
+  }, // Roles
+  {
     path: '/app/roles',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_components_role_RoleIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/role/RoleIndex */ "./resources/js/components/role/RoleIndex.vue"));
@@ -36031,7 +36085,8 @@ __webpack_require__.r(__webpack_exports__);
       primary: false,
       roles: ['super-admin', 'admin']
     }
-  }, {
+  }, //Users
+  {
     path: '/app/users',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_components_user_UserIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/user/UserIndex */ "./resources/js/components/user/UserIndex.vue"));
@@ -36041,7 +36096,15 @@ __webpack_require__.r(__webpack_exports__);
       title: 'User',
       primary: true,
       roles: ['super-admin', 'admin']
-    }
+    },
+    children: [{
+      path: ':id/bank',
+      props: true,
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ "resources_js_components_user_BankEdit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/user/BankEdit */ "./resources/js/components/user/BankEdit.vue"));
+      },
+      name: "user.bank"
+    }]
   }, {
     path: '/app/users/create',
     component: function component() {
@@ -36065,7 +36128,8 @@ __webpack_require__.r(__webpack_exports__);
       primary: false,
       roles: ['super-admin', 'admin']
     }
-  }, {
+  }, // Service Tickets
+  {
     path: '/app/service-tickets',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_components_service-ticket_ServiceTicketIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/service-ticket/ServiceTicketIndex */ "./resources/js/components/service-ticket/ServiceTicketIndex.vue"));
@@ -36100,7 +36164,8 @@ __webpack_require__.r(__webpack_exports__);
       primary: false,
       roles: ['super-admin', 'admin', 'developer']
     }
-  }, {
+  }, // Holidays
+  {
     path: '/app/holidays',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_components_holiday_HolidayIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/holiday/HolidayIndex */ "./resources/js/components/holiday/HolidayIndex.vue"));
@@ -36135,7 +36200,8 @@ __webpack_require__.r(__webpack_exports__);
       primary: false,
       roles: ['super-admin', 'admin']
     }
-  }, {
+  }, // Leaves
+  {
     path: '/app/leaves',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_components_leave_LeaveIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/leave/LeaveIndex */ "./resources/js/components/leave/LeaveIndex.vue"));
@@ -36170,7 +36236,8 @@ __webpack_require__.r(__webpack_exports__);
       primary: false,
       roles: (0,_utils__WEBPACK_IMPORTED_MODULE_0__.allRoles)()
     }
-  }, {
+  }, // Projects
+  {
     path: '/app/projects',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_components_project_ProjectIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/project/ProjectIndex */ "./resources/js/components/project/ProjectIndex.vue"));
@@ -36293,7 +36360,12 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_0__.createStore({
     var ts = Date.parse(new Date()) / 1000;
     return {
       showMobileMenu: false,
-      user: {},
+      user: {
+        active_projects: [],
+        hold_projects: [],
+        non_projects: [],
+        internal_projects: []
+      },
       currentTask: {
         id: 0,
         project_id: 0,
@@ -83115,7 +83187,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_role_RoleIndex_vue":1,"resources_js_components_role_RoleCreate_vue":1,"resources_js_components_role_RoleEdit_vue":1,"resources_js_components_user_UserIndex_vue":1,"resources_js_components_user_UserCreate_vue":1,"resources_js_components_user_UserEdit_vue":1,"resources_js_components_service-ticket_ServiceTicketIndex_vue":1,"resources_js_components_service-ticket_ServiceTicketCreate_vue":1,"resources_js_components_service-ticket_ServiceTicketEdit_vue":1,"resources_js_components_holiday_HolidayIndex_vue":1,"resources_js_components_holiday_HolidayCreate_vue":1,"resources_js_components_holiday_HolidayEdit_vue":1,"resources_js_components_leave_LeaveIndex_vue":1,"resources_js_components_leave_LeaveCreate_vue":1,"resources_js_components_leave_LeaveEdit_vue":1,"resources_js_components_project_ProjectIndex_vue":1,"resources_js_components_project_ProjectCreate_vue":1,"resources_js_components_project_ProjectEdit_vue":1,"resources_js_components_project_ProjectDetails_vue":1,"resources_js_components_project_project-details_ProjectTask_vue":1,"resources_js_components_project_project-details_TaskEdit_vue":1,"resources_js_components_project_project-details_ProjectUpdate_vue":1,"resources_js_components_project_project-details_ProjectMilestone_vue":1,"resources_js_components_project_project-details_ProjectAttachment_vue":1,"resources_js_components_project_project-details_ProjectNote_vue":1,"resources_js_user_components_UserProfile_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_role_RoleIndex_vue":1,"resources_js_components_role_RoleCreate_vue":1,"resources_js_components_role_RoleEdit_vue":1,"resources_js_components_user_UserIndex_vue":1,"resources_js_components_user_BankEdit_vue":1,"resources_js_components_user_UserCreate_vue":1,"resources_js_components_user_UserEdit_vue":1,"resources_js_components_service-ticket_ServiceTicketIndex_vue":1,"resources_js_components_service-ticket_ServiceTicketCreate_vue":1,"resources_js_components_service-ticket_ServiceTicketEdit_vue":1,"resources_js_components_holiday_HolidayIndex_vue":1,"resources_js_components_holiday_HolidayCreate_vue":1,"resources_js_components_holiday_HolidayEdit_vue":1,"resources_js_components_leave_LeaveIndex_vue":1,"resources_js_components_leave_LeaveCreate_vue":1,"resources_js_components_leave_LeaveEdit_vue":1,"resources_js_components_project_ProjectIndex_vue":1,"resources_js_components_project_ProjectCreate_vue":1,"resources_js_components_project_ProjectEdit_vue":1,"resources_js_components_project_ProjectDetails_vue":1,"resources_js_components_project_project-details_ProjectTask_vue":1,"resources_js_components_project_project-details_TaskEdit_vue":1,"resources_js_components_project_project-details_ProjectUpdate_vue":1,"resources_js_components_project_project-details_ProjectMilestone_vue":1,"resources_js_components_project_project-details_ProjectAttachment_vue":1,"resources_js_components_project_project-details_ProjectNote_vue":1,"resources_js_user_components_UserProfile_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

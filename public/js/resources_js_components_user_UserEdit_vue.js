@@ -1118,6 +1118,72 @@ function useUsers() {
     };
   }();
 
+  var getBank = /*#__PURE__*/function () {
+    var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(id) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              _context7.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/user/' + id + '/bank');
+
+            case 2:
+              response = _context7.sent;
+              return _context7.abrupt("return", response.data);
+
+            case 4:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7);
+    }));
+
+    return function getBank(_x7) {
+      return _ref7.apply(this, arguments);
+    };
+  }();
+
+  var updateBank = /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(id, data) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              _context8.prev = 0;
+              _context8.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/user/' + id + '/bank', data);
+
+            case 3:
+              _context8.next = 5;
+              return router.push({
+                name: 'user.index'
+              });
+
+            case 5:
+              _context8.next = 10;
+              break;
+
+            case 7:
+              _context8.prev = 7;
+              _context8.t0 = _context8["catch"](0);
+
+              if (_context8.t0.response.status === 422) {}
+
+            case 10:
+            case "end":
+              return _context8.stop();
+          }
+        }
+      }, _callee8, null, [[0, 7]]);
+    }));
+
+    return function updateBank(_x8, _x9) {
+      return _ref8.apply(this, arguments);
+    };
+  }();
+
   return {
     user: user,
     users: users,
@@ -1129,6 +1195,8 @@ function useUsers() {
     deleteUser: deleteUser,
     updateUser: updateUser,
     rolesOptions: rolesOptions,
+    getBank: getBank,
+    updateBank: updateBank,
     getRolesDropdown: getRolesDropdown
   };
 }

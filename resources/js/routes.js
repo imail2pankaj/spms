@@ -12,6 +12,7 @@ export default {
                 roles: allRoles()
             },
         },
+        // Roles
         {
             path: '/app/roles',
             component: () =>
@@ -47,6 +48,8 @@ export default {
                 roles: ['super-admin', 'admin']
             },
         },
+
+        //Users
         {
             path: '/app/users',
             component: () =>
@@ -57,6 +60,13 @@ export default {
                 primary: true,
                 roles: ['super-admin', 'admin']
             },
+            children: [{
+                path: ':id/bank',
+                props: true,
+                component: () =>
+                    import ('./components/user/BankEdit'),
+                name: "user.bank"
+            }, ]
         },
         {
             path: '/app/users/create',
@@ -81,8 +91,7 @@ export default {
                 roles: ['super-admin', 'admin']
             },
         },
-
-
+        // Service Tickets
         {
             path: '/app/service-tickets',
             component: () =>
@@ -119,7 +128,7 @@ export default {
             },
         },
 
-
+        // Holidays
         {
             path: '/app/holidays',
             component: () =>
@@ -156,7 +165,7 @@ export default {
             },
         },
 
-
+        // Leaves
         {
             path: '/app/leaves',
             component: () =>
@@ -192,7 +201,7 @@ export default {
                 roles: allRoles()
             },
         },
-
+        // Projects
         {
             path: '/app/projects',
             component: () =>

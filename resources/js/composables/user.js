@@ -122,6 +122,22 @@ export default function useUsers() {
         await axios.delete('/api/users/' + id);
         await router.push({ name: 'user.index' });
     }
+
+    const getBank = async(id) => {
+        const response = await axios.get('/api/user/' + id + '/bank');
+        return response.data;
+    }
+
+    const updateBank = async(id, data) => {
+        try {
+            await axios.post('/api/user/' + id + '/bank', data);
+            await router.push({ name: 'user.index' });
+        } catch (error) {
+            if (error.response.status === 422) {
+
+            }
+        }
+    }
     return {
         user,
         users,
@@ -133,6 +149,8 @@ export default function useUsers() {
         deleteUser,
         updateUser,
         rolesOptions,
+        getBank,
+        updateBank,
         getRolesDropdown
     }
 }

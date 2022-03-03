@@ -40,6 +40,9 @@
                     <router-link to="" class="no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                         <view-icon />
                     </router-link>
+                    <router-link :to="{name:'user.bank', params: {id:item.id}}" class="no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                        <i class="fa fa-piggy-bank"></i>
+                    </router-link>
                     <router-link :to="{name:'user.edit', params: {id:item.id}}"  class="no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                         <edit-icon />
                     </router-link>
@@ -56,6 +59,12 @@
     </div>
   </div>
   <app-confirm-delete v-show="showModal" modalHeadline="Delete User?" deleteMessage="Are you sure?" @deleteRecordEvent="destroyUser(item_id)" @close="togglePopup" ></app-confirm-delete>
+
+  <router-view v-bind="$attrs" v-slot="{ Component }">
+    <transition name="fade" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 
@@ -86,6 +95,7 @@ export default {
     const togglePopup = () => {
       showModal.value = !showModal.value;
     }
+
     return {
       users,
       item_id,
