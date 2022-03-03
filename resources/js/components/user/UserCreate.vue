@@ -127,7 +127,7 @@
             <div class="md:grid md:grid-cols-3 md:gap-6 mb-6">
               <div>
                 <label for="account_name" class="input-form-label">Account Name </label>
-                <input type="text" placeholder="Phone Number" v-model="form.account_name" id="account_name" name="account_name" class="input-form-control">
+                <input type="text" placeholder="Account Name" v-model="form.account_name" id="account_name" name="account_name" class="input-form-control">
                 <span class="input-error" v-if="errors.account_name">{{errors.account_name}}</span>
               </div>
               <div>
@@ -137,22 +137,22 @@
               </div>
               <div>
                 <label for="ifsc_code" class="input-form-label">IFSC Code </label>
-                <input type="text" placeholder="IFSC Code" v-model="form.ifsc_code" id="ifsc_code" name="ifsc_code" class="input-form-control" required >
+                <input type="text" placeholder="IFSC Code" v-model="form.ifsc_code" id="ifsc_code" name="ifsc_code" class="input-form-control" >
                 <span class="input-error" v-if="errors.ifsc_code">{{errors.ifsc_code}}</span>
               </div>
               <div>
                 <label for="bank_name" class="input-form-label">Bank Name </label>
-                <input type="text" placeholder="Bank Name" v-model="form.bank_name" id="bank_name" name="bank_name" class="input-form-control" required >
+                <input type="text" placeholder="Bank Name" v-model="form.bank_name" id="bank_name" name="bank_name" class="input-form-control" >
                 <span class="input-error" v-if="errors.bank_name">{{errors.bank_name}}</span>
               </div>
               <div>
                 <label for="branch_name" class="input-form-label">Branch Name </label>
-                <input type="text" placeholder="Branch Name" v-model="form.branch_name" id="branch_name" name="branch_name" class="input-form-control" required >
+                <input type="text" placeholder="Branch Name" v-model="form.branch_name" id="branch_name" name="branch_name" class="input-form-control" >
                 <span class="input-error" v-if="errors.branch_name">{{errors.branch_name}}</span>
               </div>
               <div>
                 <label for="pan_number" class="input-form-label">PAN Number </label>
-                <input type="text" v-model="form.pan_number" id="pan_number" name="pan_number" class="input-form-control" placeholder="PAN Number" required >
+                <input type="text" v-model="form.pan_number" id="pan_number" name="pan_number" class="input-form-control" placeholder="PAN Number" >
                 <span class="input-error" v-if="errors.pan_number">{{errors.pan_number}}</span>
               </div>
             </div>

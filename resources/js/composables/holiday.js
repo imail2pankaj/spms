@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 export default function useUsers() {
-    const baseApiUrl = '/api/holidays/';
+    const baseApiUrl = '/api/holidays';
     const router = useRouter();
     const holidays = ref([]);
     const pagination = ref({
@@ -36,7 +36,7 @@ export default function useUsers() {
     }
 
     const getHoliday = async(id) => {
-        const response = await axios.get(baseApiUrl + id);
+        const response = await axios.get(baseApiUrl + '/' + id);
         holiday.value = response.data;
     }
 
@@ -62,7 +62,7 @@ export default function useUsers() {
             errors.value[key] = '';
         }
         try {
-            await axios.post(baseApiUrl + id, data);
+            await axios.post(baseApiUrl + '/' + id, data);
             await router.push({ name: 'holiday.index' });
         } catch (error) {
             if (error.response.status === 422) {
@@ -75,7 +75,7 @@ export default function useUsers() {
     }
 
     const deleteHoliday = async(id) => {
-        await axios.delete(baseApiUrl + id);
+        await axios.delete(baseApiUrl + '/' + id);
         await router.push({ name: 'holiday.index' });
     }
     return {

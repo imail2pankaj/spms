@@ -165,7 +165,8 @@
             </div>
             <div>
               <label for="note" class="input-form-label">Notes</label>
-              <textarea class="input-form-control" v-model="form.note"></textarea>
+              <ckeditor :editor="editor1" v-model="form.note"></ckeditor>
+              <!-- <textarea class="input-form-control" v-model="form.note"></textarea> -->
               <span v-if="errors.note">{{errors.note}}</span>
             </div>
           </div>
@@ -249,6 +250,7 @@ export default {
       handleFileUpload,
       internalNonProject,
       editor: ClassicEditor,
+      editor1: ClassicEditor,
     };
   },
 };

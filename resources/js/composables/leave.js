@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 export default function useUsers() {
-    const baseApiUrl = '/api/user-leaves/';
+    const baseApiUrl = '/api/user-leaves';
     const router = useRouter();
     const leaves = ref([]);
     const pagination = ref({
@@ -45,7 +45,7 @@ export default function useUsers() {
     }
 
     const getLeave = async(id) => {
-        const response = await axios.get(baseApiUrl + id);
+        const response = await axios.get(baseApiUrl + '/' + id);
         leave.value = response.data;
     }
 
@@ -71,7 +71,7 @@ export default function useUsers() {
             errors.value[key] = '';
         }
         try {
-            await axios.post(baseApiUrl + id, data);
+            await axios.post(baseApiUrl + '/' + id, data);
             await router.push({ name: 'leave.index' });
         } catch (error) {
             if (error.response.status === 422) {
@@ -84,7 +84,7 @@ export default function useUsers() {
     }
 
     const deleteLeave = async(id) => {
-        await axios.delete(baseApiUrl + id);
+        await axios.delete(baseApiUrl + '/' + id);
         await router.push({ name: 'leave.index' });
     }
     return {

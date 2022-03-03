@@ -828,7 +828,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), _hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [_hoisted_62, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     type: "text",
-    placeholder: "Phone Number",
+    placeholder: "Account Name",
     "onUpdate:modelValue": _cache[19] || (_cache[19] = function ($event) {
       return $setup.form.account_name = $event;
     }),
@@ -860,8 +860,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "ifsc_code",
     name: "ifsc_code",
-    "class": "input-form-control",
-    required: ""
+    "class": "input-form-control"
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.ifsc_code]]), $setup.errors.ifsc_code ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_67, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.ifsc_code), 1
@@ -874,8 +873,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "bank_name",
     name: "bank_name",
-    "class": "input-form-control",
-    required: ""
+    "class": "input-form-control"
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.bank_name]]), $setup.errors.bank_name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_69, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.bank_name), 1
@@ -888,8 +886,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "branch_name",
     name: "branch_name",
-    "class": "input-form-control",
-    required: ""
+    "class": "input-form-control"
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.branch_name]]), $setup.errors.branch_name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_71, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.branch_name), 1
@@ -902,8 +899,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "pan_number",
     name: "pan_number",
     "class": "input-form-control",
-    placeholder: "PAN Number",
-    required: ""
+    placeholder: "PAN Number"
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.pan_number]]), $setup.errors.pan_number ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_73, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.pan_number), 1

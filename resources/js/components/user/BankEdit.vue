@@ -42,7 +42,7 @@
                 <input type="text" placeholder="Branch Name" v-model="user.branch_name" class="input-form-control" />
                 <!-- <span class="input-error" v-if="errors.branch_name">{{ errors.branch_name }}</span> -->
               </div>
-              <div class="mb-6">
+              <div class="mb-16">
                 <label for="pan_number" class="input-form-label">PAN Number </label>
                 <input type="text" placeholder="PAN Number" v-model="user.pan_number" class="input-form-control" />
                 <!-- <span class="input-error" v-if="errors.pan_number">{{ errors.pan_number }}</span> -->

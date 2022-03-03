@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 export default function useDashboard() {
-    const baseApiUrl = '/api/dashboard/';
+    const baseApiUrl = '/api/dashboard';
 
     const getStatistics = async(data) => {
         const response = await axios.get(baseApiUrl);
@@ -11,7 +11,7 @@ export default function useDashboard() {
     }
 
     const getStatistic = async(id) => {
-        const response = await axios.get(baseApiUrl + id);
+        const response = await axios.get(baseApiUrl + '/' + id);
         return response.data;
     }
 

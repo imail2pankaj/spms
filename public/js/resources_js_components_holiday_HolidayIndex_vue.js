@@ -295,7 +295,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 function useUsers() {
-  var baseApiUrl = '/api/holidays/';
+  var baseApiUrl = '/api/holidays';
   var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();
   var holidays = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)([]);
   var pagination = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
@@ -361,7 +361,7 @@ function useUsers() {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get(baseApiUrl + id);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get(baseApiUrl + '/' + id);
 
             case 2:
               response = _context2.sent;
@@ -445,7 +445,7 @@ function useUsers() {
 
               _context4.prev = 1;
               _context4.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post(baseApiUrl + id, data);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post(baseApiUrl + '/' + id, data);
 
             case 4:
               _context4.next = 6;
@@ -489,7 +489,7 @@ function useUsers() {
           switch (_context5.prev = _context5.next) {
             case 0:
               _context5.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete(baseApiUrl + id);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete(baseApiUrl + '/' + id);
 
             case 2:
               _context5.next = 4;

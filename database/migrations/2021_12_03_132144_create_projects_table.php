@@ -19,7 +19,7 @@ class CreateProjectsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('description');
-            $table->date('start_date');
+            $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->tinyInteger('approx_hours')->default(0);
             $table->enum('internal_non_project',['Internal','Non','Client'])->default('Internal');

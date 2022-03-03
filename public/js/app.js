@@ -32567,7 +32567,7 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
       initialEvents: [],
       eventSources: [{
         events: function events(start, callback) {
-          axios.get("/api/user/").then(function (response) {
+          axios.get("/api/user").then(function (response) {
             callback(response.data.events);
           });
         }
@@ -32575,7 +32575,7 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
     };
 
     function getUser() {
-      axios.get("/api/user/").then( /*#__PURE__*/function () {
+      axios.get("/api/user").then( /*#__PURE__*/function () {
         var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(response) {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
             while (1) {
@@ -34912,8 +34912,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* STABLE */
 
   })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.profileRoutes, function (route, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
-      key: index,
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+      key: index
+    }, [route.meta.roles.includes($setup.user.role) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+      key: 0,
       to: {
         name: route.name
       },
@@ -34930,7 +34932,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
     }, 1032
     /* PROPS, DYNAMIC_SLOTS */
-    , ["to"]);
+    , ["to"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+    /* STABLE_FRAGMENT */
+    );
   }), 128
   /* KEYED_FRAGMENT */
   ))])])])])]);
@@ -35110,7 +35114,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 function useDashboard() {
-  var baseApiUrl = '/api/dashboard/';
+  var baseApiUrl = '/api/dashboard';
 
   var getStatistics = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
@@ -35147,7 +35151,7 @@ function useDashboard() {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get(baseApiUrl + id);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get(baseApiUrl + '/' + id);
 
             case 2:
               response = _context2.sent;

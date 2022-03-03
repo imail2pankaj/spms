@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 export default function useServiceTicket() {
-    const baseApiUrl = '/api/service-tickets/';
+    const baseApiUrl = '/api/service-tickets';
     const router = useRouter();
     const serviceTickets = ref([]);
     const pagination = ref({
@@ -44,7 +44,7 @@ export default function useServiceTicket() {
     }
 
     const getServiceTicket = async(id) => {
-        const response = await axios.get(baseApiUrl + id);
+        const response = await axios.get(baseApiUrl + '/' + id);
         serviceTicket.value = response.data;
     }
 
@@ -70,7 +70,7 @@ export default function useServiceTicket() {
             errors.value[key] = '';
         }
         try {
-            await axios.post(baseApiUrl + id, data);
+            await axios.post(baseApiUrl + '/' + id, data);
             await router.push({ name: 'service-ticket.index' });
         } catch (error) {
             if (error.response.status === 422) {
@@ -83,7 +83,7 @@ export default function useServiceTicket() {
     }
 
     const deleteServiceTicket = async(id) => {
-        await axios.delete(baseApiUrl + id);
+        await axios.delete(baseApiUrl + '/' + id);
         await router.push({ name: 'service-ticket.index' });
     }
     return {

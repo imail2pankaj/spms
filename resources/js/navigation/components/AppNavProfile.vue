@@ -31,6 +31,7 @@
           <div class="bg-white rounded-md shadow dark-mode:bg-gray-800">
             <template  v-for="(route, index) in profileRoutes" :key="index">
               <router-link
+                v-if="route.meta.roles.includes(user.role)"
                 :to="{ name: route.name }"
                 exact
                 class="hover:bg-gray-50 text-gray-600 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"

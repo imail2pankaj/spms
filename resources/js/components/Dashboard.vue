@@ -119,7 +119,7 @@ export default {
       eventSources: [
         {
           events(start, callback) {
-            axios.get("/api/user/").then((response) => {
+            axios.get("/api/user").then((response) => {
               callback(response.data.events);
             });
           },
@@ -129,7 +129,7 @@ export default {
 
     function getUser() {
       axios
-        .get("/api/user/")
+        .get("/api/user")
         .then(async (response) => {
           user.value = response.data;
           statistics.value = await getStatistic(user.value.id);

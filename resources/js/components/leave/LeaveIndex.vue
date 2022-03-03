@@ -83,9 +83,9 @@ export default {
       await getLeaves(emitPagination);
     }
     const destroyLeave = async (itemId) => {
-      await deleteLeave(itemId);
-      await getLeaves(emitPaginationLocal.value);
       togglePopup();
+      await deleteLeave(itemId);
+      await getLeaves({});
     }
     const togglePopup = () => {
       showModal.value = !showModal.value;
