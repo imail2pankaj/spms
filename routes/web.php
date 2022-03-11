@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppController;
+use App\Mail\AccountCreated;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,10 @@ use App\Http\Controllers\AppController;
 
 Route::get('/', function () {
     return view('welcome');
+    // $user = ['first_name'=>'Pankaj', 'email'=>'imail2pankaj@gmail.com','password'=>'1234'];
+
+    // Mail::to('imail2pankaj@gmail.com')->send(new AccountCreated($user));
+    // return view('emails.account-created',compact('user'));
 });
 
 Route::get('/app', [AppController::class, 'index'])->name('app');

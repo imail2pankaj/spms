@@ -15,8 +15,11 @@
       <button v-if="user.id === task.user_id && task_type === 'Completed'" title="Archive Task" @click="startTaskStatus(task.id, 'Archieved')" class="w-5 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
         <archive-icon />
       </button>
-      <button title="Delete Task" @click="deleteTask(task.id)" class="w-5 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
+      <button v-if="task.task_status !== 'Active' && task.task_status != 'Started'" title="Delete Task" @click="deleteTask(task.id)" class="w-5 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
         <delete-icon />
+      </button>
+      <button v-if="task.task_status === 'Active' || task.task_status === 'Started'" title="Stop Task" @click="startTaskStatus(task.id, 'Completed')" class="w-4 p-1 transform hover:text-purple-500 hover:scale-110 focus:outline-none focus:ring focus:border-blue-300">
+        <stop-icon />
       </button>
     <!-- </span> -->
   </div>

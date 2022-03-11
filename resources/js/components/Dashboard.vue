@@ -1,6 +1,6 @@
 <template>
   <h1 class="text-2xl font-bold mb-2">Dashboard</h1>
-  <div class="grid gap-6 mb-8 md:grid-cols-4 xl:grid-cols-4">
+  <div class="grid gap-6 mb-4 md:grid-cols-4 xl:grid-cols-4">
     <div class="min-w-0 rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800" >
       <div class="p-4 flex items-center">
         <div class="p-3 rounded-full mr-2" >
@@ -62,7 +62,8 @@
       </div>
     </div>
   </div>
-  <div class="bg-white overflow-hidden shadow-sm rounded-lg">
+  <HoursChart/>
+  <div class="bg-white overflow-hidden shadow-sm rounded-lg mt-2">
     <div class="grid grid-cols-4 gap-4">
       <div class="col-span-3">
           <div class="p-6 bg-white border-b border-gray-200">
@@ -90,22 +91,36 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch, computed, provide } from "vue";
+import { useStore } from "vuex";
 import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import useDashboard from '../composables/dashboard';
 import TaskItem from "../components/common/TaskItem.vue";
+import HoursChart from "../components/common/HoursChart.vue";
 
 export default {
   components: {
     FullCalendar,
-    TaskItem
+    TaskItem,
+    HoursChart
   },
   setup(props, {}) {
     const user = ref({id: 0, first_name: '',last_name :''});
+    const store = useStore();
+    const currentTask = computed(() => store.state.currentTask);
     const { getStatistics, getStatistic } = useDashboard();
-    const statistics = ref({leavesApplied: 0, activeTasks:0, pendingLeaves: 0, openServiceTicket: 0, activeTasksList: []});
+    const statistics = ref({
+      leavesApplied: 0,
+      activeTasks:0,
+      pendingLeaves: 0,
+      openServiceTicket: 0,
+      activeTasksList: [],
+      chart:{}
+    });
+
+    provide('chart', computed(() => statistics.value.chart));
 
     const calendarOptions = {
       plugins: [dayGridPlugin, interactionPlugin],
@@ -127,12 +142,24 @@ export default {
       ],
     };
 
+    watch(
+      () => currentTask.value.time,
+      async newSlug => {
+        if(newSlug){
+          user.value = [];
+          getUser();
+        }
+      }
+    );
+
     function getUser() {
       axios
         .get("/api/user")
         .then(async (response) => {
+          statistics.value = {};
           user.value = response.data;
-          statistics.value = await getStatistic(user.value.id);
+          const data = await getStatistic(user.value.id);
+          statistics.value = data;
         })
         .catch((error) => (user.value = error));
     }
@@ -149,3 +176,4 @@ export default {
   },
 };
 </script>
+

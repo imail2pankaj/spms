@@ -1,78 +1,6 @@
 <template>
   <div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-10">
-      <div>
-        <div class="lg:grid lg:grid-cols-3 lg:gap-6">
-          <div class="lg:col-span-1">
-            <div class="px-4 sm:px-0">
-              <h3 class="text-lg font-medium leading-6 text-gray-900">
-                Profile
-              </h3>
-              <p class="mt-1 text-sm leading-5 text-gray-600">
-                Information that is displayed on the website.
-              </p>
-            </div>
-          </div>
-          <div
-            class="mt-5 lg:mt-0 lg:col-span-2 shadow rounded-md sm:overflow-hidden px-4 py-5 bg-white sm:p-6"
-          >
-            <div>
-              <label class="block text-sm leading-5 font-medium text-gray-700">
-                Avatar
-              </label>
-              <div class="mt-2 flex items-center">
-                <avatar-uploader
-                  :url="updateAvatarUrl"
-                  @success="reload"
-                ></avatar-uploader>
-              </div>
-            </div>
-            <div class="mt-5">
-              <div class="w-full">
-                <label
-                  for="name"
-                  class="block text-sm font-medium leading-5 text-gray-700"
-                  >Name</label
-                >
-                <div class="flex flex-col items-center">
-                  <input
-                    type="text"
-                    class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                    v-model="localUser.name"
-                  />
-                  <div class="mt-5 flex justify-end items-center w-full">
-                    <transition name="fade">
-                      <div
-                        v-if="state.nameStatus"
-                        class="mr-4"
-                        v-html="state.nameStatus"
-                      ></div>
-                    </transition>
-                    <span
-                      class="w-full md:w-1/3 inline-flex rounded-md shadow-sm"
-                    >
-                      <button
-                        @click="updateName"
-                        type="button"
-                        class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md bg-gray-800 hover:bg-orange-500 text-gray-300 hover:text-white sm:text-sm sm:leading-5 font-medium focus:outline-none focus:border-orange-300 focus:ring-orange-500 transition duration-150 ease-in-out"
-                      >
-                        Update
-                      </button>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hidden sm:block">
-        <div class="py-5">
-          <div class="border-t border-gray-200"></div>
-        </div>
-      </div>
-
       <div class="mt-10 sm:mt-0">
         <div class="lg:grid lg:grid-cols-3 lg:gap-6">
           <div class="lg:col-span-1">
@@ -86,37 +14,17 @@
             </div>
           </div>
 
-          <div
-            class="mt-5 lg:mt-0 lg:col-span-2 shadow rounded-md sm:overflow-hidden px-4 py-5 bg-white sm:p-6"
-          >
+          <div class="mt-5 lg:mt-0 lg:col-span-2 shadow rounded-md sm:overflow-hidden px-4 py-5 bg-white sm:p-6" >
             <div class="w-full">
-              <label
-                for="name"
-                class="block text-sm font-medium leading-5 text-gray-700"
-                >Email</label
-              >
+              <label for="name" class="block text-sm font-medium leading-5 text-gray-700" >Email</label>
               <div class="flex flex-col items-center">
-                <input
-                  type="email"
-                  class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                  v-model="localUser.email"
-                />
+                <input type="email" class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" v-model="localUser.email" />
                 <div class="mt-5 flex justify-end items-center w-full">
                   <transition name="fade">
-                    <div
-                      v-if="state.emailStatus"
-                      class="mr-4"
-                      v-html="state.emailStatus"
-                    ></div>
+                    <div v-if="state.emailStatus" class="mr-4" v-html="state.emailStatus" ></div>
                   </transition>
-                  <span
-                    class="w-full md:w-1/3 inline-flex rounded-md shadow-sm"
-                  >
-                    <button
-                      @click="updateEmail"
-                      type="button"
-                      class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md bg-gray-800 hover:bg-orange-500 text-gray-300 hover:text-white sm:text-sm sm:leading-5 font-medium focus:outline-none focus:border-orange-300 focus:ring-orange-500 transition duration-150 ease-in-out"
-                    >
+                  <span class="w-full md:w-1/3 inline-flex rounded-md shadow-sm" >
+                    <button @click="updateEmail" type="button" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md bg-gray-800 hover:bg-orange-500 text-gray-300 hover:text-white sm:text-sm sm:leading-5 font-medium focus:outline-none focus:border-orange-300 focus:ring-orange-500 transition duration-150 ease-in-out" >
                       Update
                     </button>
                   </span>
@@ -125,41 +33,18 @@
             </div>
             <div class="mt-5 pt-6 border-t border-gray-200">
               <div class="w-full">
-                <label
-                  for="name"
-                  class="block text-sm items-center font-medium leading-5 text-gray-700"
-                >
+                <label for="name" class="block text-sm items-center font-medium leading-5 text-gray-700">
                   <span class="mr-2">Update password</span>
                 </label>
                 <div class="flex flex-col items-center">
-                  <input
-                    class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                    placeholder="Current Password"
-                    type="password"
-                    v-model="currentPassword"
-                  />
-                  <input
-                    class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                    placeholder="New Password"
-                    type="password"
-                    v-model="newPassword"
-                  />
+                  <input class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Current Password" type="password" v-model="currentPassword" />
+                  <input class="mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="New Password" type="password" v-model="newPassword" />
                   <div class="mt-5 flex justify-end items-center w-full">
                     <transition name="fade">
-                      <div
-                        v-if="state.passwordStatus"
-                        class="mr-4"
-                        v-html="state.passwordStatus"
-                      ></div>
+                      <div v-if="state.passwordStatus" class="mr-4" v-html="state.passwordStatus" ></div>
                     </transition>
-                    <span
-                      class="w-full md:w-1/3 inline-flex rounded-md shadow-sm"
-                    >
-                      <button
-                        @click="updatePassword"
-                        type="button"
-                        class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md bg-gray-800 hover:bg-orange-500 text-gray-300 hover:text-white sm:text-sm sm:leading-5 font-medium focus:outline-none focus:border-orange-300 focus:ring-orange-500 transition duration-150 ease-in-out"
-                      >
+                    <span class="w-full md:w-1/3 inline-flex rounded-md shadow-sm" >
+                      <button @click="updatePassword" type="button" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md bg-gray-800 hover:bg-orange-500 text-gray-300 hover:text-white sm:text-sm sm:leading-5 font-medium focus:outline-none focus:border-orange-300 focus:ring-orange-500 transition duration-150 ease-in-out" >
                         Update
                       </button>
                     </span>

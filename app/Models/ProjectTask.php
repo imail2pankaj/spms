@@ -45,6 +45,11 @@ class ProjectTask extends Model
         return $this->hasMany(ProjectTaskHistory::class, 'task_id', 'id');
     }
 
+    public function taskTime()
+    {
+        return $this->hasMany(ProjectTaskTime::class, 'task_id', 'id');
+    }
+
     public function activeTask()
     {
         return $this->hasOne(ProjectTask::class, 'task_id', 'id')->whereIn('task_status',['Started','Active']);
