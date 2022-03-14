@@ -19,6 +19,7 @@
         "spatie/laravel-permission": "^5.4"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.12",
         "brianium/paratest": "^6.1",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
@@ -35,7 +36,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": ["barryvdh/laravel-ide-helper"]
         }
     },
     "autoload": {

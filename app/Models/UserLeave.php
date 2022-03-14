@@ -6,6 +6,35 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\UserLeave
+ *
+ * @property int $id
+ * @property string $description
+ * @property string $start_date
+ * @property string|null $end_date
+ * @property int $user_id
+ * @property string|null $comment
+ * @property string $type
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLeave newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLeave newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLeave query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLeave whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLeave whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLeave whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLeave whereEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLeave whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLeave whereStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLeave whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLeave whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLeave whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLeave whereUserId($value)
+ * @mixin \Eloquent
+ */
 class UserLeave extends Model
 {
     use HasFactory;

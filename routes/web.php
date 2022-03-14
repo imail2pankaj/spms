@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppController;
 use App\Mail\AccountCreated;
+use App\Models\ProjectTaskTime;
 use Illuminate\Support\Facades\Mail;
 
 /*
