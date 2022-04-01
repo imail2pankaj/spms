@@ -34,7 +34,8 @@ class DashboardController extends Controller
             'activeTasks' => $activeTask->count(),
             'pendingLeaves' => $pendingLeaves,
             'openServiceTicket'=>$openServiceTicket,
-            "chart" => $taskTimes->getDailyTaskWorked(auth()->user()->id)
+            "chart" => $taskTimes->getDailyTaskWorked(auth()->user()->id),
+            date("d")
         ]);
     }
 

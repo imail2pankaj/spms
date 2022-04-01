@@ -169,6 +169,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
         /*
          * Application Service Providers...
          */

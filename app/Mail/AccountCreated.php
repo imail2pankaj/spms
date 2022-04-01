@@ -4,10 +4,11 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 use Illuminate\Queue\SerializesModels;
 
-class AccountCreated extends Mailable
+class AccountCreated extends Notification implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -22,13 +23,13 @@ class AccountCreated extends Mailable
         $this->user = $user;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
+    public function via($notifiable)
     {
-        return $this->view('emails.account-created')->with('user', $this->user);
+        return ['mail'];
+    }
+
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)->view('emails.account-created',['user'=> $this->user]);
     }
 }

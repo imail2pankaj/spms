@@ -49,7 +49,7 @@ class ProjectTaskTime extends Model
         ->whereHas('task', function($query) use($user_id) {
             return $query->where('user_id',$user_id);
         })
-        ->whereRaw('DAY(created_at) = ?', date("d"))
+        ->whereRaw('DATE_FORMAT(created_at, "%Y-%m-%d") = ?', date("Y-m-d"))
         ->groupBy('task_id')
         ->latest()
         ->get();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Mail\AccountCreated;
 use App\Models\User;
 use App\Models\UserBank;
 use Illuminate\Http\Request;
@@ -58,6 +59,8 @@ class UserController extends Controller
         $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
         $user->assignRole($request->input('roles'));
+
+        $user->notify(new AccountCreated(['first_name'=> $user->first_name,'email'=>$user->email,'password'=>$request->input('password')]));
 
         $user = User::find($user->id);
         $user->user_code = "SIS".str_repeat("0", 5-strlen($user->id)) . $user->id;

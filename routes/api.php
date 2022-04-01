@@ -48,10 +48,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     )->where('user_status', 1)->get();
     foreach ($users as $key => $user) {
         if($user->dob) {
-            array_push($events, [ "groupId" => $user->id, "title" => $user->first_name . ' ' . $user->last_name ."'s Birthday", "start" => $user->dob, 'backgroundColor' =>'#3b82f6','textColor' =>'#000' ]);
+            $date = date('Y') . date("-m-d", strtotime($user->dob));
+            array_push($events, [ "groupId" => $user->id, "title" => $user->first_name . ' ' . $user->last_name ."'s Birthday", "start" => $date, 'backgroundColor' =>'#3b82f6','textColor' =>'#000' ]);
         }
         if($user->join_date) {
-            array_push($events, [ "groupId" => $user->id, "title" => $user->first_name . ' ' . $user->last_name ."'s Work Anniversary", "start" => $user->join_date, 'backgroundColor' =>'#bfdbfe','textColor' =>'#000' ]);
+            $date = date('Y') . date("-m-d", strtotime($user->join_date));
+            array_push($events, [ "groupId" => $user->id, "title" => $user->first_name . ' ' . $user->last_name ."'s Work Anniversary", "start" => $date, 'backgroundColor' =>'#bfdbfe','textColor' =>'#000' ]);
         }
     }
 
