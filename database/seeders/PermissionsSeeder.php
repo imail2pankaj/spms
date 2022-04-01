@@ -20,32 +20,32 @@ class PermissionsSeeder extends Seeder
         // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $role3 = Role::create(['name' => 'super-admin']);
+        $role3 = Role::create(['guard_name' => 'sanctum', 'name' => 'super-admin']);
         // gets all permissions via Gate::before rule; see AuthServiceProvider
 
         // create permissions
-        Permission::create(['name' => 'Edit User']);
-        Permission::create(['name' => 'Delete User']);
-        Permission::create(['name' => 'Add User']);
-        Permission::create(['name' => 'View User']);
-        Permission::create(['name' => 'List User']);
+        Permission::create(['guard_name' => 'sanctum', 'name' => 'Edit User']);
+        Permission::create(['guard_name' => 'sanctum', 'name' => 'Delete User']);
+        Permission::create(['guard_name' => 'sanctum', 'name' => 'Add User']);
+        Permission::create(['guard_name' => 'sanctum', 'name' => 'View User']);
+        Permission::create(['guard_name' => 'sanctum', 'name' => 'List User']);
 
         // create permissions
-        Permission::create(['name' => 'Edit Role']);
-        Permission::create(['name' => 'Delete Role']);
-        Permission::create(['name' => 'Add Role']);
-        Permission::create(['name' => 'View Role']);
-        Permission::create(['name' => 'List Role']);
+        Permission::create(['guard_name' => 'sanctum', 'name' => 'Edit Role']);
+        Permission::create(['guard_name' => 'sanctum', 'name' => 'Delete Role']);
+        Permission::create(['guard_name' => 'sanctum', 'name' => 'Add Role']);
+        Permission::create(['guard_name' => 'sanctum', 'name' => 'View Role']);
+        Permission::create(['guard_name' => 'sanctum', 'name' => 'List Role']);
 
         // create permissions
-        Permission::create(['name' => 'Edit Project']);
-        Permission::create(['name' => 'Delete Project']);
-        Permission::create(['name' => 'Add Project']);
-        Permission::create(['name' => 'View Project']);
-        Permission::create(['name' => 'List Project']);
+        Permission::create(['guard_name' => 'sanctum', 'name' => 'Edit Project']);
+        Permission::create(['guard_name' => 'sanctum', 'name' => 'Delete Project']);
+        Permission::create(['guard_name' => 'sanctum', 'name' => 'Add Project']);
+        Permission::create(['guard_name' => 'sanctum', 'name' => 'View Project']);
+        Permission::create(['guard_name' => 'sanctum', 'name' => 'List Project']);
 
         // create roles and assign existing permissions
-        $role1 = Role::create(['name' => 'admin']);
+        $role1 = Role::create(['guard_name' => 'sanctum', 'name' => 'admin']);
         $role1->givePermissionTo('Edit Role');
         $role1->givePermissionTo('Delete Role');
         $role1->givePermissionTo('Add Role');
@@ -57,7 +57,7 @@ class PermissionsSeeder extends Seeder
         $role1->givePermissionTo('View Project');
         $role1->givePermissionTo('List Project');
 
-        $role2 = Role::create(['name' => 'pm']);
+        $role2 = Role::create(['guard_name' => 'sanctum', 'name' => 'pm']);
         $role2->givePermissionTo('Edit Project');
         $role2->givePermissionTo('Delete Project');
         $role2->givePermissionTo('Add Project');
@@ -101,11 +101,11 @@ class PermissionsSeeder extends Seeder
         ]);
         $user->assignRole($role1);
 
-        $role = Role::create(['name' => 'hr']);
-        $role = Role::create(['name' => 'qa']);
-        $role = Role::create(['name' => 'developer']);
-        $role = Role::create(['name' => 'designer']);
-        $role = Role::create(['name' => 'trainee']);
-        $role = Role::create(['name' => 'customer']);
+        $role = Role::create(['guard_name' => 'sanctum', 'name' => 'hr']);
+        $role = Role::create(['guard_name' => 'sanctum', 'name' => 'qa']);
+        $role = Role::create(['guard_name' => 'sanctum', 'name' => 'developer']);
+        $role = Role::create(['guard_name' => 'sanctum', 'name' => 'designer']);
+        $role = Role::create(['guard_name' => 'sanctum', 'name' => 'trainee']);
+        $role = Role::create(['guard_name' => 'sanctum', 'name' => 'customer']);
     }
 }
