@@ -107,5 +107,6 @@ class PermissionsSeeder extends Seeder
         $role = Role::create(['guard_name' => 'sanctum', 'name' => 'designer']);
         $role = Role::create(['guard_name' => 'sanctum', 'name' => 'trainee']);
         $role = Role::create(['guard_name' => 'sanctum', 'name' => 'customer']);
+        $role = Role::create(['guard_name' => 'sanctum', 'name' => 'bde']);
     }
 }
