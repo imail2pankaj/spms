@@ -30,6 +30,6 @@ Route::get('/', function () {
 });
 
 Route::get('/app', [AppController::class, 'index'])->name('app');
-Route::get('/app/{vue_capture?}', [AppController::class, 'app'])->where('vue_capture', '[\/\w\.\-\ \&\=]*');
+Route::get('/app/{vue_capture?}', [AppController::class, 'app'])->where('vue_capture', '[\/\w\.\-\ \&\=]*')->middleware('auth:sanctum');
 
 require __DIR__.'/auth.php';

@@ -72,6 +72,10 @@ class AppController extends Controller
         }
         // dd($projects);
         // echo json_encode($currentTask);exit;
+
+        // if(!auth()->check()) {
+        //     return redirect('login');
+        // }
         return view('app', [
             'user' => $user,
             'currentTask' => $currentTask ? $currentTask : "{ id: 0, project_id: 0, user_id: 0, title: null, total_time: 0, task_status: 'Created',time:" . strtotime(date("Y-m-d H:i:s")) . " }",
