@@ -92,8 +92,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('dashboard/{user_id}', [DashboardController::class,'getStatistic'])->name("getStatistic")->where('user_id', '[0-9]+');
     Route::apiResource('roles', RoleController::class);
     Route::get('permissions', [RoleController::class,'permissions'])->name("role-permissions");
-    Route::get('user/{id}/bank', [UserController::class,'getBank'])->name("getBank");
-    Route::put('user/{id}/bank', [UserController::class,'updateBank'])->name("updateBank");
+    Route::get('user/{user}/bank', [UserController::class,'getBank'])->name("getBank");
+    Route::put('user/{user}/bank', [UserController::class,'updateBank'])->name("updateBank");
     Route::apiResource('users', UserController::class);
     Route::get('user/roles', [RoleController::class,'allRoles'])->name("allRoles");
 

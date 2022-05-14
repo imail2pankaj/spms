@@ -18,18 +18,10 @@ class UserController extends Controller
     {
         $users = User::with('roles');
         if($request->get('status') > -1) {
-            $users->where("user_status", $request->get('status'));
+            $users->status($request->get('status'));
         }
         if(!empty($request->get('keyword'))) {
-            $users->where(function ($query) use ($request) {
-                $queryParams = "%" . $request->get('keyword') . "%";
-                $query->where('first_name', 'LIKE', $queryParams)
-                      ->orWhere('middle_name', 'LIKE', $queryParams)
-                      ->orWhere('last_name', 'LIKE', $queryParams)
-                      ->orWhere('email', 'LIKE', $queryParams)
-                      ->orWhere('user_code', 'LIKE', $queryParams)
-                      ->orWhere('phone_number', 'LIKE', $queryParams);
-            });
+            $users->search($request->get('keyword'));
         }
         return $users->latest()->paginate($request->get('pagination'));
     }
@@ -37,9 +29,6 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->all();
-        if($request->has("password")) {
-            $data['password'] = $request->input("password");
-        }
         if ($request->hasFile('profile_image')) {
             $image = $request->file('profile_image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
@@ -56,18 +45,9 @@ class UserController extends Controller
 
             $data['resume_file'] = $imageName;
         }
-        $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
-        $user->assignRole($request->input('roles'));
+        // $user->notify(new AccountCreated(['first_name'=> $user->first_name,'email'=>$user->email,'password'=>$request->input('password')]));
 
-        $user->notify(new AccountCreated(['first_name'=> $user->first_name,'email'=>$user->email,'password'=>$request->input('password')]));
-
-        $user = User::find($user->id);
-        $user->user_code = "SIS".str_repeat("0", 5-strlen($user->id)) . $user->id;
-        $user->save();
-        $data['user_id'] = $user->id;
-
-        UserBank::create($data);
         return $user;
     }
 
@@ -112,9 +92,6 @@ class UserController extends Controller
         }
         $user->update($data);
 
-        DB::table('model_has_roles')->where('model_id',$user->id)->delete();
-
-        $user->assignRole($request->input('roles'));
         return $user;
     }
 
@@ -132,16 +109,13 @@ class UserController extends Controller
     }
 
 
-    public function getBank($id)
+    public function getBank(User $user)
     {
-        $bank = UserBank::where("user_id",$id)->first();
-        return response()->json($bank);
+        return response()->json($user->bank);
     }
 
-    public function updateBank(Request $request, $id)
+    public function updateBank(Request $request, User $user)
     {
-        $bank = UserBank::where("user_id",$id)->first();
-        $bank->update($request->all());
-        return response()->json($bank);
+        return response()->json($user->bank->update($request->all()));
     }
 }

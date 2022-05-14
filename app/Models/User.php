@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -129,24 +130,33 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::saved(function ($user) {
-            $user->user_code = static::generateUserCode($user->id);
-        });
+    public function setPasswordAttribute($value) {
+        $this->attributes['password'] = Hash::make($value);
     }
 
-    protected static function generateUserCode($id)
+    public function scopeStatus($query, $status)
     {
-        return "SIS".str_repeat("0", 5-strlen($id)) . $id;
+        return $query->where('user_status', $status);
     }
 
+    public function scopeSearch($query, $keyword)
+    {
+        $queryParams = "%" . $keyword . "%";
+        return $query->where('first_name', 'LIKE', $queryParams)
+              ->orWhere('middle_name', 'LIKE', $queryParams)
+              ->orWhere('last_name', 'LIKE', $queryParams)
+              ->orWhere('email', 'LIKE', $queryParams)
+              ->orWhere('user_code', 'LIKE', $queryParams)
+              ->orWhere('phone_number', 'LIKE', $queryParams);
+    }
 
     public function projects()
     {
         return $this->belongsToMany(Project::class, 'project_users');
+    }
+
+    public function bank()
+    {
+        return $this->hasOne(UserBank::class);
     }
 }
