@@ -48,6 +48,8 @@ class UserController extends Controller
         $user = User::create($data);
         // $user->notify(new AccountCreated(['first_name'=> $user->first_name,'email'=>$user->email,'password'=>$request->input('password')]));
 
+        $user->assignRole($request->input('roles'));
+
         return $user;
     }
 
@@ -91,6 +93,8 @@ class UserController extends Controller
             unset($data['password']);
         }
         $user->update($data);
+
+        $user->assignRole($request->input('roles'));
 
         return $user;
     }
