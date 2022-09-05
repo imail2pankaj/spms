@@ -1,11 +1,9 @@
 <?php
 
 use App\Http\Controllers\Api\RoleController;
-use App\Http\Controllers\Api\CompanyController;
-use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\HolidayController;
-use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\ProjectTaskController;
 use App\Http\Controllers\Api\ServiceTicketController;
@@ -120,4 +118,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('service-tickets', ServiceTicketController::class);
     Route::apiResource('holidays', HolidayController::class);
     Route::apiResource('user-leaves', UserLeaveController::class);
+    Route::get('invoices/new/invoice/number', [InvoiceController::class,'getInvoiceNewInvoiceNumber'])->name("getInvoiceNewInvoiceNumber");
+    Route::get('invoices/customer/{user_id}', [InvoiceController::class,'getCustomerDetails'])->name("getCustomerDetails");
+    Route::apiResource('invoices', InvoiceController::class);
 });

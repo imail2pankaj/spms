@@ -54,7 +54,7 @@ app.component('archive-icon', ArchiveIcon);
 app.component('app-datatables', Datatables);
 app.component('app-pagination', Pagination);
 app.component('app-project-nav', ProjectNav);
-
+console.log('vfdvdvdfvdfvdfvfd');
 app.config.globalProperties.$filters = {
     convertDateFormat(value) {
         return moment(value).format("MM/DD/YYYY hh:mm")

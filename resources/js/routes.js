@@ -91,6 +91,44 @@ export default {
                 roles: ['super-admin', 'admin']
             },
         },
+
+        // Invoices
+        {
+            path: '/app/invoices',
+            component: () =>
+                import ('./components/invoice/InvoiceIndex'),
+            name: 'invoice.index',
+            meta: {
+                title: 'Invoices',
+                primary: false,
+                profile: true,
+                roles: ['super-admin', 'admin']
+            },
+        },
+        {
+            path: '/app/invoices/create',
+            component: () =>
+                import ('./components/invoice/InvoiceCreate'),
+            name: 'invoice.create',
+            meta: {
+                title: 'Invoice Create',
+                primary: false,
+                roles: ['super-admin', 'admin']
+            },
+        },
+        {
+            path: '/app/invoices/:id/edit',
+            component: () =>
+                import ('./components/invoice/InvoiceEdit'),
+            name: 'invoice.edit',
+            props: true,
+            meta: {
+                title: 'Invoice Edit',
+                primary: false,
+                roles: ['super-admin', 'admin']
+            },
+        },
+
         // Service Tickets
         {
             path: '/app/service-tickets',

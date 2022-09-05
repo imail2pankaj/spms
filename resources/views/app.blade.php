@@ -23,8 +23,7 @@
             <the-app :user="{{ $user }}" :active_task="{{ $currentTask }}" />
         </div>
         <script id="__bs_script__">//<![CDATA[
-            document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.26.14'><\/script>".replace("HOST", location.hostname));
-            // document.write("<script async src='https://spms.local/browser-sync/browser-sync-client.js?v=2.26.14'><\/script>".replace("HOST", location.hostname));
+            document.write("<script async src='https://HOST:3000/browser-sync/browser-sync-client.js?v=2.26.14'><\/script>".replace("HOST", location.hostname));
         //]]></script>
     </body>
 </html>
