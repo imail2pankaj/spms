@@ -40,6 +40,7 @@
                   <span class="mr-4 inline-block hidden md:block">:</span>
                   <div class="flex-1">
                     <input
+                      v-model="form.invoice_date"
                       class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-48 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 js-datepicker"
                       type="date" placeholder="eg. 17 Feb, 2020" required>
                   </div>
@@ -80,7 +81,7 @@
                 <div
                   class="mb-1 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight">
                   <span v-if="customerDetails">
-                    {{ customerDetails.address + " " + customerDetails.city}}</span>
+                    {{ customerDetails.country}}</span>
                   <span v-else>Customer Address</span>
                 </div>
               </div>
@@ -152,6 +153,7 @@
                   <div v-if="form.payment === 'Paid'" class="w-2/4 pl-2">
                     <p class="text-gray-800 uppercase tracking-wide text-sm font-bold mb-2">Payment Date</p>
                     <input
+                      v-model="form.payment_date"
                       class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
                       type="date" placeholder="Payment Date">
                   </div>
@@ -266,8 +268,13 @@ export default {
       submitting.value = true;
       const formData = new FormData();
       for (const key in form.value) {
-        formData.append(key, form.value[key]);
+        if(key === 'invoice_items') {
+          formData.append(key, JSON.stringify(invoice_items.value));
+        } else {
+          formData.append(key, form.value[key]);
+        }
       }
+      console.log(form);
       await storeInvoice(formData);
       submitting.value = false;
     }

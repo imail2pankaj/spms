@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Invoice;
 use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
@@ -14,9 +15,22 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $invoices = Invoice::with(['invoiceItems', 'customer'])->where('id', "!=", "");
+
+        if (!empty($request->get('keyword'))) {
+            $invoices->where(function ($query) use ($request) {
+                $queryParams = "%" . $request->get('keyword') . "%";
+                $query->where('invoice_date', 'LIKE', $queryParams)
+                    ->orWhere('invoice_number', 'LIKE', $queryParams)
+                    ->orWhere('total_amount', 'LIKE', $queryParams)
+                    ->orWhere('notes', 'LIKE', $queryParams)
+                    ->orWhere('payment', 'LIKE', $queryParams)
+                    ->orWhere('payment_date', 'LIKE', $queryParams);
+            });
+        }
+        return $invoices->latest()->paginate($request->get('pagination'));
     }
 
     /**
@@ -27,7 +41,13 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $data['invoice_items'] = json_decode($data['invoice_items']);
+        $invoice = Invoice::create($data);
+        foreach ($data['invoice_items'] as $inv) {
+            $invoice->invoiceItems()->create((array)$inv);
+        }
+        return response()->json($data);
     }
 
     /**

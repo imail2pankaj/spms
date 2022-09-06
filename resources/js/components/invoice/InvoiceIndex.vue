@@ -3,7 +3,7 @@
     <h1 class="text-2xl font-bold">
       Invoices
     </h1>
-    <router-link :to="{name:'invoice.create'}" class="link-blue"> Add </router-link>
+    <router-link :to="{ name: 'invoice.create' }" class="link-blue"> Add </router-link>
 
   </div>
 
@@ -25,27 +25,29 @@
             <template v-for="(item, index) in invoices" :key="index">
               <tr class="border-b border-gray-200 hover:bg-gray-100">
                 <td class="py-2 px-2 text-left whitespace-nowrap">
-                  {{item.invoice_number}}
+                  {{ item.invoice_number }}
                 </td>
                 <td class="py-2 px-2 text-left whitespace-nowrap">
-                  {{item.customer_id}}
+                  {{ item.customer.first_name }} {{ item.customer.last_name }}
                 </td>
                 <td class="py-2 px-2 text-left whitespace-nowrap">
-                  {{item.invoice_date}}
+                  {{ moment(item.invoice_date).format("MMM DD, YYYY") }}
                 </td>
                 <td class="py-2 px-2 text-left whitespace-nowrap">
-                  {{item.total_amount}}
+                  {{ item.total_amount }}
                 </td>
                 <td class="py-2 px-2 text-left whitespace-nowrap">
-                  {{item.payment}}
+                  {{ item.payment }}
                 </td>
                 <td class="py-2 px-2 text-center whitespace-nowrap">
                   <div class="flex item-center justify-center">
-                    <router-link :to="{name:'invoice.edit', params: {id:item.id}}"  class="no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                        <edit-icon />
+                    <router-link :to="{ name: 'invoice.edit', params: { id: item.id } }"
+                      class="no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                      <edit-icon />
                     </router-link>
-                    <button type="button" @click="item_id = item.id; togglePopup();" class="no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                        <delete-icon />
+                    <button type="button" @click="item_id = item.id; togglePopup();"
+                      class="no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                      <delete-icon />
                     </button>
                   </div>
                 </td>
@@ -56,24 +58,22 @@
       </app-datatables>
     </div>
   </div>
-  <app-confirm-delete v-show="showModal" modalHeadline="Delete Invoice?" deleteMessage="Are you sure?" @deleteRecordEvent="destroyInvoice(item_id)" @close="togglePopup" ></app-confirm-delete>
+  <app-confirm-delete v-show="showModal" modalHeadline="Delete Invoice?" deleteMessage="Are you sure?"
+    @deleteRecordEvent="destroyInvoice(item_id)" @close="togglePopup"></app-confirm-delete>
 </template>
 
 
 <script>
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
+import moment from 'moment';
 import useInvoices from "../../composables/invoice";
 
 export default {
   setup(props) {
-    const { invoices, pagination, getInvoices, deleteInvoice} = useInvoices();
+    const { invoices, pagination, getInvoices, deleteInvoice } = useInvoices();
     const showModal = ref(false);
     const item_id = ref(0);
     const emitPaginationLocal = ref({});
-
-    onMounted(async () => {
-      // await getUsers();
-    })
 
     const searchData = async (emitPagination) => {
       emitPaginationLocal.value = emitPaginationLocal;
@@ -94,7 +94,8 @@ export default {
       pagination,
       searchData,
       togglePopup,
-      destroyInvoice
+      destroyInvoice,
+      moment
     }
   },
 }
