@@ -240,7 +240,7 @@ export default {
     const submitting = ref(false);
     const customerDetails = ref(null);
     const tax_rates = [{ value: 5, label: "5 %" }, { value: 12, label: "12 %" }, { value: 18, label: "18 %" }, { value: 28, label: "28 %" }];
-    const { errors, storeInvoice, customers, getUsersDropdown, getInvoiceNewInvoiceNumber, getCustomerDetails } = useInvoices();
+    const { errors, storeInvoice,getInvoiceNewInvoiceNumber, customers, getUsersDropdown, getCustomerDetails } = useInvoices();
     const invoice_items = ref([]);
     const form = ref({
       customer_id: '',
@@ -253,7 +253,7 @@ export default {
       payment: "Pending",
       payment_date: "",
       subtotal: 0,
-      invoice_items: [],
+      invoiceItems: [],
       customers: [],
     });
 
@@ -268,13 +268,12 @@ export default {
       submitting.value = true;
       const formData = new FormData();
       for (const key in form.value) {
-        if(key === 'invoice_items') {
+        if(key === 'invoiceItems') {
           formData.append(key, JSON.stringify(invoice_items.value));
         } else {
           formData.append(key, form.value[key]);
         }
       }
-      console.log(form);
       await storeInvoice(formData);
       submitting.value = false;
     }

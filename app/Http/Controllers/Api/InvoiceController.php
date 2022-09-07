@@ -58,7 +58,8 @@ class InvoiceController extends Controller
      */
     public function show($id)
     {
-        //
+        $invoice = Invoice::with("invoiceItems")->find($id);
+        return response()->json($invoice);
     }
 
     /**

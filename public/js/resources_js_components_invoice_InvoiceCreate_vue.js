@@ -44,9 +44,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _useInvoices = (0,_composables_invoice__WEBPACK_IMPORTED_MODULE_2__.default)(),
         errors = _useInvoices.errors,
         storeInvoice = _useInvoices.storeInvoice,
+        getInvoiceNewInvoiceNumber = _useInvoices.getInvoiceNewInvoiceNumber,
         customers = _useInvoices.customers,
         getUsersDropdown = _useInvoices.getUsersDropdown,
-        getInvoiceNewInvoiceNumber = _useInvoices.getInvoiceNewInvoiceNumber,
         getCustomerDetails = _useInvoices.getCustomerDetails;
 
     var invoice_items = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
@@ -61,7 +61,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       payment: "Pending",
       payment_date: "",
       subtotal: 0,
-      invoice_items: [],
+      invoiceItems: [],
       customers: []
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -102,21 +102,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 formData = new FormData();
 
                 for (key in form.value) {
-                  if (key === 'invoice_items') {
+                  if (key === 'invoiceItems') {
                     formData.append(key, JSON.stringify(invoice_items.value));
                   } else {
                     formData.append(key, form.value[key]);
                   }
                 }
 
-                console.log(form);
-                _context2.next = 6;
+                _context2.next = 5;
                 return storeInvoice(formData);
 
-              case 6:
+              case 5:
                 submitting.value = false;
 
-              case 7:
+              case 6:
               case "end":
                 return _context2.stop();
             }
@@ -692,6 +691,7 @@ function useUsers() {
     invoice_number: '',
     tax_rate: 0,
     tax_amount: 0,
+    subtotal: 0,
     total_amount: 0,
     notes: "",
     payment: "Pending",
@@ -704,6 +704,7 @@ function useUsers() {
     invoice_date: '',
     invoice_number: '',
     tax_rate: "",
+    subtotal: '',
     tax_amount: '',
     total_amount: '',
     notes: "",
