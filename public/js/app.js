@@ -36398,6 +36398,42 @@ __webpack_require__.r(__webpack_exports__);
       primary: false,
       roles: (0,_utils__WEBPACK_IMPORTED_MODULE_0__.allRoles)()
     }
+  }, // Contacts
+  {
+    path: '/app/contacts',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_contacts_ContactIndex_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/contacts/ContactIndex */ "./resources/js/components/contacts/ContactIndex.vue"));
+    },
+    name: 'contacts.index',
+    meta: {
+      title: 'Contacts',
+      primary: false,
+      profile: true,
+      roles: (0,_utils__WEBPACK_IMPORTED_MODULE_0__.allRoles)()
+    }
+  }, {
+    path: '/app/contacts/create',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_contacts_ContactCreate_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/contacts/ContactCreate */ "./resources/js/components/contacts/ContactCreate.vue"));
+    },
+    name: 'contacts.create',
+    meta: {
+      title: 'Contact Create',
+      primary: false,
+      roles: (0,_utils__WEBPACK_IMPORTED_MODULE_0__.allRoles)()
+    }
+  }, {
+    path: '/app/contacts/:id/edit',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_contacts_ContactEdit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/contacts/ContactEdit */ "./resources/js/components/contacts/ContactEdit.vue"));
+    },
+    name: 'contacts.edit',
+    props: true,
+    meta: {
+      title: 'Contact Edit',
+      primary: false,
+      roles: (0,_utils__WEBPACK_IMPORTED_MODULE_0__.allRoles)()
+    }
   }, // Projects
   {
     path: '/app/projects',
@@ -83407,7 +83443,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_role_RoleIndex_vue":1,"resources_js_components_role_RoleCreate_vue":1,"resources_js_components_role_RoleEdit_vue":1,"resources_js_components_user_UserIndex_vue":1,"resources_js_components_user_BankEdit_vue":1,"resources_js_components_user_UserCreate_vue":1,"resources_js_components_user_UserEdit_vue":1,"resources_js_components_invoice_InvoiceIndex_vue":1,"resources_js_components_invoice_InvoiceCreate_vue":1,"resources_js_components_invoice_InvoiceEdit_vue":1,"resources_js_components_service-ticket_ServiceTicketIndex_vue":1,"resources_js_components_service-ticket_ServiceTicketCreate_vue":1,"resources_js_components_service-ticket_ServiceTicketEdit_vue":1,"resources_js_components_holiday_HolidayIndex_vue":1,"resources_js_components_holiday_HolidayCreate_vue":1,"resources_js_components_holiday_HolidayEdit_vue":1,"resources_js_components_leave_LeaveIndex_vue":1,"resources_js_components_leave_LeaveCreate_vue":1,"resources_js_components_leave_LeaveEdit_vue":1,"resources_js_components_project_ProjectIndex_vue":1,"resources_js_components_project_ProjectCreate_vue":1,"resources_js_components_project_ProjectEdit_vue":1,"resources_js_components_project_ProjectDetails_vue":1,"resources_js_components_project_project-details_ProjectTask_vue":1,"resources_js_components_project_project-details_TaskEdit_vue":1,"resources_js_components_project_project-details_ProjectUpdate_vue":1,"resources_js_components_project_project-details_ProjectMilestone_vue":1,"resources_js_components_project_project-details_ProjectAttachment_vue":1,"resources_js_components_project_project-details_ProjectNote_vue":1,"resources_js_user_components_UserProfile_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_role_RoleIndex_vue":1,"resources_js_components_role_RoleCreate_vue":1,"resources_js_components_role_RoleEdit_vue":1,"resources_js_components_user_UserIndex_vue":1,"resources_js_components_user_BankEdit_vue":1,"resources_js_components_user_UserCreate_vue":1,"resources_js_components_user_UserEdit_vue":1,"resources_js_components_invoice_InvoiceIndex_vue":1,"resources_js_components_invoice_InvoiceCreate_vue":1,"resources_js_components_invoice_InvoiceEdit_vue":1,"resources_js_components_service-ticket_ServiceTicketIndex_vue":1,"resources_js_components_service-ticket_ServiceTicketCreate_vue":1,"resources_js_components_service-ticket_ServiceTicketEdit_vue":1,"resources_js_components_holiday_HolidayIndex_vue":1,"resources_js_components_holiday_HolidayCreate_vue":1,"resources_js_components_holiday_HolidayEdit_vue":1,"resources_js_components_leave_LeaveIndex_vue":1,"resources_js_components_leave_LeaveCreate_vue":1,"resources_js_components_leave_LeaveEdit_vue":1,"resources_js_components_contacts_ContactIndex_vue":1,"resources_js_components_contacts_ContactCreate_vue":1,"resources_js_components_contacts_ContactEdit_vue":1,"resources_js_components_project_ProjectIndex_vue":1,"resources_js_components_project_ProjectCreate_vue":1,"resources_js_components_project_ProjectEdit_vue":1,"resources_js_components_project_ProjectDetails_vue":1,"resources_js_components_project_project-details_ProjectTask_vue":1,"resources_js_components_project_project-details_TaskEdit_vue":1,"resources_js_components_project_project-details_ProjectUpdate_vue":1,"resources_js_components_project_project-details_ProjectMilestone_vue":1,"resources_js_components_project_project-details_ProjectAttachment_vue":1,"resources_js_components_project_project-details_ProjectNote_vue":1,"resources_js_user_components_UserProfile_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

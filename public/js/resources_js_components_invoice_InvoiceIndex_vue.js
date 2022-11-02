@@ -17,6 +17,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _composables_invoice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../composables/invoice */ "./resources/js/composables/invoice.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -26,7 +28,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  methods: {
+    downloadPDF: function downloadPDF(id) {
+      axios__WEBPACK_IMPORTED_MODULE_4___default()({
+        url: "/api/invoices/".concat(id, "/downloadInvoice"),
+        method: "GET",
+        responseType: "arraybuffer"
+      }).then(function (response) {
+        var blob = new Blob([response.data], {
+          type: "application/pdf"
+        });
+        var link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = new Date().getTime();
+        document.body.appendChild(link);
+        link.click();
+      });
+    }
+  },
   setup: function setup(props) {
     var _useInvoices = (0,_composables_invoice__WEBPACK_IMPORTED_MODULE_3__.default)(),
         invoices = _useInvoices.invoices,
@@ -72,9 +93,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 _context2.next = 4;
-                return getInvoices(emitPaginationLocal.value);
+                return getInvoices({});
 
               case 4:
+                // await getInvoices(emitPaginationLocal.value);
                 togglePopup();
 
               case 5:
@@ -128,7 +150,7 @@ var _hoisted_1 = {
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", {
   "class": "text-2xl font-bold"
-}, " Invoices ", -1
+}, "Invoices", -1
 /* HOISTED */
 );
 
@@ -186,6 +208,13 @@ var _hoisted_14 = {
 var _hoisted_15 = {
   "class": "flex item-center justify-center"
 };
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("i", {
+  "class": "fas fa-download"
+}, null, -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
@@ -237,7 +266,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               id: item.id
             }
           },
-          "class": "no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+          "class": "\n                        no-underline\n                        w-4\n                        mr-2\n                        transform\n                        hover:text-purple-500 hover:scale-110\n                      "
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
             return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_edit_icon)];
@@ -253,8 +282,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             $setup.item_id = item.id;
             $setup.togglePopup();
           },
-          "class": "no-underline w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+          "class": "\n                        no-underline\n                        w-4\n                        mr-2\n                        transform\n                        hover:text-purple-500 hover:scale-110\n                      "
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_delete_icon)], 8
+        /* PROPS */
+        , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+          onClick: function onClick($event) {
+            return $options.downloadPDF(item.id);
+          }
+        }, [_hoisted_16], 8
         /* PROPS */
         , ["onClick"])])])]);
       }), 128

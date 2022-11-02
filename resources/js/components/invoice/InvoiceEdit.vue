@@ -277,7 +277,6 @@ export default {
       });
       invoice.value.subtotal = calculateTotal;
       invoice.value.tax_amount = ((calculateTotal * invoice.value.tax_rate) / 100);
-
       invoice.value.total_amount = calculateTotal + invoice.value.tax_amount;
     }
 
